@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title></title>
+    <link>//localhost:1313/algolia.json</link>
+    <description>Recent content from </description>
+    <generator>Hugo</generator>
+    <language>zh-cn</language>
+    
+    <managingEditor>2267593025@qq.com (the_last_kid)</managingEditor>
+    <webMaster>2267593025@qq.com (the_last_kid)</webMaster>
+    
+    <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
+    
+    <lastBuildDate>Wed, 15 Mar 2023 11:00:00 -0700</lastBuildDate>
+    
+    
+    <atom:link href="//localhost:1313/index.xml" rel="self" type="application/rss&#43;xml" />
+    
+
+    
+    
+
+    <item>
+      <title>哈哈</title>
+      <link>//localhost:1313/post/hello/</link>
+      <pubDate>Wed, 15 Mar 2023 11:00:00 -0700</pubDate>
+      <author>2267593025@qq.com (the_last_kid)</author>
+      <guid>//localhost:1313/post/hello/</guid>
+      <description>
+        <![CDATA[<h1>哈哈</h1><p>作者：the_last_kid（2267593025@qq.com）</p>
+        
+          <p>💘 博麗 霊夢 💘</p>
+        
+        <hr><p>本文2023-03-15首发于<a href='//localhost:1313/'></a>，最后修改于2023-03-15</p>]]>
+      </description>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>测试</title>
+      <link>//localhost:1313/post/x/</link>
+      <pubDate>Wed, 15 Mar 2023 11:00:00 -0700</pubDate>
+      <author>2267593025@qq.com (the_last_kid)</author>
+      <guid>//localhost:1313/post/x/</guid>
+      <description>
+        <![CDATA[<h1>测试</h1><p>作者：the_last_kid（2267593025@qq.com）</p>
+        
+          <h1 id="这是标题">
+<a class="header-anchor" href="#%e8%bf%99%e6%98%af%e6%a0%87%e9%a2%98"></a>
+这是标题
+</h1><p>什么意思，大标题不进入目录吗，还有为什么目录不分1.2.3.4.</p>
+<h2 id="这是二级子标题">
+<a class="header-anchor" href="#%e8%bf%99%e6%98%af%e4%ba%8c%e7%ba%a7%e5%ad%90%e6%a0%87%e9%a2%98"></a>
+这是二级子标题
+</h2><h2 id="这是第二个二级子标题">
+<a class="header-anchor" href="#%e8%bf%99%e6%98%af%e7%ac%ac%e4%ba%8c%e4%b8%aa%e4%ba%8c%e7%ba%a7%e5%ad%90%e6%a0%87%e9%a2%98"></a>
+这是第二个二级子标题
+</h2><h3 id="1-这是三级子标题">
+<a class="header-anchor" href="#1-%e8%bf%99%e6%98%af%e4%b8%89%e7%ba%a7%e5%ad%90%e6%a0%87%e9%a2%98"></a>
+1. 这是三级子标题
+</h3><h3 id="2-这是第二个三级子标题">
+<a class="header-anchor" href="#2-%e8%bf%99%e6%98%af%e7%ac%ac%e4%ba%8c%e4%b8%aa%e4%b8%89%e7%ba%a7%e5%ad%90%e6%a0%87%e9%a2%98"></a>
+2. 这是第二个三级子标题
+</h3><ul>
+<li>这是xxx</li>
+</ul>
+<h3 id="3-这是第三个三级子标题">
+<a class="header-anchor" href="#3-%e8%bf%99%e6%98%af%e7%ac%ac%e4%b8%89%e4%b8%aa%e4%b8%89%e7%ba%a7%e5%ad%90%e6%a0%87%e9%a2%98"></a>
+3. 这是第三个三级子标题
+</h3><ol>
+<li>这是1</li>
+<li>2</li>
+<li>3</li>
+<li>死</li>
+</ol>
+<ul>
+<li>
+<p>jix</p>
+        
+        <hr><p>本文2023-03-15首发于<a href='//localhost:1313/'></a>，最后修改于2023-03-15</p>]]>
+      </description>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>测试</title>
+      <link>//localhost:1313/post/test/</link>
+      <pubDate>Wed, 15 Mar 2023 11:00:00 -0700</pubDate>
+      <author>2267593025@qq.com (the_last_kid)</author>
+      <guid>//localhost:1313/post/test/</guid>
+      <description>
+        <![CDATA[<h1>测试</h1><p>作者：the_last_kid（2267593025@qq.com）</p>
+        
+          <h1 id="这是标题">
+<a class="header-anchor" href="#%e8%bf%99%e6%98%af%e6%a0%87%e9%a2%98"></a>
+这是标题
+</h1><p>什么意思，大标题不进入目录吗，还有为什么目录不分1.2.3.4.</p>
+<h2 id="这是二级子标题">
+<a class="header-anchor" href="#%e8%bf%99%e6%98%af%e4%ba%8c%e7%ba%a7%e5%ad%90%e6%a0%87%e9%a2%98"></a>
+这是二级子标题
+</h2><h2 id="这是第二个二级子标题">
+<a class="header-anchor" href="#%e8%bf%99%e6%98%af%e7%ac%ac%e4%ba%8c%e4%b8%aa%e4%ba%8c%e7%ba%a7%e5%ad%90%e6%a0%87%e9%a2%98"></a>
+这是第二个二级子标题
+</h2><h3 id="1-这是三级子标题">
+<a class="header-anchor" href="#1-%e8%bf%99%e6%98%af%e4%b8%89%e7%ba%a7%e5%ad%90%e6%a0%87%e9%a2%98"></a>
+1. 这是三级子标题
+</h3><h3 id="2-这是第二个三级子标题">
+<a class="header-anchor" href="#2-%e8%bf%99%e6%98%af%e7%ac%ac%e4%ba%8c%e4%b8%aa%e4%b8%89%e7%ba%a7%e5%ad%90%e6%a0%87%e9%a2%98"></a>
+2. 这是第二个三级子标题
+</h3><ul>
+<li>这是xxx</li>
+</ul>
+<h3 id="3-这是第三个三级子标题">
+<a class="header-anchor" href="#3-%e8%bf%99%e6%98%af%e7%ac%ac%e4%b8%89%e4%b8%aa%e4%b8%89%e7%ba%a7%e5%ad%90%e6%a0%87%e9%a2%98"></a>
+3. 这是第三个三级子标题
+</h3><ol>
+<li>这是1</li>
+<li>2</li>
+<li>3</li>
+<li>死</li>
+</ol>
+<ul>
+<li>
+<p>jix</p>
+        
+        <hr><p>本文2023-03-15首发于<a href='//localhost:1313/'></a>，最后修改于2023-03-15</p>]]>
+      </description>
+      
+    </item>
+    
+    
+
+    <item>
+      <title></title>
+      <link>//localhost:1313/post/%E6%96%B0%E5%BB%BA-%E6%96%87%E6%9C%AC%E6%96%87%E6%A1%A3/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate>
+      <author>2267593025@qq.com (the_last_kid)</author>
+      <guid>//localhost:1313/post/%E6%96%B0%E5%BB%BA-%E6%96%87%E6%9C%AC%E6%96%87%E6%A1%A3/</guid>
+      <description>
+        <![CDATA[<h1></h1><p>作者：the_last_kid（2267593025@qq.com）</p>
+        
+          
+        
+        <hr><p>本文0001-01-01首发于<a href='//localhost:1313/'></a>，最后修改于0001-01-01</p>]]>
+      </description>
+      
+    </item>
+    
+  </channel>
+</rss>
