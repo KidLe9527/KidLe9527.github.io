@@ -66,7 +66,10 @@
     as="style"
     href="https://npm.webcache.cn/katex@0.16.22/dist/katex.min.css"
     integrity="sha384-5TcZemv2l/9On385z///&#43;d7MSYlvIEw9FuZTIdZ14vJLqWphw7e7ZPuOiCHJcFCP" crossorigin="anonymous"onload="this.onload=null;this.rel='stylesheet'"
-  /><script
+  /><link
+    rel="stylesheet"
+    href="https://npm.webcache.cn/@waline/client@2.15.8/dist/waline.css"
+    integrity="sha384-vltfZtesCdl6NYVcFVcjEaIi5RpNvZe9t7fXvq8twVtcoy&#43;Ub9QgnxUYJmwOhYCK" crossorigin="anonymous"/><script
     src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js"
     integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script><link
     rel="stylesheet"
@@ -128,7 +131,7 @@
         <a class="main-nav-link" href="/friend">友链</a>
       </span><a id="main-nav-toggle" class="nav-icon"></a>
   </nav>
-  <nav id="sub-nav"></nav></div>
+  <nav id="sub-nav"><a id="nav-search-btn" class="nav-icon popup-trigger" title="搜索"></a></nav></div>
 <header id="header"><picture></picture><img  fetchpriority="high" src="/images/banner.webp" alt=""><div id="header-outer">
     <div id="header-title"><h2 id="subtitle-wrap" data-aos="slide-down"></h2></div>
   </div>
@@ -252,20 +255,53 @@
 <div class="article-category"></div>
 </div>
     <div class="hr-line"></div><div class="e-content article-entry" itemprop="articleBody"></div>
-    <footer class="article-footer"><ul class="article-tag-list" itemprop="keywords"></ul>
+    <footer class="article-footer"><a
+          data-aos="zoom-in"
+          href="//localhost:1313/post/%E6%96%B0%E5%BB%BA-%E6%96%87%E6%9C%AC%E6%96%87%E6%A1%A3/#comments"
+          class="article-comment-link"
+        >
+          <span
+            class="post-comments-count waline-comment-count"
+            data-path="//localhost1313/post/%e6%96%b0%e5%bb%ba-%e6%96%87%e6%9c%ac%e6%96%87%e6%a1%a3/"
+            itemprop="commentCount"
+          ></span>
+          留言
+        </a><span
+          data-aos="zoom-in"
+          class="article-visitor-link"
+        >
+          <span
+            class="waline-pageview-count"
+            data-path="//localhost:1313/post/%E6%96%B0%E5%BB%BA-%E6%96%87%E6%9C%AC%E6%96%87%E6%A1%A3/"
+            >0</span
+          >
+          <em class="post-meta-item-text">阅读量</em>
+        </span><ul class="article-tag-list" itemprop="keywords"></ul>
 </footer>
   </div><nav
     id="article-nav"
     data-aos="fade-up"
   ><div class="article-nav-link-wrap article-nav-link-right"><img
-              data-src="https://d-sketon.top/img/_backwebp/bg1.webp"
+              data-src="./images/66.png"
               data-sizes="auto"
               alt="哈哈"
               class="lazyload"
             /><a href="//localhost:1313/post/hello/"></a>
         <div class="article-nav-caption">后一篇</div>
         <h3 class="article-nav-title">哈哈</h3>
-      </div></nav></article></section>
+      </div></nav></article><section id="comments" data-aos="fade-up">
+<div class="comment-header"><h2 class="comment-title">说些什么吧！</h2>
+  <div class="comment-selector">
+    <div class="comment-selector-wrap"><div class="selector-item" data-selector="waline">
+          <span>waline</span>
+        </div></div>
+  </div>
+</div>
+
+<div class="comment-content"><div class="comment waline-comment" data-aos="fade-up"
+     >
+    </div></div>
+</section></section>
         </div><footer id="footer">
   <div style="width: 100%; overflow: hidden">
     <div class="footer-line"></div>
@@ -395,7 +431,21 @@
         <div class="sidebar-toc-btn current"></div>
         <div class="sidebar-common-btn"></div>
       </div></nav>
-</div><script
+</div><div class="site-search">
+        <div class="reimu-popup popup">
+          <div class="reimu-search">
+            <div class="reimu-search-input-icon"></div>
+            <div class="reimu-search-input" id="reimu-search-input"></div>
+            <div class="popup-btn-close"></div>
+          </div>
+          <div class="reimu-results">
+            <div id="reimu-stats"></div>
+            <div id="reimu-hits"></div>
+            <div id="reimu-pagination" class="reimu-pagination"></div>
+          </div>
+          <img class="reimu-bg" src="/images/reimu.png" />
+        </div>
+      </div><script
     src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js"
     integrity="sha384-3gT/vsepWkfz/ff7PpWNUeMzeWoH3cDhm/A8jM7ouoAK0/fP/9bcHHR5kHq2nf&#43;e" crossorigin="anonymous"></script><script
     src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js"
@@ -413,7 +463,28 @@
     } else {
       aosInit();
     }
-  </script><script src="/js/pjax_main.js" data-pjax></script><script
+  </script><script src="/js/pjax_main.js" data-pjax></script><script>
+    var ALGOLIA_CONFIG = {
+      logo: '\/images\/algolia_logo.svg',
+      algolia: {
+        applicationID: "ZSZENPFLSX",
+        apiKey: "0daca5ab2593f590a2bc28c4fe81c7ce",
+        indexName: "algolia_movie_sample_dataset",
+        hits: {
+          "per_page": parseInt("10")
+        },
+        labels: {
+          "input_placeholder": '搜索.....',
+          "hits_empty": '未发现与 「${query}」相关内容',
+          "hits_stats": '找到${hits}条结果（用时 ${time} ms）'
+        }
+      }
+    };
+  </script><script
+    src="https://npm.webcache.cn/algoliasearch@4.17.1/dist/algoliasearch-lite.umd.js"
+    deferintegrity="sha384-xvLS0jfKuoREs7pqkRI/OI8GcqohO5S&#43;jQz7ZBtQXnsXmD&#43;9jDOOY4cL6dCPzlrk" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/@reimujs/instantsearch.js@4.57.0-beta.1/dist/instantsearch.production.min.js"
+    deferintegrity="sha384-aagKMe8nkqaP2DYQc8kkYOL5l&#43;M5Q2WH/Uhr4teOh0Ybp0RZj0kUSDm45qPikMjK" crossorigin="anonymous"></script><script src="/js/algolia_search.js" ></script><script
     src="https://npm.webcache.cn/mouse-firework@0.1.1/dist/index.umd.js"
     integrity="sha384-8LyaidD9GPxQQgLJO/WRw/O2h3BoNq/ApI/ecpvM6RsrCz2qP2ppBXUKihP4V/2d" crossorigin="anonymous"></script><script>
   if (window.firework) {
@@ -452,7 +523,333 @@
         } else {
           window.addEventListener('lightbox:ready', pswp);
         }
-      </script></div>
+      </script><script data-pjax>
+  var loadScript = (src, integrity) => {
+    const script = document.createElement('script');
+    script.src = src;
+    if (integrity) script.integrity = integrity;
+    script.crossOrigin = 'anonymous';
+    return script;
+  };
+  var commentConfigKeys = ['valine', 'waline', 'twikoo', 'gitalk', 'giscus'];
+  var commentConfig = {
+    valine: {
+      enable: false,
+      load: () => {
+        const container = document.querySelector('.valine-comment');
+        if (!container) return;
+        container.style.display = 'block';
+
+        const script = loadScript(
+          'https:\/\/npm.webcache.cn\/valine@1.5.1\/dist\/Valine.min.js',
+          !'webcache|valine@1.5.1\/dist\/Valine.min.js'.startsWith('local') ? 'sha384-3ma91AExDeMAZ1rjTjaP8V2A2obQE\u002bs5ltKRwYlwdpArz9xVbp0tF3b0VV2ACNPn' : undefined
+        );
+        script.onload = () => {
+          const GUEST_INFO = ['nick', 'mail', 'link'];
+          const guest_info = 'nick,mail,link'.split(',').filter((item) => {
+            return GUEST_INFO.indexOf(item) > -1
+          });
+          const recordIP = JSON.parse('true');
+          const highlight = JSON.parse('true');
+          const visitor = JSON.parse('false');
+          const serverURLs = undefined;
+
+          new Valine({
+            el: '.valine-comment',
+            appId: "",
+            appKey: "",
+            placeholder: "Just go go",
+            pageSize: '10',
+            avatar: 'mp',
+            lang: document.documentElement.lang || 'en',
+            recordIP: recordIP,
+            highlight: highlight,
+            visitor: visitor,
+            requiredFields: guest_info,
+            path: window.location.pathname,
+            serverURLs,
+          });
+        };
+        document.head.appendChild(script);
+      }
+    },
+    waline: {
+      enable: true,
+      load: async () => {
+        const container = document.querySelector('.waline-comment');
+        if (!container) return;
+        container.style.display = 'block';
+
+        let walineInit;
+        const walineCdn = 'https:\/\/npm.webcache.cn\/@waline\/client@2.15.8\/dist\/waline.mjs';
+        
+        if ('webcache|@waline\/client@2.15.8\/dist\/waline.mjs'.startsWith('local')) {
+          
+          const module = await safeImport(walineCdn);
+          walineInit = module.init;
+        } else {
+          
+          const module = await safeImport(
+            walineCdn, 
+            'sha384-9sbqJjrfGjbkI6\/PI4nU\/MvBfEmkkPC4YK9I4zBeMIf1CVCZdCMH\/KinBEAZII\/5'
+          );
+          walineInit = module.init;
+        }
+        
+        window.walineInstance = walineInit({
+          el: '.waline-comment',
+          serverURL: 'https:\/\/gj8qivpf.api.lncldglobal.com',
+          lang: document.documentElement.lang || 'en',
+          locale: JSON.parse("{}"),
+          emoji: JSON.parse("[\"https://unpkg.com/@waline/emojis@1.2.0/weibo\",\"https://unpkg.com/@waline/emojis@1.2.0/alus\",\"https://unpkg.com/@waline/emojis@1.2.0/bilibili\",\"https://unpkg.com/@waline/emojis@1.2.0/qq\",\"https://unpkg.com/@waline/emojis@1.2.0/tieba\",\"https://unpkg.com/@waline/emojis@1.2.0/tw-emoji\"]"),
+          meta: JSON.parse("[\"nick\",\"mail\",\"link\"]"),
+          requiredMeta: JSON.parse("[\"nick\",\"mail\"]"),
+          wordLimit:  0 ,
+          comment: true,
+          pageSize:  10 ,
+          dark: 'html[data-theme="dark"]',
+          pageview:  true ,
+        });
+      }
+    },
+    twikoo: {
+      enable: false,
+      load: () => {
+        const container = document.querySelector('.twikoo-comment');
+        if (!container) return;
+        container.style.display = 'block';
+
+        
+        const script = loadScript(
+          'https:\/\/npm.webcache.cn\/twikoo@1.6.44\/dist\/twikoo.all.min.js',
+          !'webcache|twikoo@1.6.44\/dist\/twikoo.all.min.js'.startsWith('local') ? 'sha384-kwWLC0HjeZZnVPqCJ1AncI8tsk\u002bkQqF9TbAmCclcc9Z0hGkfgHRzeQZxmdmZhE0K' : undefined
+        );
+        script.onload = () => {
+          twikoo.init({
+            envId: '',
+            el: '.twikoo-comment',
+            region: '',
+            lang: document.documentElement.lang || 'en',
+          });
+          twikoo.getCommentsCount({
+            envId: '',
+            region: '',
+            urls: [
+              '\/\/localhost1313\/post\/%e6%96%b0%e5%bb%ba-%e6%96%87%e6%9c%ac%e6%96%87%e6%a1%a3\/'
+            ],
+            includeReply: false
+          }).then((res) => {
+            document.querySelector('.twikoo-comment-count').innerText = res[0].count;
+          }).catch((err) => {
+            console.error(err);
+          });
+        };
+        document.head.appendChild(script);
+      }
+    },
+    gitalk: {
+      enable: false,
+      load: () => {
+        const container = document.querySelector('.gitalk-comment');
+        if (!container) return;
+        container.style.display = 'block';
+
+        const script = loadScript(
+          'https:\/\/npm.webcache.cn\/gitalk@1.8.0\/dist\/gitalk.min.js',
+          !'webcache|gitalk@1.8.0\/dist\/gitalk.min.js'.startsWith('local') ? 'sha384-kspnZUWBoSWwoJHa0hBCXYbHGbhvU\/lcEH5O8eVbSDhbPwsiVUTp\/aGX\/z\/5EuMA' : undefined
+        );
+        script.onload = () => {
+          if ( false ) {
+            
+            const md5Script = loadScript(
+              'https:\/\/npm.webcache.cn\/blueimp-md5@2.19.0\/js\/md5.min.js',
+              !'webcache|blueimp-md5@2.19.0\/js\/md5.min.js'.startsWith('local') ? 'sha384-JmVtRz6RWiXnA14QbIOJzPuU3MidULOpBP66deeLLyyoF4Tr\/gZlbkHkL6vTthxH' : undefined
+            );
+            md5Script.onload = initGitalk;
+            document.head.appendChild(md5Script);
+          } else {
+            
+            initGitalk();
+          }
+        };
+        document.head.appendChild(script);
+
+        function initGitalk() {
+          let gitalk = new Gitalk({
+            clientID: '',
+            clientSecret: '',
+            repo: '',
+            owner: '',
+            admin: JSON.parse("null"),
+            id: location.pathname,
+            distractionFreeMode: false,
+            language: document.documentElement.lang || 'en',
+          });
+          gitalk.render('gitalk-comment');
+        }
+      }
+    },
+    giscus: {
+      enable: false,
+      load: () => {
+        const container = document.querySelector('.giscus-comment');
+        if (!container) return;
+        container.style.display = 'block';
+
+        
+        const existingScript = container.querySelector('script[src*="giscus.app/client.js"]');
+        if (existingScript) existingScript.remove();
+        const existingFrame = document.querySelector('iframe.giscus-frame');
+        if (existingFrame) existingFrame.remove();
+
+        
+        const giscusScript = document.createElement('script');
+        const domMode = document.documentElement.getAttribute("data-theme");
+
+        const docLang = document.documentElement.lang || 'en';
+        const langBase = docLang.split('-')[0];
+        const supportedLangs = ['ar', 'be', 'bg', 'ca', 'cs', 'da', 'de', 'en', 
+        'eo', 'es', 'eu', 'fa', 'fr', 'gr', 'hbs', 'he', 'hu', 'id', 'it', 'ja', 
+        'kh', 'ko', 'nl', 'pl', 'pt', 'ro', 'ru', 'th', 'tr', 'uk', 'uz', 'vi', 'zh-CN', 'zh-HK', 'zh-TW'];
+        const giscusLang = supportedLangs.includes(docLang) ? docLang : supportedLangs.includes(langBase) ? langBase : 'en';
+
+        giscusScript.src = 'https://giscus.app/client.js';
+        giscusScript.setAttribute('data-repo', '');
+        giscusScript.setAttribute('data-repo-id', '');
+        giscusScript.setAttribute('data-category', '');
+        giscusScript.setAttribute('data-category-id', '');
+        giscusScript.setAttribute('data-mapping', '0');
+        giscusScript.setAttribute('data-strict', '0');
+        giscusScript.setAttribute('data-reactions-enabled', '1');
+        giscusScript.setAttribute('data-emit-metadata', '0');
+        giscusScript.setAttribute('data-input-position', 'bottom');
+        giscusScript.setAttribute('data-theme', domMode === 'dark' ? 'dark' : 'light');
+        giscusScript.setAttribute('data-lang', giscusLang);
+        giscusScript.setAttribute('crossorigin', 'anonymous');
+        giscusScript.async = true;
+        container.appendChild(giscusScript);
+        document.body.addEventListener('light-theme-set', () => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: { setConfig: { theme: 'light' } } }, 'https://giscus.app');
+        });
+        document.body.addEventListener('dark-theme-set', () => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: { setConfig: { theme: 'dark' } } }, 'https://giscus.app');
+        });
+      }
+    }
+  };
+  commentConfig.enable = commentConfigKeys.some(key => commentConfig[key].enable);
+
+  var defaultComment = '';
+  if (commentConfig.enable) {
+    
+    var savedCommentType = localStorage.getItem('commentType');
+    
+    
+    if (savedCommentType) {
+      if (commentConfig[savedCommentType]?.enable) {
+        defaultComment = savedCommentType;
+      }
+    }
+    
+    
+    if (!defaultComment) {
+      var configDefault = 'waline';
+      if (commentConfig[configDefault]?.enable) {
+        defaultComment = configDefault;
+      }
+    }
+    
+    
+    if (!defaultComment) {
+      defaultComment = commentConfigKeys.find(sys => commentConfig[sys].enable) || '';
+    }
+  }
+
+  function loadComments() {
+    if (!commentConfig.enable) return;
+    
+    const loadedComments = {
+      valine: false,
+      waline: false,
+      twikoo: false,
+      gitalk: false,
+      giscus: false
+    };
+
+    
+    const hideAllComments = () => {
+      const commentContainers = document.querySelectorAll('.comment');
+      commentContainers.forEach(container => {
+        container.style.display = 'none';
+      });
+    };
+
+    
+    const loadCommentSystem = (type) => {
+      if (loadedComments[type]) {
+        
+        document.querySelector(`.${type}-comment`).style.display = 'block';
+        return;
+      }
+
+      
+      commentConfig[type]?.load();
+      loadedComments[type] = true;
+    };
+
+    
+    const changeActiveCommentItems = (item) => {
+      const commentItems = document.querySelectorAll('.selector-item');
+      for (let i = 0; i < commentItems.length; i++) {
+        commentItems[i].classList.remove('active');
+      }
+      item.classList.add('active');
+
+      
+      const commentType = item.getAttribute('data-selector');
+
+      
+      hideAllComments();
+
+      
+      loadCommentSystem(commentType);
+    };
+
+    const commentInit = () => {
+      
+      const commentItems = document.querySelectorAll('.selector-item');
+      for (let item of commentItems) {
+        item.addEventListener('click', () => {
+          
+          const commentType = item.getAttribute('data-selector');
+          window.localStorage.setItem('commentType', commentType);
+          
+          changeActiveCommentItems(item);
+        });
+      }
+
+      
+      if (defaultComment) {
+        const defaultSelectorItem = document.querySelector(`[data-selector="${defaultComment}"]`);
+        if (!defaultSelectorItem) return;
+        defaultSelectorItem.style.display = 'block';
+        defaultSelectorItem.classList.add('active');
+        loadCommentSystem(defaultComment);
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', commentInit);
+    } else {
+      commentInit();
+    }
+  };
+  loadComments();
+</script></div>
 </div><script
     src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js"
     asyncintegrity="sha384-0M75wtSkhjIInv4coYlaJU83&#43;OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id&#43;S" crossorigin="anonymous"></script><script>
