@@ -14,7 +14,7 @@ lastmod: 2023-03-15T11:00:00-07:00
 ## 这是第二个二级子标题
 
 ### 1. 这是三级子标题
-![00](https://kidle9527.github.io/images/99.png)
+![00](../../static/images/99.jpg)
 ### 2. 这是第二个三级子标题
 
 * 这是xxx
