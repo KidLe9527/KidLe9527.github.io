@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>22222 on </title>
+    <link>//localhost:1313/tags/22222/</link>
+    <description>Recent content from </description>
+    <generator>Hugo</generator>
+    <language>zh-cn</language>
+    
+    <managingEditor>2267593025@qq.com (the_last_kid)</managingEditor>
+    <webMaster>2267593025@qq.com (the_last_kid)</webMaster>
+    
+    <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
+    
+    <lastBuildDate>Tue, 05 Aug 2025 11:00:00 -0700</lastBuildDate>
+    
+    
+    <atom:link href="//localhost:1313/tags/22222/index.xml" rel="self" type="application/rss&#43;xml" />
+    
+
+    
+    
+
+    <item>
+      <title>ccc</title>
+      <link>//localhost:1313/post/test01/</link>
+      <pubDate>Tue, 05 Aug 2025 11:00:00 -0700</pubDate>
+      <author>2267593025@qq.com (the_last_kid)</author>
+      <guid>//localhost:1313/post/test01/</guid>
+      <description>
+        <![CDATA[<h1>ccc</h1><p>作者：the_last_kid（2267593025@qq.com）</p>
+        
+          <h1 id="ucchbc">
+<a class="header-anchor" href="#ucchbc"></a>
+ucchbc
+</h1><p>hgccjc</p>
+<p><img src="https://kidle9527.github.io/images/66.png" alt="00"></p>
+<p>基本</p>
+        
+        <hr><p>本文2025-08-05首发于<a href='//localhost:1313/'></a>，最后修改于2025-08-05</p>]]>
+      </description>
+      
+        <category>test</category>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>💘 博麗 霊夢 💘</title>
+      <link>//localhost:1313/post/mark/</link>
+      <pubDate>Tue, 05 Aug 2025 11:00:00 -0700</pubDate>
+      <author>2267593025@qq.com (the_last_kid)</author>
+      <guid>//localhost:1313/post/mark/</guid>
+      <description>
+        <![CDATA[<h1>💘 博麗 霊夢 💘</h1><p>作者：the_last_kid（2267593025@qq.com）</p>
+        
+          <p>sdadssdsdsdsd</p>
+        
+        <hr><p>本文2025-08-05首发于<a href='//localhost:1313/'></a>，最后修改于2025-08-05</p>]]>
+      </description>
+      
+        <category>test</category>
+      
+    </item>
+    
+  </channel>
+</rss>
