@@ -10,6 +10,6 @@ tags: ['1111','22222']
 # ucchbc
 hgccjc
 
-
+![00](https://kidle9527.github.io/images/66.png)
 
 基本
