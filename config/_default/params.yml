@@ -291,15 +291,15 @@ comment:
     zh-TW: 說些什麼吧！
     ja: コメントを残す
     pt-BR: Deixe um comentário
-  default: waline # default comment system, when you enable multiple comment systems
+  default: valine # default comment system, when you enable multiple comment systems
 
 # valine comment system. https://valine.js.org
 # version 1.5.1
 # notify and verify have been deprecated
 valine:
   enable: false # if you want to use valine,please set this value is true
-  appId: # leancloud application app id
-  appKey: # leancloud application app key
+  appId: gJ8QivPfkSNY7gXtAVDGAvR7-MdYXbMMI # leancloud application app id
+  appKey: NJeAr1iZhAnUM1iFs4FoILQ7# leancloud application app key
   pageSize: 10 # comment list page size
   avatar: mp # gravatar style https://valine.js.org/#/avatar
   # lang: zh-cn # deprecated, use html.lang instead
@@ -308,7 +308,7 @@ valine:
   recordIP: true # whether to record the IP address of the commenters
   highlight: true # whether to highlight the code blocks
   visitor: false # whether to display the number of visitors
-  serverURLs: # leancloud server url
+  serverURLs: https://gj8qivpf.api.lncldglobal.com # leancloud server url
 
 # https://waline.js.org/
 waline:

@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title></title>
-    <link>/algolia.json</link>
+    <link>//localhost:1313/algolia.json</link>
     <description>Recent content from </description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
@@ -15,7 +15,7 @@
     <lastBuildDate>Wed, 15 Mar 2023 11:00:00 -0700</lastBuildDate>
     
     
-    <atom:link href="/index.xml" rel="self" type="application/rss&#43;xml" />
+    <atom:link href="//localhost:1313/index.xml" rel="self" type="application/rss&#43;xml" />
     
 
     
@@ -23,16 +23,16 @@
 
     <item>
       <title>哈哈</title>
-      <link>/post/hello/</link>
+      <link>//localhost:1313/post/hello/</link>
       <pubDate>Wed, 15 Mar 2023 11:00:00 -0700</pubDate>
       <author>2267593025@qq.com (the_last_kid)</author>
-      <guid>/post/hello/</guid>
+      <guid>//localhost:1313/post/hello/</guid>
       <description>
         <![CDATA[<h1>哈哈</h1><p>作者：the_last_kid（2267593025@qq.com）</p>
         
           <p>💘 博麗 霊夢 💘</p>
         
-        <hr><p>本文2023-03-15首发于<a href='/'></a>，最后修改于2023-03-15</p>]]>
+        <hr><p>本文2023-03-15首发于<a href='//localhost:1313/'></a>，最后修改于2023-03-15</p>]]>
       </description>
       
     </item>
@@ -41,10 +41,10 @@
 
     <item>
       <title>测试</title>
-      <link>/post/x/</link>
+      <link>//localhost:1313/post/x/</link>
       <pubDate>Wed, 15 Mar 2023 11:00:00 -0700</pubDate>
       <author>2267593025@qq.com (the_last_kid)</author>
-      <guid>/post/x/</guid>
+      <guid>//localhost:1313/post/x/</guid>
       <description>
         <![CDATA[<h1>测试</h1><p>作者：the_last_kid（2267593025@qq.com）</p>
         
@@ -80,7 +80,7 @@
 <li>
 <p>jix</p>
         
-        <hr><p>本文2023-03-15首发于<a href='/'></a>，最后修改于2023-03-15</p>]]>
+        <hr><p>本文2023-03-15首发于<a href='//localhost:1313/'></a>，最后修改于2023-03-15</p>]]>
       </description>
       
     </item>
@@ -89,10 +89,10 @@
 
     <item>
       <title>测试</title>
-      <link>/post/test/</link>
+      <link>//localhost:1313/post/test/</link>
       <pubDate>Wed, 15 Mar 2023 11:00:00 -0700</pubDate>
       <author>2267593025@qq.com (the_last_kid)</author>
-      <guid>/post/test/</guid>
+      <guid>//localhost:1313/post/test/</guid>
       <description>
         <![CDATA[<h1>测试</h1><p>作者：the_last_kid（2267593025@qq.com）</p>
         
@@ -128,7 +128,7 @@
 <li>
 <p>jix</p>
         
-        <hr><p>本文2023-03-15首发于<a href='/'></a>，最后修改于2023-03-15</p>]]>
+        <hr><p>本文2023-03-15首发于<a href='//localhost:1313/'></a>，最后修改于2023-03-15</p>]]>
       </description>
       
     </item>
@@ -137,16 +137,16 @@
 
     <item>
       <title></title>
-      <link>/post/%E6%96%B0%E5%BB%BA-%E6%96%87%E6%9C%AC%E6%96%87%E6%A1%A3/</link>
+      <link>//localhost:1313/post/%E6%96%B0%E5%BB%BA-%E6%96%87%E6%9C%AC%E6%96%87%E6%A1%A3/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate>
       <author>2267593025@qq.com (the_last_kid)</author>
-      <guid>/post/%E6%96%B0%E5%BB%BA-%E6%96%87%E6%9C%AC%E6%96%87%E6%A1%A3/</guid>
+      <guid>//localhost:1313/post/%E6%96%B0%E5%BB%BA-%E6%96%87%E6%9C%AC%E6%96%87%E6%A1%A3/</guid>
       <description>
         <![CDATA[<h1></h1><p>作者：the_last_kid（2267593025@qq.com）</p>
         
           
         
-        <hr><p>本文0001-01-01首发于<a href='/'></a>，最后修改于0001-01-01</p>]]>
+        <hr><p>本文0001-01-01首发于<a href='//localhost:1313/'></a>，最后修改于0001-01-01</p>]]>
       </description>
       
     </item>
