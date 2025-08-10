@@ -26,10 +26,16 @@
     <loc>//localhost:1313/post/test01/</loc>
     <lastmod>2025-08-05T11:00:00-07:00</lastmod>
   </url><url>
+    <loc>//localhost:1313/post/why/</loc>
+    <lastmod>2025-08-05T11:00:00-07:00</lastmod>
+  </url><url>
     <loc>//localhost:1313/tags/</loc>
     <lastmod>2025-08-05T11:00:00-07:00</lastmod>
   </url><url>
     <loc>//localhost:1313/categories/test/</loc>
+    <lastmod>2025-08-05T11:00:00-07:00</lastmod>
+  </url><url>
+    <loc>//localhost:1313/tags/try/</loc>
     <lastmod>2025-08-05T11:00:00-07:00</lastmod>
   </url><url>
     <loc>//localhost:1313/about/</loc>
