@@ -108,7 +108,7 @@ sidebar: left
 
 social:
   # email: mailto:xxx@gmail.com
-  github: https://github.com/yourname
+  github: https://github.com/KidLe9527?tab=repositories
   # google: https://plus.google.com/yourname
   # twitter: https://twitter.com/yourname
   # facebook: https://www.facebook.com/yourname
@@ -132,6 +132,7 @@ social:
   # telegram: https://t.me/yourname
   # discord: https://discordapp.com/users/yourname
   # steam: https://steamcommunity.com/id/yourname
+  csdn: https://blog.csdn.net/2301_80292446?type=blog
 
 widgets:
   - category
