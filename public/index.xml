@@ -57,18 +57,19 @@
     
 
     <item>
-      <title>格式</title>
+      <title>关于博客的格式</title>
       <link>//localhost:1313/post/test/</link>
       <pubDate>Tue, 05 Aug 2025 11:00:00 -0700</pubDate>
       <author>2267593025@qq.com (the_last_kid)</author>
       <guid>//localhost:1313/post/test/</guid>
       <description>
-        <![CDATA[<h1>格式</h1><p>作者：the_last_kid（2267593025@qq.com）</p>
+        <![CDATA[<h1>关于博客的格式</h1><p>作者：the_last_kid（2267593025@qq.com）</p>
         
           <h1 id="主要是一些格式问题">
 <a class="header-anchor" href="#%e4%b8%bb%e8%a6%81%e6%98%af%e4%b8%80%e4%ba%9b%e6%a0%bc%e5%bc%8f%e9%97%ae%e9%a2%98"></a>
 主要是一些格式问题
-</h1><p><img src="https://kidle9527.github.io/images/66.png" alt="00"></p>
+</h1><p>有关博客书写的格式和文章内插入图片的方法，到test.md文件里找</p>
+<p><img src="https://kidle9527.github.io/images/66.png" alt="00"></p>
 <p>ok!</p>
         
         <hr><p>本文2025-08-05首发于<a href='//localhost:1313/'></a>，最后修改于2025-08-05</p>]]>
