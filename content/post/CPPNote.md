@@ -5,6 +5,7 @@ date: 2025-08-10T22:01:00-08:00
 lastmod: 2025-08-10T22:02:00-08:00
 categories: ['笔记']
 tags: ['C++']
+cover: https://kidle9527.github.io/images/33.png
 ---
 
 # 学习C++新特性
