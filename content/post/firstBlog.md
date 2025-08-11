@@ -5,6 +5,7 @@ date: 2025-08-09T11:32:00-08:00
 lastmod: 2025-08-09T19:13:00-08:00
 categories: ['Meaningful']
 tags: ['序']
+cover: https://kidle9527.github.io/images/11.png
 ---
 
 # 正式开始小白乐的博客生涯
