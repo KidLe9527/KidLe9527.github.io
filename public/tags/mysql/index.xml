@@ -36,7 +36,10 @@ MySQL学习笔记
 </h1><h2 id="针对mysql刷题过程中遇到的一些问题及解决办法">
 <a class="header-anchor" href="#%e9%92%88%e5%af%b9mysql%e5%88%b7%e9%a2%98%e8%bf%87%e7%a8%8b%e4%b8%ad%e9%81%87%e5%88%b0%e7%9a%84%e4%b8%80%e4%ba%9b%e9%97%ae%e9%a2%98%e5%8f%8a%e8%a7%a3%e5%86%b3%e5%8a%9e%e6%b3%95"></a>
 针对MySQL刷题过程中遇到的一些问题及解决办法
-</h2><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">1. Every derived table must have its own alias
+</h2><h3 id="派生表必须要有别名">
+<a class="header-anchor" href="#%e6%b4%be%e7%94%9f%e8%a1%a8%e5%bf%85%e9%a1%bb%e8%a6%81%e6%9c%89%e5%88%ab%e5%90%8d"></a>
+派生表必须要有别名
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">1. Every derived table must have its own alias
 </span></span></code></pre></div><ul>
 <li>这个错误消息的意思是&quot;每个<code>派生表</code>必须有自己的别名&quot;，这是 MySQL 在执行 SQL 查询时常见的语法错误。</li>
 </ul>
@@ -45,19 +48,11 @@ MySQL学习笔记
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">-- 正确的写法：为子查询指定别名
 </span></span><span class="line"><span class="cl">SELECT * FROM (SELECT * FROM employees) AS emp;
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">2. You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &#39;x
+</span></span></code></pre></div><h3 id="只有表才能取别名">
+<a class="header-anchor" href="#%e5%8f%aa%e6%9c%89%e8%a1%a8%e6%89%8d%e8%83%bd%e5%8f%96%e5%88%ab%e5%90%8d"></a>
+只有<code>表</code>才能取别名
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">2. You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &#39;x
 </span></span><span class="line"><span class="cl">) y&#39; at line 9
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">错误代码：
-</span></span><span class="line"><span class="cl">SELECT MAX(salary) SecondHighestSalary
-</span></span><span class="line"><span class="cl">FROM (
-</span></span><span class="line"><span class="cl">    SELECT salary
-</span></span><span class="line"><span class="cl">    FROM Employee
-</span></span><span class="line"><span class="cl">    WHERE salary &lt; (
-</span></span><span class="line"><span class="cl">        SELECT max(salary)
-</span></span><span class="line"><span class="cl">        from Employee  
-</span></span><span class="line"><span class="cl">    ) x -- 就是这里没有引用不需要添加别名
-</span></span><span class="line"><span class="cl">) y;
 </span></span></code></pre></div><p>这个错误是因为你在子查询的末尾添加了不必要的别名 <code> x</code> ，而 MySQL 不允许在这种位置使用它们。</p>
         
         <hr><p>本文2025-08-10首发于<a href='//localhost:1313/'></a>，最后修改于2025-08-10</p>]]>

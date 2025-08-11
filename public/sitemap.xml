@@ -41,7 +41,7 @@
     <loc>//localhost:1313/tags/%E5%BA%8F/</loc>
     <lastmod>2025-08-09T19:13:00-08:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/post/try/</loc>
+    <loc>//localhost:1313/post/firstblog/</loc>
     <lastmod>2025-08-09T19:13:00-08:00</lastmod>
   </url><url>
     <loc>//localhost:1313/friend/</loc>
@@ -49,15 +49,6 @@
   </url><url>
     <loc>//localhost:1313/archives/</loc>
     <lastmod>2025-08-09T18:53:25+08:00</lastmod>
-  </url><url>
-    <loc>//localhost:1313/categories/test/</loc>
-    <lastmod>2025-08-05T11:00:00-07:00</lastmod>
-  </url><url>
-    <loc>//localhost:1313/tags/test/</loc>
-    <lastmod>2025-08-05T11:00:00-07:00</lastmod>
-  </url><url>
-    <loc>//localhost:1313/post/test/</loc>
-    <lastmod>2025-08-05T11:00:00-07:00</lastmod>
   </url><url>
     <loc>//localhost:1313/about/</loc>
     <lastmod>2025-06-09T20:12:52+08:00</lastmod>

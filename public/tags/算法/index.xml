@@ -30,10 +30,47 @@
       <description>
         <![CDATA[<h1>算法学习过程心得体会</h1><p>作者：the_last_kid（2267593025@qq.com）</p>
         
-          <h2 id="回溯问题">
-<a class="header-anchor" href="#%e5%9b%9e%e6%ba%af%e9%97%ae%e9%a2%98"></a>
-回溯问题
-</h2><p>[力扣17题.电话号码的字母组合](<a href="https://leetcode.cn/problems/letter-combinations-of-a-phone-number/">17. 电话号码的字母组合 - 力扣（LeetCode）</a>)</p>
+          <h2 id="kmp算法">
+<a class="header-anchor" href="#kmp%e7%ae%97%e6%b3%95"></a>
+KMP算法
+</h2><ol>
+<li>下标从零开始</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="o">//</span><span class="err">这个</span> <span class="n">KMP</span> <span class="err">函数的返回值是模式串</span> <span class="n">t</span> <span class="err">在主串</span> <span class="n">s</span> <span class="err">中第一次出现的起始位置（从</span> <span class="mi">0</span> <span class="err">开始计数）</span>
+</span></span><span class="line"><span class="cl"><span class="ne">int</span> <span class="n">kmp</span><span class="p">(</span><span class="k">const</span> <span class="n">string</span><span class="o">&amp;</span> <span class="n">s</span><span class="p">,</span> <span class="k">const</span> <span class="n">string</span><span class="o">&amp;</span> <span class="n">t</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="ne">int</span> <span class="n">s_length</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">size</span><span class="p">(),</span> <span class="n">t_length</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">size</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">t_length</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">s_length</span> <span class="o">&lt;</span> <span class="n">t_length</span><span class="p">)</span> <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="o">//</span><span class="err">求</span><span class="n">next数组</span><span class="p">(</span><span class="err">从下标</span><span class="mi">0</span><span class="err">开始</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">vector</span><span class="o">&lt;</span><span class="ne">int</span><span class="o">&gt;</span> <span class="n">next</span><span class="p">(</span><span class="n">t_length</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span><span class="o">//</span><span class="err">大小</span> <span class="o">+</span> <span class="mi">1</span><span class="err">防止堆和缓冲区溢出</span>
+</span></span><span class="line"><span class="cl">        <span class="o">//</span><span class="n">next</span><span class="p">[</span><span class="n">t_length</span><span class="p">]</span><span class="err">的值是</span><span class="n">t字符串的最大前后缀公共长度</span>
+</span></span><span class="line"><span class="cl">        <span class="n">next</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="ne">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span><span class="o">//</span><span class="n">i是当前正在计算next值的位置</span><span class="err">；</span><span class="n">j是前缀指针</span><span class="err">，当前已经匹配的长度</span>
+</span></span><span class="line"><span class="cl">        <span class="k">while</span><span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">t_length</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span><span class="p">(</span><span class="n">j</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span> <span class="o">||</span> <span class="n">t</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">t</span><span class="p">[</span><span class="n">j</span><span class="p">]){</span><span class="o">//</span><span class="n">j</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="err">表示没有匹配的前缀</span>
+</span></span><span class="line"><span class="cl">                <span class="n">next</span><span class="p">[</span><span class="o">++</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="o">++</span><span class="n">j</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">j</span> <span class="o">=</span> <span class="n">next</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="o">//</span><span class="n">KMP匹配</span><span class="err">，求</span><span class="n">t字符串在s字符串中出现的第一次位置</span>
+</span></span><span class="line"><span class="cl">        <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span><span class="o">//</span><span class="n">i是主串指针</span><span class="err">，</span><span class="n">j是匹配串指针</span>
+</span></span><span class="line"><span class="cl">        <span class="k">while</span><span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">s_length</span> <span class="o">&amp;&amp;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">t_length</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span><span class="p">(</span><span class="n">j</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span> <span class="o">||</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">t</span><span class="p">[</span><span class="n">j</span><span class="p">]){</span>
+</span></span><span class="line"><span class="cl">                <span class="o">++</span><span class="n">i</span><span class="p">,</span> <span class="o">++</span><span class="n">j</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">j</span> <span class="o">=</span> <span class="n">next</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">j</span> <span class="o">==</span> <span class="n">t_length</span> <span class="err">?</span> <span class="n">i</span> <span class="o">-</span> <span class="n">j</span> <span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></div><ul>
+<li>
+<p>这个 KMP 函数的返回值是模式串 t 在主串 s 中第一次出现的起始位置（从 0 开始计数）。具体来说</p>
         
         <hr><p>本文2025-08-10首发于<a href='//localhost:1313/'></a>，最后修改于2025-08-10</p>]]>
       </description>

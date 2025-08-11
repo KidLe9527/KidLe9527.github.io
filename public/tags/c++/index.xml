@@ -33,7 +33,195 @@
           <h1 id="学习c新特性">
 <a class="header-anchor" href="#%e5%ad%a6%e4%b9%a0c%e6%96%b0%e7%89%b9%e6%80%a7"></a>
 学习C++新特性
-</h1>
+</h1><h2 id="c11">
+<a class="header-anchor" href="#c11"></a>
+C++11
+</h2><h3 id="sto类函数字符串转数字">
+<a class="header-anchor" href="#sto%e7%b1%bb%e5%87%bd%e6%95%b0%e5%ad%97%e7%ac%a6%e4%b8%b2%e8%bd%ac%e6%95%b0%e5%ad%97"></a>
+sto类函数（字符串转数字）
+</h3><ul>
+<li>std::stoi (字符串转整数)&mdash;&mdash;&mdash;&mdash;&mdash;&gt;&ldquo;string to integer&quot;​​</li>
+<li>std::stol (字符串转长整数)</li>
+<li>std::stoll (字符串转长长整数)</li>
+<li>std::stof (字符串转浮点数)</li>
+<li>std::stod (字符串转双精度浮点数)</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">str</span> <span class="o">=</span> <span class="s">&#34;123&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">stoi</span><span class="p">(</span><span class="n">str</span><span class="p">);</span>  <span class="c1">// num = 123
+</span></span></span></code></pre></div><ul>
+<li>对于简单转换，使用 std::stoi/std::stod 系列函数</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="ne">int</span> <span class="n">stoi</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="p">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="nb">str</span><span class="p">,</span> <span class="n">size_t</span><span class="o">*</span> <span class="n">pos</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="ne">int</span> <span class="n">base</span> <span class="o">=</span> <span class="mi">10</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">//</span> <span class="err">其他函数参数类似</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">参数说明：</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">str</span><span class="err">：要转换的字符串</span>
+</span></span><span class="line"><span class="cl"><span class="n">pos</span><span class="err">：可选参数，存储第一个未转换字符的位置</span>
+</span></span><span class="line"><span class="cl"><span class="n">base</span><span class="err">：可选参数，指定数字的基数（</span><span class="mi">2</span><span class="o">-</span><span class="mi">36</span><span class="err">）</span>
+</span></span></code></pre></div><ul>
+<li>其他用法</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">指定进制转换
+</span></span><span class="line"><span class="cl">std::string hex_str = &#34;FF&#34;;
+</span></span><span class="line"><span class="cl">int hex_num = std::stoi(hex_str, nullptr, 16);  // 255 (十六进制)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">std::string bin_str = &#34;1010&#34;;
+</span></span><span class="line"><span class="cl">int bin_num = std::stoi(bin_str, nullptr, 2);   // 10 (二进制)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">获取未转换部分位置
+</span></span><span class="line"><span class="cl">std::string str = &#34;123abc&#34;;
+</span></span><span class="line"><span class="cl">size_t pos;
+</span></span><span class="line"><span class="cl">int num = std::stoi(str, &amp;pos);  // num=123, pos=3
+</span></span></code></pre></div><h3 id="istringstream流输入">
+<a class="header-anchor" href="#istringstream%e6%b5%81%e8%be%93%e5%85%a5"></a>
+istringstream(流输入)
+</h3><ul>
+<li><code>std::istringstream</code>是 C++ 标准库中的一个类，属于 <strong>字符串流（String Streams）</strong> 的一部分，定义在 <code>&lt;sstream&gt;</code>头文件中。它允许将字符串（<code>std::string</code>）当作输入流（类似 <code>std::cin</code>）来处理，方便进行格式化的数据提取和解析。</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">std::string text = &#34;C++ is awesome&#34;;
+</span></span><span class="line"><span class="cl">std::istringstream iss(text);
+</span></span><span class="line"><span class="cl">std::string word;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">while (iss &gt;&gt; word) {  // 按空格分割
+</span></span><span class="line"><span class="cl">    std::cout &lt;&lt; word &lt;&lt; std::endl;
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></div><h2 id="c17">
+<a class="header-anchor" href="#c17"></a>
+C++17
+</h2><h3 id="reduce函数序列元素归约">
+<a class="header-anchor" href="#reduce%e5%87%bd%e6%95%b0%e5%ba%8f%e5%88%97%e5%85%83%e7%b4%a0%e5%bd%92%e7%ba%a6"></a>
+reduce函数（序列元素归约）
+</h3><ol>
+<li>reduce函数是 C++17 引入的一个算法，用于对序列中的元素进行归约（reduction）操作，类似于 accumulate 但具有并行计算的潜力</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="err">语法</span>
+</span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;numeric&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="k">auto</span> <span class="n">result</span> <span class="o">=</span> <span class="n">reduce</span><span class="p">(</span><span class="n">st</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">st</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
+</span></span></code></pre></div><ol start="2">
+<li>默认行为</li>
+</ol>
+<ul>
+<li>当不提供初始值和操作时：
+<ol>
+<li>默认使用 std::plus&lt;&gt;() 作为二元操作（即加法）</li>
+<li>默认初始值为 typename iterator_traits<!-- raw HTML omitted -->::value_type{}（即该类型的默认构造值）</li>
+</ol>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">*int/float 等：初始值为 0，执行加法
+</span></span><span class="line"><span class="cl">vector&lt;int&gt; v{1, 2, 3};
+</span></span><span class="line"><span class="cl">int sum = reduce(v.begin(), v.end());  // 0+1+2+3 = 6
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">*需要类型支持 operator+ 和默认构造
+</span></span><span class="line"><span class="cl">vector&lt;string&gt; strs{&#34;a&#34;, &#34;b&#34;, &#34;c&#34;};
+</span></span><span class="line"><span class="cl">string concat = reduce(strs.begin(), strs.end());  // &#34;&#34;+&#34;a&#34;+&#34;b&#34;+&#34;c&#34; = &#34;abc&#34;
+</span></span></code></pre></div><h3 id="count_if-函数">
+<a class="header-anchor" href="#count_if-%e5%87%bd%e6%95%b0"></a>
+count_if() 函数
+</h3><ul>
+<li><code>std::count_if</code>是 C++ 标准库中的一个算法函数，用于<strong>统计满足特定条件的元素个数</strong>。它定义在 <code>&lt;algorithm&gt;</code>头文件中，是 STL 算法的重要组成部分。</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">函数原型：
+</span></span><span class="line"><span class="cl">template&lt; class InputIt, class UnaryPredicate &gt;
+</span></span><span class="line"><span class="cl">typename iterator_traits&lt;InputIt&gt;::difference_type
+</span></span><span class="line"><span class="cl">    count_if( InputIt first, InputIt last, UnaryPredicate p );
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">参数说明：
+</span></span><span class="line"><span class="cl">	1. first, last: 输入范围的迭代器（前闭后开区间）
+</span></span><span class="line"><span class="cl">	2. p: 一元谓词（返回 bool的可调用对象），用于测试元素是否满足条件
+</span></span><span class="line"><span class="cl">返回值：
+</span></span><span class="line"><span class="cl">	返回满足谓词条件的元素数量（类型为 difference_type，通常是 ptrdiff_t）
+</span></span></code></pre></div><ul>
+<li>用法举例：</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"> // 统计偶数个数
+</span></span><span class="line"><span class="cl">    int even_count = std::count_if(nums.begin(), nums.end(), 
+</span></span><span class="line"><span class="cl">        [](int n) { return n % 2 == 0; });
+</span></span></code></pre></div><h2 id="c98">
+<a class="header-anchor" href="#c98"></a>
+C++98
+</h2><h3 id="accumulate">
+<a class="header-anchor" href="#accumulate"></a>
+accumulate
+</h3><ul>
+<li><code>std::accumulate</code>是 C++ <strong>标准库</strong>中的算法函数，属于 <code>&lt;numeric&gt;</code>头文件，用于对序列中的元素进行累积计算（如求和、求积等）。</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;numeric&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 形式1：使用默认加法操作
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">T</span> <span class="nf">accumulate</span><span class="p">(</span><span class="n">InputIt</span> <span class="n">first</span><span class="p">,</span> <span class="n">InputIt</span> <span class="n">last</span><span class="p">,</span> <span class="n">T</span> <span class="n">init</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 形式2：使用自定义二元操作
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">T</span> <span class="nf">accumulate</span><span class="p">(</span><span class="n">InputIt</span> <span class="n">first</span><span class="p">,</span> <span class="n">InputIt</span> <span class="n">last</span><span class="p">,</span> <span class="n">T</span> <span class="n">init</span><span class="p">,</span> <span class="n">BinaryOp</span> <span class="n">op</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">参数：</span>
+</span></span><span class="line"><span class="cl"><span class="mf">1.</span> <span class="n">first</span><span class="p">,</span> <span class="n">last</span><span class="err">：输入范围的迭代器。</span>
+</span></span><span class="line"><span class="cl"><span class="mf">2.</span> <span class="n">init</span><span class="err">：初始累积值（类型</span> <span class="n">T必须兼容操作结果</span><span class="err">）。</span>
+</span></span><span class="line"><span class="cl"><span class="mf">3.</span> <span class="n">op</span><span class="err">：二元操作函数（可选，默认为</span> <span class="n">std</span><span class="o">::</span><span class="n">plus</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">()</span><span class="err">）。</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">nums</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl"><span class="c1">// 求和，初始值为0
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">accumulate</span><span class="p">(</span><span class="n">nums</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">nums</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 结果：0 + 1 + 2 + 3 + 4 + 5 = 15
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl"><span class="c1">// 求乘积，初始值为1
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="n">product</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">accumulate</span><span class="p">(</span><span class="n">nums</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">nums</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="mi">1</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">    <span class="p">[](</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">a</span> <span class="o">*</span> <span class="n">b</span><span class="p">;</span> <span class="p">});</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 结果：1 * 1 * 2 * 3 * 4 * 5 = 120
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl"><span class="err">字符串连接</span>
+</span></span><span class="line"><span class="cl"><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">words</span><span class="p">{</span><span class="s">&#34;Hello&#34;</span><span class="p">,</span> <span class="s">&#34; &#34;</span><span class="p">,</span> <span class="s">&#34;World&#34;</span><span class="p">,</span> <span class="s">&#34;!&#34;</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 字符串连接，初始值为空字符串
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">sentence</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">accumulate</span><span class="p">(</span><span class="n">words</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">words</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 结果：&#34;&#34; + &#34;Hello&#34; + &#34; &#34; + &#34;World&#34; + &#34;!&#34; = &#34;Hello World!&#34;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl"><span class="err">自定义操作</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 计算向量中元素的平方和
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="n">sum_of_squares</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">accumulate</span><span class="p">(</span><span class="n">nums</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">nums</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="mi">0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[](</span><span class="kt">int</span> <span class="n">acc</span><span class="p">,</span> <span class="kt">int</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">acc</span> <span class="o">+</span> <span class="n">x</span> <span class="o">*</span> <span class="n">x</span><span class="p">;</span> <span class="p">});</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 结果：0 + 1² + 2² + 3² + 4² + 5² = 55
+</span></span></span></code></pre></div><h2 id="c20">
+<a class="header-anchor" href="#c20"></a>
+C++20
+</h2><h3 id="erase-和-erase_if">
+<a class="header-anchor" href="#erase-%e5%92%8c-erase_if"></a>
+erase() 和 erase_if()
+</h3><ul>
+<li>std::erase() 和 std::erase_if() 是 <code>C++20</code>引入的两个新函数，用于简化从容器中删除元素的操作。它们提供了一种更安全、更简洁的方式来删除满足特定条件的元素，而无需手动处理迭代器或使用 erase-remove 惯用法</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">// 移除所有值为2的元素
+</span></span><span class="line"><span class="cl">    auto count = std::erase(nums, 2);  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">// 移除单个元素(通过迭代器)
+</span></span><span class="line"><span class="cl">vec.erase(vec.begin() + 2); // 移除第三个元素(3)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">// 移除一个范围内的元素
+</span></span><span class="line"><span class="cl">vec.erase(vec.begin(), vec.begin() + 2); // 移除前两个元素
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> // 移除所有偶数
+</span></span><span class="line"><span class="cl">    auto count = std::erase_if(nums, [](int n) { return n % 2 == 0; });
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">// 通过键值移除元素
+</span></span><span class="line"><span class="cl">set.erase(3); // 移除值为3的元素
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">// 通过迭代器移除
+</span></span><span class="line"><span class="cl">set.erase(s.begin()); // 移除第一个元素
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">特点：
+</span></span><span class="line"><span class="cl">1.直接操作容器，不需要手动指定迭代器范围
+</span></span><span class="line"><span class="cl">2.返回被移除的元素数量
+</span></span><span class="line"><span class="cl">3.保持容器中剩余元素的相对顺序(序列容器)
+</span></span><span class="line"><span class="cl">4.谓词可以是任何可调用对象(函数指针、lambda、函数对象等)
+</span></span></code></pre></div>
         
         <hr><p>本文2025-08-10首发于<a href='//localhost:1313/'></a>，最后修改于2025-08-10</p>]]>
       </description>
