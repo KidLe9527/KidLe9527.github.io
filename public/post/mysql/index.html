@@ -8,7 +8,7 @@
   name="viewport"
   content="width=device-width, initial-scale=1, shrink-to-fit=no"
 /><title>
-  目录 | the_last_kid
+  MySQL学习过程心得体会 | the_last_kid
 </title>
 <meta
   name="description"
@@ -37,12 +37,12 @@
     crossorigin="anonymous"
   /><link rel="stylesheet" href="/css/loader.css" />
 <meta property="og:type" content="website" />
-  <meta property="og:title" content="目录 | the_last_kid" />
+  <meta property="og:title" content="MySQL学习过程心得体会 | the_last_kid" />
   <meta
     property="og:description"
     content="少女祈祷中..."
   />
-  <meta property="og:url" content="//localhost:1313/categories/" />
+  <meta property="og:url" content="//localhost:1313/post/mysql/" />
   <meta
     property="og:site_name"
     content=""
@@ -52,9 +52,9 @@
     content="/"
   />
   <meta property="article:author" content="the_last_kid" />
-  <meta property="article:published_time" content="2025-08-10T22:02:00-08:00" />
-  <meta property="article:modified_time" content="2025-08-10T22:02:00-08:00" /><meta name="twitter:card" content="summary" />
-  <meta name="twitter:image" content="/" /><link rel="alternate" type="application/rss+xml" href="//localhost:1313/categories/index.xml" title="">
+  <meta property="article:published_time" content="2025-08-10T22:01:00-08:00" />
+  <meta property="article:modified_time" content="2025-08-10T22:02:00-08:00" /><meta property="article:tag" content="MySQL" /><meta name="twitter:card" content="summary" />
+  <meta name="twitter:image" content="/" />
 <link rel="shortcut icon" href="/favicon.ico"><link rel="stylesheet" href="/css/main.css" />
 <link
     rel="preload"
@@ -128,19 +128,35 @@
         <a class="main-nav-link" href="/friend">友链</a>
       </span><a id="main-nav-toggle" class="nav-icon"></a>
   </nav>
-  <nav id="sub-nav"><a id="nav-rss-link" class="nav-icon" href="//localhost:1313/categories/index.xml" title="RSS 订阅" target="_blank"></a><a id="nav-search-btn" class="nav-icon popup-trigger" title="搜索"></a></nav></div>
-<header id="header"><picture></picture><img  fetchpriority="high" src="/images/banner.webp" alt="Categories"><div id="header-outer">
+  <nav id="sub-nav"><a id="nav-search-btn" class="nav-icon popup-trigger" title="搜索"></a></nav></div>
+<header id="header"><picture></picture><img  fetchpriority="high" src="/images/banner.webp" alt="MySQL学习过程心得体会"><div id="header-outer">
     <div id="header-title"><a href="/" id="logo">
-            <h1 data-aos="slide-up">目录</h1>
+            <h1 data-aos="slide-up">MySQL学习过程心得体会</h1>
           </a><h2 id="subtitle-wrap" data-aos="slide-down"></h2></div>
   </div>
 </header><div id="content"
           class="sidebar-left"
-            ><aside id="sidebar"><div class="sidebar-wrapper ">
+            ><aside id="sidebar"><div class="sidebar-wrapper wrap-sticky">
     <div
       class="sidebar-wrap"
       data-aos="fade-up"
-    ><div class="sidebar-author">
+    ><div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">文章目录</h3>
+  <div class="sidebar-toc-wrapper toc-div-class">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#针对mysql刷题过程中遇到的一些问题及解决办法">针对MySQL刷题过程中遇到的一些问题及解决办法</a>
+      <ul>
+        <li><a href="#派生表必须要有别名">派生表必须要有别名</a></li>
+        <li><a href="#只有表才能取别名">只有<code>表</code>才能取别名</a></li>
+        <li><a href="#聚合函数的使用位置">聚合函数的使用位置</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div></div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
   <img
     data-src="/avatar/xiaole.webp"
     data-sizes="auto"
@@ -152,17 +168,17 @@
 </div>
 <div class="sidebar-state">
   <div class="sidebar-state-article">
-    <div>文章</div><div class="sidebar-state-number">6</div>
+    <div>文章</div><div class="sidebar-state-number">5</div>
   </div>
   <a class="sidebar-state-category" href="/categories/" aria-label="sidebar-state-category-link">
     <div>分类</div>
     <div class="sidebar-state-number">
-      3
+      2
     </div>
   </a>
   <a class="sidebar-state-tag" href="/tags/" aria-label="sidebar-state-tag-link">
     <div>标签</div>
-    <div class="sidebar-state-number">5</div>
+    <div class="sidebar-state-number">4</div>
   </a>
 </div>
 <div class="sidebar-social"><div class="icon-bilibili sidebar-social-icon">
@@ -231,185 +247,114 @@
       <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
       <div class="sidebar-menu-link">友链</div>
     </div></div>
-</div>
+</div><div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div></div>
   </div>
 
-  <div class="sidebar-widget"><div class="widget-wrapper">
-    <div
-      class="widget-wrap"
-      data-aos="fade-up"
-    >
-      <div style="display: flex; justify-content: space-between;">
-        <h3 class="widget-title">分类</h3></div>
-      <div class="widget">
-        <ul class="category-list"><li class="category-list-item">
-                <a class="category-list-link" href="/categories/meaningful/"
-                  >Meaningful</a
-                >
-              </li><li class="category-list-item">
-                <a class="category-list-link" href="/categories/test/"
-                  >Test</a
-                >
-              </li><li class="category-list-item">
-                <a class="category-list-link" href="/categories/%E7%AC%94%E8%AE%B0/"
-                  >笔记</a
-                >
-              </li></ul>
-      </div>
-    </div>
-  </div><div class="widget-wrapper">
-    <div
-      class="widget-wrap"
-      data-aos="fade-up"
-    >
-      <div style="display: flex; justify-content: space-between;">
-        <h3 class="widget-title">标签</h3></div>
-      <div class="widget">
-        <ul class="tag-list" itemprop="keywords"><li class="tag-item">
-                <a
-                  class="tag-link"
-                  href="/tags/c&#43;&#43;/"
-                  aria-label="标签: C&#43;&#43;"
-                >
-                  C&#43;&#43;
-                </a>
-              </li><li class="tag-item">
-                <a
-                  class="tag-link"
-                  href="/tags/mysql/"
-                  aria-label="标签: MySQL"
-                >
-                  MySQL
-                </a>
-              </li><li class="tag-item">
-                <a
-                  class="tag-link"
-                  href="/tags/test/"
-                  aria-label="标签: Test"
-                >
-                  Test
-                </a>
-              </li><li class="tag-item">
-                <a
-                  class="tag-link"
-                  href="/tags/%E5%BA%8F/"
-                  aria-label="标签: 序"
-                >
-                  序
-                </a>
-              </li><li class="tag-item">
-                <a
-                  class="tag-link"
-                  href="/tags/%E7%AE%97%E6%B3%95/"
-                  aria-label="标签: 算法"
-                >
-                  算法
-                </a>
-              </li></ul>
-      </div>
-    </div>
-  </div><div class="widget-wrapper">
+  <div class="sidebar-widget"></div></aside>
+<section id="main"><article
+  class="h-entry article"
+  itemprop="blogPost"
+  itemscope
+  itemtype="https://schema.org/BlogPosting"
+>
   <div
-    class="widget-wrap"
+    class="article-inner"
     data-aos="fade-up"
   >
-    <h3 class="widget-title">标签云</h3><div class="widget tagcloud"><a
-            style="font-size:10px"
-            href="/tags/c&#43;&#43;/"
-            aria-label="标签: C&#43;&#43;"
-            >C&#43;&#43;</a
-          ><a
-            style="font-size:10px"
-            href="/tags/mysql/"
-            aria-label="标签: MySQL"
-            >MySQL</a
-          ><a
-            style="font-size:10px"
-            href="/tags/test/"
-            aria-label="标签: Test"
-            >Test</a
-          ><a
-            style="font-size:10px"
-            href="/tags/%E5%BA%8F/"
-            aria-label="标签: 序"
-            >序</a
-          ><a
-            style="font-size:10px"
-            href="/tags/%E7%AE%97%E6%B3%95/"
-            aria-label="标签: 算法"
-            >算法</a
-          ></div>
-  </div>
-</div><div class="widget-wrapper">
-    <div
-      class="widget-wrap"
-      data-aos="fade-up"
+    <div class="article-meta"><div class="article-date">
+  <span
+    class="article-date-link"
+    data-aos="zoom-in"
+  >
+    <time datetime="2025-08-10 22:01:00 -0800 -0800" itemprop="datePublished"
+      >2025-08-10</time
     >
-      <h3 class="widget-title">最新文章</h3>
-      <div class="widget">
-        <ul><li>
-              <a href="//localhost:1313/post/linux/">linux学习过程心得体会</a>
-            </li><li>
-              <a href="//localhost:1313/post/cppnote/">CPP学习过程心得体会</a>
-            </li><li>
-              <a href="//localhost:1313/post/mysql/">MySQL学习过程心得体会</a>
-            </li><li>
-              <a href="//localhost:1313/post/algorithm/">算法学习过程心得体会</a>
-            </li><li>
-              <a href="//localhost:1313/post/try/">真正意义上的第一篇博客</a>
-            </li></ul>
-      </div>
-    </div>
-  </div></div></aside>
-<section id="main"><div
-    class="archives-outer-wrap"
+    <time style="display: none;" id="post-update-time"
+      >2025-08-10</time
+    >
+  </span>
+</div>
+<div class="article-category"><a
+      class="article-category-link"
+      href="/categories/%e7%ac%94%e8%ae%b0"
+      data-aos="zoom-in"
+      >笔记</a
+    ></div>
+</div>
+    <div class="hr-line"></div><div class="e-content article-entry" itemprop="articleBody"><h1 id="mysql学习笔记">
+<a class="header-anchor" href="#mysql%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0"></a>
+MySQL学习笔记
+</h1><h2 id="针对mysql刷题过程中遇到的一些问题及解决办法">
+<a class="header-anchor" href="#%e9%92%88%e5%af%b9mysql%e5%88%b7%e9%a2%98%e8%bf%87%e7%a8%8b%e4%b8%ad%e9%81%87%e5%88%b0%e7%9a%84%e4%b8%80%e4%ba%9b%e9%97%ae%e9%a2%98%e5%8f%8a%e8%a7%a3%e5%86%b3%e5%8a%9e%e6%b3%95"></a>
+针对MySQL刷题过程中遇到的一些问题及解决办法
+</h2><h3 id="派生表必须要有别名">
+<a class="header-anchor" href="#%e6%b4%be%e7%94%9f%e8%a1%a8%e5%bf%85%e9%a1%bb%e8%a6%81%e6%9c%89%e5%88%ab%e5%90%8d"></a>
+派生表必须要有别名
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">1. Every derived table must have its own alias
+</span></span></code></pre></div><ul>
+<li>这个错误消息的意思是&quot;每个<code>派生表</code>必须有自己的别名&quot;，这是 MySQL 在执行 SQL 查询时常见的语法错误。</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">-- 错误的写法：子查询没有别名
+</span></span><span class="line"><span class="cl">SELECT * FROM (SELECT * FROM employees);
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">-- 正确的写法：为子查询指定别名
+</span></span><span class="line"><span class="cl">SELECT * FROM (SELECT * FROM employees) AS emp;
+</span></span></code></pre></div><h3 id="只有表才能取别名">
+<a class="header-anchor" href="#%e5%8f%aa%e6%9c%89%e8%a1%a8%e6%89%8d%e8%83%bd%e5%8f%96%e5%88%ab%e5%90%8d"></a>
+只有<code>表</code>才能取别名
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">2. You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &#39;x
+</span></span><span class="line"><span class="cl">) y&#39; at line 9
+</span></span></code></pre></div><p>这个错误是因为你在子查询的末尾添加了不必要的别名 <code> x</code> ，而 MySQL 不允许在这种位置使用它们。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">错误代码：
+</span></span><span class="line"><span class="cl">SELECT MAX(salary) SecondHighestSalary
+</span></span><span class="line"><span class="cl">FROM (
+</span></span><span class="line"><span class="cl">    SELECT salary
+</span></span><span class="line"><span class="cl">    FROM Employee
+</span></span><span class="line"><span class="cl">    WHERE salary &lt; (
+</span></span><span class="line"><span class="cl">        SELECT max(salary)
+</span></span><span class="line"><span class="cl">        from Employee  
+</span></span><span class="line"><span class="cl">    ) x -- 就是这里没有引用不需要添加别名
+</span></span><span class="line"><span class="cl">) y;
+</span></span></code></pre></div><p>&ndash;&gt; 在 MySQL 中，<code>子查询的别名通常用于 FROM 子句中的表引用</code>，但你的查询没有使用它们，所以 MySQL 会报错。</p>
+<h3 id="聚合函数的使用位置">
+<a class="header-anchor" href="#%e8%81%9a%e5%90%88%e5%87%bd%e6%95%b0%e7%9a%84%e4%bd%bf%e7%94%a8%e4%bd%8d%e7%bd%ae"></a>
+聚合函数的使用位置
+</h3><ul>
+<li>聚合函数只能用于 <code>SELECT列表或HAVING子句</code>中，不能直接用于WHERE子句或GROUP BY子句。如果需要基于聚合结果进行筛选，应该使用HAVING而不是WHERE ！！</li>
+</ul>
+</div>
+    <footer class="article-footer"><ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in">
+      <a
+        class="article-tag-list-link"
+        href="/tags/mysql"
+        rel="tag"
+        >MYSQL</a
+      >
+    </li></ul>
+</footer>
+  </div><nav
+    id="article-nav"
     data-aos="fade-up"
-  >
-    <div
-      class="
-        category-wrap
-      "
-    ><div
-          class="
-            archives-category-list-item
-          "
-          data-aos="zoom-in"
-        >
-          <a
-            class="
-              archives-category-list-link
-            "
-            href="/categories/%E7%AC%94%E8%AE%B0/"
-            >笔记</a
-          >
-        </div><div
-          class="
-            archives-category-list-item
-          "
-          data-aos="zoom-in"
-        >
-          <a
-            class="
-              archives-category-list-link
-            "
-            href="/categories/meaningful/"
-            >Meaningful</a
-          >
-        </div><div
-          class="
-            archives-category-list-item
-          "
-          data-aos="zoom-in"
-        >
-          <a
-            class="
-              archives-category-list-link
-            "
-            href="/categories/test/"
-            >Test</a
-          >
-        </div></div>
-  </div></section>
+  ><div class="article-nav-link-wrap article-nav-link-left"><img
+              data-src="https://kidle9527.github.io/images/66.png"
+              data-sizes="auto"
+              alt="算法学习过程心得体会"
+              class="lazyload"
+            /><a href="//localhost:1313/post/algorithm/"></a>
+        <div class="article-nav-caption">前一篇</div>
+        <h3 class="article-nav-title">算法学习过程心得体会</h3>
+      </div><div class="article-nav-link-wrap article-nav-link-right"><img
+              data-src="https://kidle9527.github.io/images/66.png"
+              data-sizes="auto"
+              alt="CPP学习过程心得体会"
+              class="lazyload"
+            /><a href="//localhost:1313/post/cppnote/"></a>
+        <div class="article-nav-caption">后一篇</div>
+        <h3 class="article-nav-title">CPP学习过程心得体会</h3>
+      </div></nav></article></section>
         </div><footer id="footer">
   <div style="width: 100%; overflow: hidden">
     <div class="footer-line"></div>
@@ -429,10 +374,10 @@
         >
       </div><div>
         <span class="icon-brush"
-          >&nbsp;2.8k</span
+          >&nbsp;5.3k</span
         >
         &nbsp;|&nbsp;
-        <span class="icon-coffee">&nbsp;00:10</span>
+        <span class="icon-coffee">&nbsp;00:13</span>
       </div><div>
         <span class="icon-eye"></span>
         <span id="busuanzi_container_site_pv"
@@ -454,7 +399,23 @@
             <div class="arrow-up"></div>
           </div><div id="mask" class="hide"></div>
       </div><nav id="mobile-nav">
-  <div class="sidebar-wrap"><div class="sidebar-author">
+  <div class="sidebar-wrap"><div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">文章目录</h3>
+  <div class="sidebar-toc-wrapper toc-div-class">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#针对mysql刷题过程中遇到的一些问题及解决办法">针对MySQL刷题过程中遇到的一些问题及解决办法</a>
+      <ul>
+        <li><a href="#派生表必须要有别名">派生表必须要有别名</a></li>
+        <li><a href="#只有表才能取别名">只有<code>表</code>才能取别名</a></li>
+        <li><a href="#聚合函数的使用位置">聚合函数的使用位置</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div></div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
   <img
     data-src="/avatar/xiaole.webp"
     data-sizes="auto"
@@ -466,17 +427,17 @@
 </div>
 <div class="sidebar-state">
   <div class="sidebar-state-article">
-    <div>文章</div><div class="sidebar-state-number">6</div>
+    <div>文章</div><div class="sidebar-state-number">5</div>
   </div>
   <a class="sidebar-state-category" href="/categories/" aria-label="sidebar-state-category-link">
     <div>分类</div>
     <div class="sidebar-state-number">
-      3
+      2
     </div>
   </a>
   <a class="sidebar-state-tag" href="/tags/" aria-label="sidebar-state-tag-link">
     <div>标签</div>
-    <div class="sidebar-state-number">5</div>
+    <div class="sidebar-state-number">4</div>
   </a>
 </div>
 <div class="sidebar-social"><div class="icon-bilibili sidebar-social-icon">
@@ -545,7 +506,10 @@
       <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
       <div class="sidebar-menu-link">友链</div>
     </div></div>
-</div></nav>
+</div></div><div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div></nav>
 </div><div class="site-search">
         <div class="reimu-popup popup">
           <div class="reimu-search">
@@ -614,9 +578,9 @@
   <div><script data-pjax>
         window.REIMU_POST = {
           author: "the_last_kid",
-          title: "Categories",
-          url: "\/\/localhost:1313\/categories\/",
-          description: "",
+          title: "MySQL学习过程心得体会",
+          url: "\/\/localhost:1313\/post\/mysql\/",
+          description: "\rMySQL学习笔记\r针对MySQL刷题过程中遇到的一些问题及解决办法\r派生表必须要有别名\r1. Every derived table must have its own alias 这个错误消息的意思是\u0026quot;每个派生表必须有自己的别名\u0026quot;，这是 MySQL 在执行 SQL 查询时常见的语法错误。 -- 错误的写法：子查询没有别名 SELECT * FROM (SELECT * FROM employees); -- 正确的写法：为子查询指定别名 SELECT * FROM (SELECT * FROM employees) AS emp; 只有表才能取别名\r2. You …",
           cover: "\/\/localhost:1313\/images\/banner.webp",
         };
       </script><script src="/js/insert_highlight.js" data-pjax></script><script type="module" data-pjax>const PhotoSwipeLightbox = (await safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js", "sha384-DiL6M\/gG\u002bwmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF\/N6lrZi\/")).default;const pswp = () => {

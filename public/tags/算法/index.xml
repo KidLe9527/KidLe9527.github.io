@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>算法 on </title>
+    <link>//localhost:1313/tags/%E7%AE%97%E6%B3%95/</link>
+    <description>Recent content from </description>
+    <generator>Hugo</generator>
+    <language>zh-cn</language>
+    
+    <managingEditor>2267593025@qq.com (the_last_kid)</managingEditor>
+    <webMaster>2267593025@qq.com (the_last_kid)</webMaster>
+    
+    <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
+    
+    <lastBuildDate>Sun, 10 Aug 2025 22:02:00 -0800</lastBuildDate>
+    
+    
+    <atom:link href="//localhost:1313/tags/%E7%AE%97%E6%B3%95/index.xml" rel="self" type="application/rss&#43;xml" />
+    
+
+    
+    
+
+    <item>
+      <title>算法学习过程心得体会</title>
+      <link>//localhost:1313/post/algorithm/</link>
+      <pubDate>Sun, 10 Aug 2025 22:01:00 -0800</pubDate>
+      <author>2267593025@qq.com (the_last_kid)</author>
+      <guid>//localhost:1313/post/algorithm/</guid>
+      <description>
+        <![CDATA[<h1>算法学习过程心得体会</h1><p>作者：the_last_kid（2267593025@qq.com）</p>
+        
+          <h2 id="回溯问题">
+<a class="header-anchor" href="#%e5%9b%9e%e6%ba%af%e9%97%ae%e9%a2%98"></a>
+回溯问题
+</h2><p>[力扣17题.电话号码的字母组合](<a href="https://leetcode.cn/problems/letter-combinations-of-a-phone-number/">17. 电话号码的字母组合 - 力扣（LeetCode）</a>)</p>
+        
+        <hr><p>本文2025-08-10首发于<a href='//localhost:1313/'></a>，最后修改于2025-08-10</p>]]>
+      </description>
+      
+        <category>笔记</category>
+      
+    </item>
+    
+  </channel>
+</rss>
