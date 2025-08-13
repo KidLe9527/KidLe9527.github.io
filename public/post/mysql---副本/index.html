@@ -8,7 +8,7 @@
   name="viewport"
   content="width=device-width, initial-scale=1, shrink-to-fit=no"
 /><title>
-  算法学习过程心得体会 | the_last_kid
+  MySQL学习过程心得体会 | the_last_kid
 </title>
 <meta
   name="description"
@@ -37,24 +37,24 @@
     crossorigin="anonymous"
   /><link rel="stylesheet" href="/css/loader.css" />
 <meta property="og:type" content="website" />
-  <meta property="og:title" content="算法学习过程心得体会 | the_last_kid" />
+  <meta property="og:title" content="MySQL学习过程心得体会 | the_last_kid" />
   <meta
     property="og:description"
     content="少女祈祷中..."
   />
-  <meta property="og:url" content="//localhost:1313/post/algorithm/" />
+  <meta property="og:url" content="//localhost:1313/post/mysql---%E5%89%AF%E6%9C%AC/" />
   <meta
     property="og:site_name"
     content=""
   />
   <meta
     property="og:image"
-    content="https://kidle9527.github.io/images/22.png"
+    content="https://kidle9527.github.io/images/55.png"
   />
   <meta property="article:author" content="the_last_kid" />
   <meta property="article:published_time" content="2025-08-10T22:01:00-08:00" />
-  <meta property="article:modified_time" content="2025-08-10T22:02:00-08:00" /><meta property="article:tag" content="算法" /><meta name="twitter:card" content="summary" />
-  <meta name="twitter:image" content="https://kidle9527.github.io/images/22.png" />
+  <meta property="article:modified_time" content="2025-08-10T22:02:00-08:00" /><meta property="article:tag" content="MySQL" /><meta name="twitter:card" content="summary" />
+  <meta name="twitter:image" content="https://kidle9527.github.io/images/55.png" />
 <link rel="shortcut icon" href="/favicon.ico"><link rel="stylesheet" href="/css/main.css" />
 <link
     rel="preload"
@@ -130,9 +130,9 @@
   </nav>
   <nav id="sub-nav"><a id="nav-search-btn" class="nav-icon popup-trigger" title="搜索"></a></nav></div>
 <header id="header"><picture></picture>
-    <img  fetchpriority="high" src="https://kidle9527.github.io/images/22.png" alt="算法学习过程心得体会"><div id="header-outer">
+    <img  fetchpriority="high" src="https://kidle9527.github.io/images/55.png" alt="MySQL学习过程心得体会"><div id="header-outer">
     <div id="header-title"><a href="/" id="logo">
-            <h1 data-aos="slide-up">算法学习过程心得体会</h1>
+            <h1 data-aos="slide-up">MySQL学习过程心得体会</h1>
           </a><h2 id="subtitle-wrap" data-aos="slide-down"></h2></div>
   </div>
 </header><div id="content"
@@ -146,8 +146,14 @@
   <div class="sidebar-toc-wrapper toc-div-class">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#kmp算法">KMP算法</a></li>
-    <li><a href="#回溯问题">回溯问题</a></li>
+    <li><a href="#针对mysql刷题过程中遇到的一些问题及解决办法">针对MySQL刷题过程中遇到的一些问题及解决办法</a>
+      <ul>
+        <li><a href="#派生表必须要有别名">派生表必须要有别名</a></li>
+        <li><a href="#只有表才能取别名">只有<code>表</code>才能取别名</a></li>
+        <li><a href="#聚合函数的使用位置">聚合函数的使用位置</a></li>
+        <li><a href="#小难的题目">小难的题目</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
   </div>
@@ -164,7 +170,7 @@
 </div>
 <div class="sidebar-state">
   <div class="sidebar-state-article">
-    <div>文章</div><div class="sidebar-state-number">5</div>
+    <div>文章</div><div class="sidebar-state-number">6</div>
   </div>
   <a class="sidebar-state-category" href="/categories/" aria-label="sidebar-state-category-link">
     <div>分类</div>
@@ -280,124 +286,133 @@
       >笔记</a
     ></div>
 </div>
-    <div class="hr-line"></div><div class="e-content article-entry" itemprop="articleBody"><h2 id="kmp算法">
-<a class="header-anchor" href="#kmp%e7%ae%97%e6%b3%95"></a>
-KMP算法
-</h2><ol>
-<li>下标从零开始</li>
-</ol>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="o">//</span><span class="err">这个</span> <span class="n">KMP</span> <span class="err">函数的返回值是模式串</span> <span class="n">t</span> <span class="err">在主串</span> <span class="n">s</span> <span class="err">中第一次出现的起始位置（从</span> <span class="mi">0</span> <span class="err">开始计数）</span>
-</span></span><span class="line"><span class="cl"><span class="ne">int</span> <span class="n">kmp</span><span class="p">(</span><span class="k">const</span> <span class="n">string</span><span class="o">&amp;</span> <span class="n">s</span><span class="p">,</span> <span class="k">const</span> <span class="n">string</span><span class="o">&amp;</span> <span class="n">t</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">        <span class="ne">int</span> <span class="n">s_length</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">size</span><span class="p">(),</span> <span class="n">t_length</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">size</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">t_length</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">s_length</span> <span class="o">&lt;</span> <span class="n">t_length</span><span class="p">)</span> <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        <span class="o">//</span><span class="err">求</span><span class="n">next数组</span><span class="p">(</span><span class="err">从下标</span><span class="mi">0</span><span class="err">开始</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">        <span class="n">vector</span><span class="o">&lt;</span><span class="ne">int</span><span class="o">&gt;</span> <span class="n">next</span><span class="p">(</span><span class="n">t_length</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span><span class="o">//</span><span class="err">大小</span> <span class="o">+</span> <span class="mi">1</span><span class="err">防止堆和缓冲区溢出</span>
-</span></span><span class="line"><span class="cl">        <span class="o">//</span><span class="n">next</span><span class="p">[</span><span class="n">t_length</span><span class="p">]</span><span class="err">的值是</span><span class="n">t字符串的最大前后缀公共长度</span>
-</span></span><span class="line"><span class="cl">        <span class="n">next</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="ne">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span><span class="o">//</span><span class="n">i是当前正在计算next值的位置</span><span class="err">；</span><span class="n">j是前缀指针</span><span class="err">，当前已经匹配的长度</span>
-</span></span><span class="line"><span class="cl">        <span class="k">while</span><span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">t_length</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">            <span class="k">if</span><span class="p">(</span><span class="n">j</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span> <span class="o">||</span> <span class="n">t</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">t</span><span class="p">[</span><span class="n">j</span><span class="p">]){</span><span class="o">//</span><span class="n">j</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="err">表示没有匹配的前缀</span>
-</span></span><span class="line"><span class="cl">                <span class="n">next</span><span class="p">[</span><span class="o">++</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="o">++</span><span class="n">j</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">            <span class="p">}</span><span class="k">else</span><span class="p">{</span>
-</span></span><span class="line"><span class="cl">                <span class="n">j</span> <span class="o">=</span> <span class="n">next</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl">            <span class="p">}</span>
-</span></span><span class="line"><span class="cl">        <span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        <span class="o">//</span><span class="n">KMP匹配</span><span class="err">，求</span><span class="n">t字符串在s字符串中出现的第一次位置</span>
-</span></span><span class="line"><span class="cl">        <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span><span class="o">//</span><span class="n">i是主串指针</span><span class="err">，</span><span class="n">j是匹配串指针</span>
-</span></span><span class="line"><span class="cl">        <span class="k">while</span><span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">s_length</span> <span class="o">&amp;&amp;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">t_length</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">            <span class="k">if</span><span class="p">(</span><span class="n">j</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span> <span class="o">||</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">t</span><span class="p">[</span><span class="n">j</span><span class="p">]){</span>
-</span></span><span class="line"><span class="cl">                <span class="o">++</span><span class="n">i</span><span class="p">,</span> <span class="o">++</span><span class="n">j</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">            <span class="p">}</span><span class="k">else</span><span class="p">{</span>
-</span></span><span class="line"><span class="cl">                <span class="n">j</span> <span class="o">=</span> <span class="n">next</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl">            <span class="p">}</span>
-</span></span><span class="line"><span class="cl">        <span class="p">}</span>
-</span></span><span class="line"><span class="cl">        
-</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">j</span> <span class="o">==</span> <span class="n">t_length</span> <span class="err">?</span> <span class="n">i</span> <span class="o">-</span> <span class="n">j</span> <span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">};</span>
+    <div class="hr-line"></div><div class="e-content article-entry" itemprop="articleBody"><h1 id="mysql学习笔记">
+<a class="header-anchor" href="#mysql%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0"></a>
+MySQL学习笔记
+</h1><h2 id="针对mysql刷题过程中遇到的一些问题及解决办法">
+<a class="header-anchor" href="#%e9%92%88%e5%af%b9mysql%e5%88%b7%e9%a2%98%e8%bf%87%e7%a8%8b%e4%b8%ad%e9%81%87%e5%88%b0%e7%9a%84%e4%b8%80%e4%ba%9b%e9%97%ae%e9%a2%98%e5%8f%8a%e8%a7%a3%e5%86%b3%e5%8a%9e%e6%b3%95"></a>
+针对MySQL刷题过程中遇到的一些问题及解决办法
+</h2><h3 id="派生表必须要有别名">
+<a class="header-anchor" href="#%e6%b4%be%e7%94%9f%e8%a1%a8%e5%bf%85%e9%a1%bb%e8%a6%81%e6%9c%89%e5%88%ab%e5%90%8d"></a>
+派生表必须要有别名
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">1. Every derived table must have its own alias
 </span></span></code></pre></div><ul>
-<li>
-<p>这个 KMP 函数的返回值是模式串 t 在主串 s 中第一次出现的起始位置（从 0 开始计数）。具体来说</p>
-<ul>
-<li>如果 t 是空字符串（t_length == 0），返回 0，因为空字符串被认为是任何字符串的子串，且出现在位置 0。</li>
-<li>如果 s 的长度小于 t 的长度（s_length &lt; t_length），返回 -1，表示 t 不可能是 s 的子串。</li>
-<li>如果 t 在 s 中找到匹配，返回匹配的起始位置（即 i - j，其中 i 是 s 中匹配结束的位置，j 是 t 的长度）。</li>
-<li>如果 t 不在 s 中，返回 -1。</li>
+<li>这个错误消息的意思是&quot;每个<code>派生表</code>必须有自己的别名&quot;，这是 MySQL 在执行 SQL 查询时常见的语法错误。</li>
 </ul>
-</li>
-<li>
-<p>例如：</p>
-<ul>
-<li>kmp(&ldquo;hello&rdquo;, &ldquo;ll&rdquo;) 返回 2</li>
-<li>kmp(&ldquo;aaaaa&rdquo;, &ldquo;bba&rdquo;) 返回 -1</li>
-<li>kmp(&ldquo;any&rdquo;, &ldquo;&rdquo;) 返回 0</li>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">-- 错误的写法：子查询没有别名
+</span></span><span class="line"><span class="cl">SELECT * FROM (SELECT * FROM employees);
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">-- 正确的写法：为子查询指定别名
+</span></span><span class="line"><span class="cl">SELECT * FROM (SELECT * FROM employees) AS emp;
+</span></span></code></pre></div><hr>
+<h3 id="只有表才能取别名">
+<a class="header-anchor" href="#%e5%8f%aa%e6%9c%89%e8%a1%a8%e6%89%8d%e8%83%bd%e5%8f%96%e5%88%ab%e5%90%8d"></a>
+只有<code>表</code>才能取别名
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">2. You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &#39;x
+</span></span><span class="line"><span class="cl">) y&#39; at line 9
+</span></span></code></pre></div><p>这个错误是因为你在子查询的末尾添加了不必要的别名 <code> x</code> ，而 MySQL 不允许在这种位置使用它们。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">错误代码：
+</span></span><span class="line"><span class="cl">SELECT MAX(salary) SecondHighestSalary
+</span></span><span class="line"><span class="cl">FROM (
+</span></span><span class="line"><span class="cl">    SELECT salary
+</span></span><span class="line"><span class="cl">    FROM Employee
+</span></span><span class="line"><span class="cl">    WHERE salary &lt; (
+</span></span><span class="line"><span class="cl">        SELECT max(salary)
+</span></span><span class="line"><span class="cl">        from Employee  
+</span></span><span class="line"><span class="cl">    ) x -- 就是这里没有引用不需要添加别名
+</span></span><span class="line"><span class="cl">) y;
+</span></span></code></pre></div><p>&ndash;&gt; 在 MySQL 中，<code>子查询的别名通常用于 FROM 子句中的表引用</code>，但你的查询没有使用它们，所以 MySQL 会报错。</p>
+<hr>
+<h3 id="聚合函数的使用位置">
+<a class="header-anchor" href="#%e8%81%9a%e5%90%88%e5%87%bd%e6%95%b0%e7%9a%84%e4%bd%bf%e7%94%a8%e4%bd%8d%e7%bd%ae"></a>
+聚合函数的使用位置
+</h3><ul>
+<li>聚合函数只能用于 <code>SELECT列表或HAVING子句</code>中，不能直接用于WHERE子句或GROUP BY子句。如果需要基于聚合结果进行筛选，应该使用HAVING而不是WHERE ！！</li>
 </ul>
-</li>
-<li>
-<p>注意：这个实现是从 0 开始计数的，与 C++ 的 std::string::find() 的返回值语义相同。</p>
-</li>
-</ul>
-<ol start="2">
-<li>下标从1开始的求next数组的kmp算法</li>
+<hr>
+<h3 id="小难的题目">
+<a class="header-anchor" href="#%e5%b0%8f%e9%9a%be%e7%9a%84%e9%a2%98%e7%9b%ae"></a>
+小难的题目
+</h3><ol>
+<li><a href="https://leetcode.cn/problems/find-books-with-polarized-opinions/description/">3642. 查找有两极分化观点的书籍 - 力扣（LeetCode）</a></li>
 </ol>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">int GetNext(char ch[], int length, int next[]){
-</span></span><span class="line"><span class="cl">    next[1] = 0;
-</span></span><span class="line"><span class="cl">    int i = 1, j = 0;
-</span></span><span class="line"><span class="cl">    while(i &lt;= length){
-</span></span><span class="line"><span class="cl">        if(j==0 || ch[i] == ch[j]){
-</span></span><span class="line"><span class="cl">            next[++i] = ++j;
-</span></span><span class="line"><span class="cl">        }else{
-</span></span><span class="line"><span class="cl">            j = next[j];
-</span></span><span class="line"><span class="cl">        }
-</span></span><span class="line"><span class="cl">    }
-</span></span><span class="line"><span class="cl">}
-</span></span></code></pre></div><p><a href="https://leetcode.cn/problems/repeated-substring-pattern/description/">459. 重复的子字符串 - 力扣（LeetCode）</a></p>
-<h2 id="回溯问题">
-<a class="header-anchor" href="#%e5%9b%9e%e6%ba%af%e9%97%ae%e9%a2%98"></a>
-回溯问题
-</h2><p><a href="https://leetcode.cn/problems/letter-combinations-of-a-phone-number/">17. 电话号码的字母组合 - 力扣（LeetCode）</a></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">代码如下：
+<ul>
+<li>别人写的代码</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"># Write your MySQL query statement below
+</span></span><span class="line"><span class="cl">select b.book_id, title, author, genre, pages, rating_spread, polarization_score
+</span></span><span class="line"><span class="cl">from books b
+</span></span><span class="line"><span class="cl">join (
+</span></span><span class="line"><span class="cl">    select book_id, 
+</span></span><span class="line"><span class="cl">    round(sum(if(session_rating&gt;3 or session_rating&lt;3, 1, 0))/count(session_rating),2) as polarization_score, 
+</span></span><span class="line"><span class="cl">    max(session_rating)-min(session_rating) as rating_spread
+</span></span><span class="line"><span class="cl">    from reading_sessions
+</span></span><span class="line"><span class="cl">    group by 1
+</span></span><span class="line"><span class="cl">    having count(session_id)&gt;4 and sum(if(session_rating&gt;3,1,0))&gt;0 and sum(if(session_rating&lt;3,1,0))&gt;0
+</span></span><span class="line"><span class="cl">    ) tb
+</span></span><span class="line"><span class="cl">using(book_id)
+</span></span><span class="line"><span class="cl">where polarization_score&gt;=0.6
+</span></span><span class="line"><span class="cl">order by polarization_score desc, title desc
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">class Solution {
-</span></span><span class="line"><span class="cl">private:
-</span></span><span class="line"><span class="cl">    vector&lt;string&gt; dic = {&#34;&#34;, &#34;&#34;, &#34;abc&#34;, &#34;def&#34;, &#34;ghi&#34;, &#34;jkl&#34;, &#34;mno&#34;, &#34;pqrs&#34;, &#34;tuv&#34;, &#34;wxyz&#34;};
-</span></span><span class="line"><span class="cl">public:
-</span></span><span class="line"><span class="cl">    vector&lt;string&gt; letterCombinations(string digits) {
-</span></span><span class="line"><span class="cl">        int n = digits.size();
-</span></span><span class="line"><span class="cl">        if(n == 0)  return {};
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        vector&lt;string&gt; ans;
-</span></span><span class="line"><span class="cl">        string path;
-</span></span><span class="line"><span class="cl">        auto dfs = [&amp;](this auto&amp;&amp; dfs, int i)-&gt;void{
-</span></span><span class="line"><span class="cl">            if(i == n){
-</span></span><span class="line"><span class="cl">                ans.emplace_back(path);
-</span></span><span class="line"><span class="cl">                return;
-</span></span><span class="line"><span class="cl">            }
-</span></span><span class="line"><span class="cl">            int idx = digits[i] - &#39;0&#39;;
-</span></span><span class="line"><span class="cl">			for(int j = 0; j &lt; dic[idx].size(); ++j){
-</span></span><span class="line"><span class="cl">				path += dic[idx][j];
-</span></span><span class="line"><span class="cl">				dfs(i + 1);
-</span></span><span class="line"><span class="cl">                path.pop_back();// 回溯，移除最后一个字母！ 必须要回溯！
-</span></span><span class="line"><span class="cl">			}
-</span></span><span class="line"><span class="cl">        };
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        dfs(0);//回溯的入口！
-</span></span><span class="line"><span class="cl">        return ans;
-</span></span><span class="line"><span class="cl">    }
-</span></span><span class="line"><span class="cl">};
-</span></span></code></pre></div><ul>
-<li>这里<code>path.pop_back()</code>用于递归后回溯的恢复数据，如果没有这一步path的路径会随着递归深入一直变长~</li>
+</span></span><span class="line"><span class="cl">作者：RJSolution
+</span></span></code></pre></div><ol>
+<li>using(book_id)</li>
+</ol>
+<ul>
+<li>
+<p>在SQL中，<code>USING(book_id)</code>是一种简化JOIN条件的语法，它等价于<code>ON table1.book_id = table2.book_id</code>。</p>
+</li>
+<li>
+<p><strong><code>USING(book_id)</code>的作用</strong></p>
+<p>当两个表通过<strong>相同名称的列</strong>（这里是<code>book_id</code>）进行JOIN时，可以用<code>USING</code>替代<code>ON</code>，使代码更简洁。</p>
+</li>
+<li>
+<p><strong>在结果中，JOIN列只出现一次</strong></p>
+<ul>
+<li>如果用<code>ON b.book_id = r.book_id</code>，查询结果会包含<code>b.book_id</code>和<code>r.book_id</code>两列。</li>
+<li>如果用<code>USING(book_id)</code>，查询结果只会显示一个<code>book_id</code>列（不会重复）。</li>
+</ul>
+</li>
+<li>
+<p>自己写的然后用yb改的</p>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">SELECT 
+</span></span><span class="line"><span class="cl">    b.*,
+</span></span><span class="line"><span class="cl">    MAX(r.session_rating) - MIN(r.session_rating) AS rating_spread,
+</span></span><span class="line"><span class="cl">    ROUND(SUM(CASE WHEN r.session_rating &lt;= 2 OR r.session_rating &gt;= 4 THEN 1 ELSE 0 END) / COUNT(*), 2) AS polarization_score
+</span></span><span class="line"><span class="cl">FROM 
+</span></span><span class="line"><span class="cl">    books b
+</span></span><span class="line"><span class="cl">JOIN 
+</span></span><span class="line"><span class="cl">    reading_sessions r ON b.book_id = r.book_id
+</span></span><span class="line"><span class="cl">GROUP BY 
+</span></span><span class="line"><span class="cl">    b.book_id
+</span></span><span class="line"><span class="cl">HAVING 
+</span></span><span class="line"><span class="cl">    COUNT(*) &gt;= 5 
+</span></span><span class="line"><span class="cl">    AND SUM(CASE WHEN r.session_rating &lt;= 2 OR r.session_rating &gt;= 4 THEN 1 ELSE 0 END) / COUNT(*) &gt;= 0.6
+</span></span><span class="line"><span class="cl">    AND SUM(CASE WHEN r.session_rating &gt;= 4 THEN 1 ELSE 0 END) &gt;= 1  -- 至少一个≥4的评分
+</span></span><span class="line"><span class="cl">    AND SUM(CASE WHEN r.session_rating &lt;= 2 THEN 1 ELSE 0 END) &gt;= 1  -- 至少一个≤2的评分
+</span></span><span class="line"><span class="cl">ORDER BY 
+</span></span><span class="line"><span class="cl">    polarization_score DESC, 
+</span></span><span class="line"><span class="cl">    b.title DESC;
+</span></span></code></pre></div><ol start="2">
+<li>ROUND(x, y)函数 &ndash;&gt; 求参数x的四舍五入值，保留y位小数</li>
+<li><code>CASE WHEN r.session_rating &lt;= 2 OR r.session_rating &gt;= 4 THEN 1 ELSE 0 END</code>
+<ul>
+<li>case when xxx , true -&gt; then , false -&gt; else; 注意最后有一个 <code>END</code></li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>然后就是总结，对于比较复杂的数据库问题，可以在select的时候就筛选条件，也可以在from后面的派生表里筛选条件（注意要有别名），聚合函数不能出现在where里面等等&hellip;</li>
 </ul>
 </div>
     <footer class="article-footer"><ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in">
       <a
         class="article-tag-list-link"
-        href="/tags/%e7%ae%97%e6%b3%95"
+        href="/tags/mysql"
         rel="tag"
-        >算法</a
+        >MYSQL</a
       >
     </li></ul>
 </footer>
@@ -405,21 +420,21 @@ KMP算法
     id="article-nav"
     data-aos="fade-up"
   ><div class="article-nav-link-wrap article-nav-link-left"><img
-            data-src="https://kidle9527.github.io/images/11.png"
-            data-sizes="auto"
-            alt="真正意义上的第一篇博客"
-            class="lazyload"
-          /><a href="//localhost:1313/post/firstblog/"></a>
-        <div class="article-nav-caption">前一篇</div>
-        <h3 class="article-nav-title">真正意义上的第一篇博客</h3>
-      </div><div class="article-nav-link-wrap article-nav-link-right"><img
             data-src="https://kidle9527.github.io/images/55.png"
             data-sizes="auto"
             alt="MySQL学习过程心得体会"
             class="lazyload"
           /><a href="//localhost:1313/post/mysql/"></a>
-        <div class="article-nav-caption">后一篇</div>
+        <div class="article-nav-caption">前一篇</div>
         <h3 class="article-nav-title">MySQL学习过程心得体会</h3>
+      </div><div class="article-nav-link-wrap article-nav-link-right"><img
+            data-src="https://kidle9527.github.io/images/33.png"
+            data-sizes="auto"
+            alt="CPP学习过程心得体会"
+            class="lazyload"
+          /><a href="//localhost:1313/post/cppnote/"></a>
+        <div class="article-nav-caption">后一篇</div>
+        <h3 class="article-nav-title">CPP学习过程心得体会</h3>
       </div></nav></article></section>
         </div><footer id="footer">
   <div style="width: 100%; overflow: hidden">
@@ -440,10 +455,10 @@ KMP算法
         >
       </div><div>
         <span class="icon-brush"
-          >&nbsp;9.0k</span
+          >&nbsp;9.2k</span
         >
         &nbsp;|&nbsp;
-        <span class="icon-coffee">&nbsp;00:21</span>
+        <span class="icon-coffee">&nbsp;00:22</span>
       </div><div>
         <span class="icon-eye"></span>
         <span id="busuanzi_container_site_pv"
@@ -470,8 +485,14 @@ KMP算法
   <div class="sidebar-toc-wrapper toc-div-class">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#kmp算法">KMP算法</a></li>
-    <li><a href="#回溯问题">回溯问题</a></li>
+    <li><a href="#针对mysql刷题过程中遇到的一些问题及解决办法">针对MySQL刷题过程中遇到的一些问题及解决办法</a>
+      <ul>
+        <li><a href="#派生表必须要有别名">派生表必须要有别名</a></li>
+        <li><a href="#只有表才能取别名">只有<code>表</code>才能取别名</a></li>
+        <li><a href="#聚合函数的使用位置">聚合函数的使用位置</a></li>
+        <li><a href="#小难的题目">小难的题目</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
   </div>
@@ -488,7 +509,7 @@ KMP算法
 </div>
 <div class="sidebar-state">
   <div class="sidebar-state-article">
-    <div>文章</div><div class="sidebar-state-number">5</div>
+    <div>文章</div><div class="sidebar-state-number">6</div>
   </div>
   <a class="sidebar-state-category" href="/categories/" aria-label="sidebar-state-category-link">
     <div>分类</div>
@@ -639,10 +660,10 @@ KMP算法
   <div><script data-pjax>
         window.REIMU_POST = {
           author: "the_last_kid",
-          title: "算法学习过程心得体会",
-          url: "\/\/localhost:1313\/post\/algorithm\/",
-          description: "\rKMP算法\r下标从零开始 \/\/这个 KMP 函数的返回值是模式串 t 在主串 s 中第一次出现的起始位置（从 0 开始计数） int kmp(const string\u0026amp; s, const string\u0026amp; t){ int s_length = s.size(), t_length = t.size(); if (t_length == 0) return 0; if (s_length \u0026lt; t_length) return -1; \/\/求next数组(从下标0开始) vector\u0026lt;int\u0026gt; next(t_length \u002b 1);\/\/大小 \u002b 1防止堆和缓冲区溢 …",
-          cover: "https:\/\/kidle9527.github.io\/images\/22.png",
+          title: "MySQL学习过程心得体会",
+          url: "\/\/localhost:1313\/post\/mysql---%E5%89%AF%E6%9C%AC\/",
+          description: "\rMySQL学习笔记\r针对MySQL刷题过程中遇到的一些问题及解决办法\r派生表必须要有别名\r1. Every derived table must have its own alias 这个错误消息的意思是\u0026quot;每个派生表必须有自己的别名\u0026quot;，这是 MySQL 在执行 SQL 查询时常见的语法错误。 -- 错误的写法：子查询没有别名 SELECT * FROM (SELECT * FROM employees); -- 正确的写法：为子查询指定别名 SELECT * FROM (SELECT * FROM employees) AS emp; 只有表才能取别名\r2. You …",
+          cover: "https:\/\/kidle9527.github.io\/images\/55.png",
         };
       </script><script src="/js/insert_highlight.js" data-pjax></script><script type="module" data-pjax>const PhotoSwipeLightbox = (await safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js", "sha384-DiL6M\/gG\u002bwmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF\/N6lrZi\/")).default;const pswp = () => {
           if (_$$('.article-entry a.article-gallery-item').length > 0) {
