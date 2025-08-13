@@ -211,3 +211,50 @@ set.erase(s.begin()); // 移除第一个元素
 4.谓词可以是任何可调用对象(函数指针、lambda、函数对象等)
 ```
 
+---
+
+
+
+### `std::format()`函数 和  ` { : b }`
+
+1. `std::format`是 C++20 新增的 **字符串格式化库**，类似于 Python 的 `str.format()`或 C 的 `printf`，但更安全、更现代化。
+
+基本语法：
+
+```
+#include <format>
+std::string formatted_str = std::format("格式化字符串", 参数1, 参数2, ...);
+```
+
+2. `{:b}`是一个 **格式规范**，表示将整数格式化为 **二进制字符串**。
+
+* 例如：`std::format("{:b}", 8)`→ `"1000"`。
+
+* 其他常见格式：
+  * `{:d}`：十进制（默认）。
+  * `{:x}`：十六进制。
+  * `{:o}`：八进制。
+
+3. Eg ：
+
+```
+int year = 2025, month = 8, day = 12;
+std::string binary_date = std::format("{:b}-{:b}-{:b}", year, month, day);
+std::cout << binary_date << std::endl;  // 输出 "11111100001-1000-1100"
+```
+
+---
+
+
+
+## 函数学习
+
+### 字母和数字篇
+
+1. isalnum(c)， 判断字符是字母或者数字
+2. isalpha(c)，判断字符是字母
+3. islower(c) 和 isupper(), 判断字符是大小写字母
+4. isspace(c)，检查是否为空白字符
+5. toupper() 和 tolower()，字母大小写转换，其他字符返回本身
+6. isdigit(c)，用于**检查字符 `c`是否为十进制数字（0-9）**，检查 `'0'-'9'`。
+7. isxdight(c)，检查 `'0'-'9'`、`'A'-'F'`、`'a'-'f'`（十六进制数字）。

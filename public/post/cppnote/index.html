@@ -166,6 +166,12 @@
     <li><a href="#c20">C++20</a>
       <ul>
         <li><a href="#erase-和-erase_if">erase() 和 erase_if()</a></li>
+        <li><a href="#stdformat函数-和-----b-"><code>std::format()</code>函数 和  <code> { : b }</code></a></li>
+      </ul>
+    </li>
+    <li><a href="#函数学习">函数学习</a>
+      <ul>
+        <li><a href="#字母和数字篇">字母和数字篇</a></li>
       </ul>
     </li>
   </ul>
@@ -194,7 +200,7 @@
   </a>
   <a class="sidebar-state-tag" href="/tags/" aria-label="sidebar-state-tag-link">
     <div>标签</div>
-    <div class="sidebar-state-number">4</div>
+    <div class="sidebar-state-number">5</div>
   </a>
 </div>
 <div class="sidebar-social"><div class="icon-bilibili sidebar-social-icon">
@@ -491,7 +497,55 @@ erase() 和 erase_if()
 </span></span><span class="line"><span class="cl">2.返回被移除的元素数量
 </span></span><span class="line"><span class="cl">3.保持容器中剩余元素的相对顺序(序列容器)
 </span></span><span class="line"><span class="cl">4.谓词可以是任何可调用对象(函数指针、lambda、函数对象等)
-</span></span></code></pre></div></div>
+</span></span></code></pre></div><hr>
+<h3 id="stdformat函数-和-----b-">
+<a class="header-anchor" href="#stdformat%e5%87%bd%e6%95%b0-%e5%92%8c-----b-"></a>
+<code>std::format()</code>函数 和  <code> { : b }</code>
+</h3><ol>
+<li><code>std::format</code>是 C++20 新增的 <strong>字符串格式化库</strong>，类似于 Python 的 <code>str.format()</code>或 C 的 <code>printf</code>，但更安全、更现代化。</li>
+</ol>
+<p>基本语法：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;format&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">formatted_str</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">format</span><span class="p">(</span><span class="s">&#34;格式化字符串&#34;</span><span class="p">,</span> <span class="err">参数</span><span class="mi">1</span><span class="p">,</span> <span class="err">参数</span><span class="mi">2</span><span class="p">,</span> <span class="p">...);</span>
+</span></span></code></pre></div><ol start="2">
+<li><code>{:b}</code>是一个 <strong>格式规范</strong>，表示将整数格式化为 <strong>二进制字符串</strong>。</li>
+</ol>
+<ul>
+<li>
+<p>例如：<code>std::format(&quot;{:b}&quot;, 8)</code>→ <code>&quot;1000&quot;</code>。</p>
+</li>
+<li>
+<p>其他常见格式：</p>
+<ul>
+<li><code>{:d}</code>：十进制（默认）。</li>
+<li><code>{:x}</code>：十六进制。</li>
+<li><code>{:o}</code>：八进制。</li>
+</ul>
+</li>
+</ul>
+<ol start="3">
+<li>Eg ：</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">int year = 2025, month = 8, day = 12;
+</span></span><span class="line"><span class="cl">std::string binary_date = std::format(&#34;{:b}-{:b}-{:b}&#34;, year, month, day);
+</span></span><span class="line"><span class="cl">std::cout &lt;&lt; binary_date &lt;&lt; std::endl;  // 输出 &#34;11111100001-1000-1100&#34;
+</span></span></code></pre></div><hr>
+<h2 id="函数学习">
+<a class="header-anchor" href="#%e5%87%bd%e6%95%b0%e5%ad%a6%e4%b9%a0"></a>
+函数学习
+</h2><h3 id="字母和数字篇">
+<a class="header-anchor" href="#%e5%ad%97%e6%af%8d%e5%92%8c%e6%95%b0%e5%ad%97%e7%af%87"></a>
+字母和数字篇
+</h3><ol>
+<li>isalnum(c)， 判断字符是字母或者数字</li>
+<li>isalpha(c)，判断字符是字母</li>
+<li>islower(c) 和 isupper(), 判断字符是大小写字母</li>
+<li>isspace(c)，检查是否为空白字符</li>
+<li>toupper() 和 tolower()，字母大小写转换，其他字符返回本身</li>
+<li>isdigit(c)，用于<strong>检查字符 <code>c</code>是否为十进制数字（0-9）</strong>，检查 <code>'0'-'9'</code>。</li>
+<li>isxdight(c)，检查 <code>'0'-'9'</code>、<code>'A'-'F'</code>、<code>'a'-'f'</code>（十六进制数字）。</li>
+</ol>
+</div>
     <footer class="article-footer"><ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in">
       <a
         class="article-tag-list-link"
@@ -540,10 +594,10 @@ erase() 和 erase_if()
         >
       </div><div>
         <span class="icon-brush"
-          >&nbsp;5.3k</span
+          >&nbsp;7.6k</span
         >
         &nbsp;|&nbsp;
-        <span class="icon-coffee">&nbsp;00:13</span>
+        <span class="icon-coffee">&nbsp;00:18</span>
       </div><div>
         <span class="icon-eye"></span>
         <span id="busuanzi_container_site_pv"
@@ -590,6 +644,12 @@ erase() 和 erase_if()
     <li><a href="#c20">C++20</a>
       <ul>
         <li><a href="#erase-和-erase_if">erase() 和 erase_if()</a></li>
+        <li><a href="#stdformat函数-和-----b-"><code>std::format()</code>函数 和  <code> { : b }</code></a></li>
+      </ul>
+    </li>
+    <li><a href="#函数学习">函数学习</a>
+      <ul>
+        <li><a href="#字母和数字篇">字母和数字篇</a></li>
       </ul>
     </li>
   </ul>
@@ -618,7 +678,7 @@ erase() 和 erase_if()
   </a>
   <a class="sidebar-state-tag" href="/tags/" aria-label="sidebar-state-tag-link">
     <div>标签</div>
-    <div class="sidebar-state-number">4</div>
+    <div class="sidebar-state-number">5</div>
   </a>
 </div>
 <div class="sidebar-social"><div class="icon-bilibili sidebar-social-icon">

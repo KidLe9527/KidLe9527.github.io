@@ -108,7 +108,8 @@ MySQL学习笔记
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">-- 正确的写法：为子查询指定别名
 </span></span><span class="line"><span class="cl">SELECT * FROM (SELECT * FROM employees) AS emp;
-</span></span></code></pre></div><h3 id="只有表才能取别名">
+</span></span></code></pre></div><hr>
+<h3 id="只有表才能取别名">
 <a class="header-anchor" href="#%e5%8f%aa%e6%9c%89%e8%a1%a8%e6%89%8d%e8%83%bd%e5%8f%96%e5%88%ab%e5%90%8d"></a>
 只有<code>表</code>才能取别名
 </h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">2. You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &#39;x
@@ -324,7 +325,14 @@ erase() 和 erase_if()
 </span></span><span class="line"><span class="cl">2.返回被移除的元素数量
 </span></span><span class="line"><span class="cl">3.保持容器中剩余元素的相对顺序(序列容器)
 </span></span><span class="line"><span class="cl">4.谓词可以是任何可调用对象(函数指针、lambda、函数对象等)
-</span></span></code></pre></div>
+</span></span></code></pre></div><hr>
+<h3 id="stdformat函数-和-----b-">
+<a class="header-anchor" href="#stdformat%e5%87%bd%e6%95%b0-%e5%92%8c-----b-"></a>
+<code>std::format()</code>函数 和  <code> { : b }</code>
+</h3><ol>
+<li><code>std::format</code>是 C++20 新增的 <strong>字符串格式化库</strong>，类似于 Python 的 <code>str.format()</code>或 C 的 <code>printf</code>，但更安全、更现代化。</li>
+</ol>
+<p>基本语法：</p>
         
         <hr><p>本文2025-08-10首发于<a href='//localhost:1313/'></a>，最后修改于2025-08-10</p>]]>
       </description>

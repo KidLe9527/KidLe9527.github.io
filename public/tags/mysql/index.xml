@@ -48,35 +48,13 @@ MySQL学习笔记
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">-- 正确的写法：为子查询指定别名
 </span></span><span class="line"><span class="cl">SELECT * FROM (SELECT * FROM employees) AS emp;
-</span></span></code></pre></div><h3 id="只有表才能取别名">
+</span></span></code></pre></div><hr>
+<h3 id="只有表才能取别名">
 <a class="header-anchor" href="#%e5%8f%aa%e6%9c%89%e8%a1%a8%e6%89%8d%e8%83%bd%e5%8f%96%e5%88%ab%e5%90%8d"></a>
 只有<code>表</code>才能取别名
 </h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">2. You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &#39;x
 </span></span><span class="line"><span class="cl">) y&#39; at line 9
 </span></span></code></pre></div><p>这个错误是因为你在子查询的末尾添加了不必要的别名 <code> x</code> ，而 MySQL 不允许在这种位置使用它们。</p>
-        
-        <hr><p>本文2025-08-10首发于<a href='//localhost:1313/'></a>，最后修改于2025-08-10</p>]]>
-      </description>
-      
-        <category>笔记</category>
-      
-    </item>
-    
-    
-
-    <item>
-      <title>linux学习过程心得体会</title>
-      <link>//localhost:1313/post/linux/</link>
-      <pubDate>Sun, 10 Aug 2025 22:02:00 -0800</pubDate>
-      <author>2267593025@qq.com (the_last_kid)</author>
-      <guid>//localhost:1313/post/linux/</guid>
-      <description>
-        <![CDATA[<h1>linux学习过程心得体会</h1><p>作者：the_last_kid（2267593025@qq.com）</p>
-        
-          <h1 id="linux-学习笔记">
-<a class="header-anchor" href="#linux-%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0"></a>
-LINUX 学习笔记
-</h1>
         
         <hr><p>本文2025-08-10首发于<a href='//localhost:1313/'></a>，最后修改于2025-08-10</p>]]>
       </description>

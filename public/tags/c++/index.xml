@@ -221,7 +221,14 @@ erase() 和 erase_if()
 </span></span><span class="line"><span class="cl">2.返回被移除的元素数量
 </span></span><span class="line"><span class="cl">3.保持容器中剩余元素的相对顺序(序列容器)
 </span></span><span class="line"><span class="cl">4.谓词可以是任何可调用对象(函数指针、lambda、函数对象等)
-</span></span></code></pre></div>
+</span></span></code></pre></div><hr>
+<h3 id="stdformat函数-和-----b-">
+<a class="header-anchor" href="#stdformat%e5%87%bd%e6%95%b0-%e5%92%8c-----b-"></a>
+<code>std::format()</code>函数 和  <code> { : b }</code>
+</h3><ol>
+<li><code>std::format</code>是 C++20 新增的 <strong>字符串格式化库</strong>，类似于 Python 的 <code>str.format()</code>或 C 的 <code>printf</code>，但更安全、更现代化。</li>
+</ol>
+<p>基本语法：</p>
         
         <hr><p>本文2025-08-10首发于<a href='//localhost:1313/'></a>，最后修改于2025-08-10</p>]]>
       </description>

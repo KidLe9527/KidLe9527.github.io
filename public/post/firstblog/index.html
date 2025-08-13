@@ -149,6 +149,7 @@
     <li><a href="#先记录一下搭建博客的过程">先记录一下搭建博客的过程！</a></li>
     <li><a href="#再记录一下搭建博客中遇到的一些问题">再记录一下搭建博客中遇到的一些问题</a></li>
     <li><a href="#最后展望一下未来好吧">最后展望一下未来好吧</a></li>
+    <li><a href="#cmd传输数据至仓库">cmd传输数据至仓库</a></li>
   </ul>
 </nav>
   </div>
@@ -351,13 +352,13 @@
 <p>哦，还有就是文章封面换图片，需要在根目录的images下添加，然后在data-&gt;covers.yml文件里按照格式添加链接，这里一开始不会显示加载照片，必须要上传部署之后才会，注意多刷新几次</p>
 </li>
 <li>
-<p>如果要在文章里面添加图片的话，大哥的方法也是在根目录的images里添加图片，然后用<code>![数字](/images/55.jpg)</code>格式（例子）的语法，但是不建议，可能有问题</p>
+<p>如果要在文章里面添加图片的话，大哥的方法也是在根目录的images里添加图片，然后用<code>![数字](/images/55.png)</code>格式（例子）的语法，但是不建议，可能有问题</p>
 </li>
 </ol>
 <ul>
 <li>看看能不能显示图片出来（希望~</li>
 </ul>
-<p><img src="/images/55.jpg" alt="00"></p>
+<p><img src="/images/55.png" alt="00"></p>
 <h2 id="最后展望一下未来好吧">
 <a class="header-anchor" href="#%e6%9c%80%e5%90%8e%e5%b1%95%e6%9c%9b%e4%b8%80%e4%b8%8b%e6%9c%aa%e6%9d%a5%e5%a5%bd%e5%90%a7"></a>
 最后展望一下未来好吧
@@ -366,8 +367,30 @@
 人生中的第一篇博客就这样完结吧，感觉还是很不错滴！~~~
 希望以后自己技术力上升，重构一个真正切合自己喜好的blog，这些现在嫌麻烦的七零八落的小组件也能随手就弄好，而不是像现在一样狼狈</del>加油！</p>
 <p><code>尽吾志而不能至者，可以无悔矣！</code></p>
-<p>emmm，人生中第一篇文章就出现小问题，时间问题导致博客页面不会生成&rsquo;未来&rsquo;的文章！逆天（最后，我把时间提前一天解决了，不会555）</p>
-</div>
+<p>emmm，人生中第一篇文章就出现小问题，时间问题导致博客页面不会生成<code>未来</code>的文章！逆天（最后，我把时间提前一天解决了，不会555）</p>
+<h2 id="cmd传输数据至仓库">
+<a class="header-anchor" href="#cmd%e4%bc%a0%e8%be%93%e6%95%b0%e6%8d%ae%e8%87%b3%e4%bb%93%e5%ba%93"></a>
+cmd传输数据至仓库
+</h2><ul>
+<li><del>but, 有点小问题记录一下， 就是在vs code上传半天都在转圈的情况下，用cmd命令行上传到github</del></li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">1. 进入根目录(举例)
+</span></span><span class="line"><span class="cl">cd C:\Users\保密\Desktop\test\quickstart
+</span></span><span class="line"><span class="cl">2. 初始化Git(如果未初始化)
+</span></span><span class="line"><span class="cl">git init
+</span></span><span class="line"><span class="cl">3. 关联远程GitHub仓库
+</span></span><span class="line"><span class="cl">git remote add origin https://github.com/你的用户名/你的仓库名.git
+</span></span><span class="line"><span class="cl">4. 拉取远程更改(避免冲突)
+</span></span><span class="line"><span class="cl">git pull origin main
+</span></span><span class="line"><span class="cl">5. 添加所有更改到暂存区
+</span></span><span class="line"><span class="cl">git add .
+</span></span><span class="line"><span class="cl">6. 提交更改
+</span></span><span class="line"><span class="cl">git commit -m &#34;更新博客内容&#34;
+</span></span><span class="line"><span class="cl">7. 推送到GitHub
+</span></span><span class="line"><span class="cl">git push -u origin main
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">报错就自己查~自求多福~
+</span></span></code></pre></div></div>
     <footer class="article-footer"><ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in">
       <a
         class="article-tag-list-link"
@@ -408,10 +431,10 @@
         >
       </div><div>
         <span class="icon-brush"
-          >&nbsp;5.3k</span
+          >&nbsp;6.7k</span
         >
         &nbsp;|&nbsp;
-        <span class="icon-coffee">&nbsp;00:13</span>
+        <span class="icon-coffee">&nbsp;00:17</span>
       </div><div>
         <span class="icon-eye"></span>
         <span id="busuanzi_container_site_pv"
@@ -441,6 +464,7 @@
     <li><a href="#先记录一下搭建博客的过程">先记录一下搭建博客的过程！</a></li>
     <li><a href="#再记录一下搭建博客中遇到的一些问题">再记录一下搭建博客中遇到的一些问题</a></li>
     <li><a href="#最后展望一下未来好吧">最后展望一下未来好吧</a></li>
+    <li><a href="#cmd传输数据至仓库">cmd传输数据至仓库</a></li>
   </ul>
 </nav>
   </div>
