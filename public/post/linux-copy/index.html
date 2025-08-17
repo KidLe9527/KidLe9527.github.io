@@ -42,7 +42,7 @@
     property="og:description"
     content="少女祈祷中..."
   />
-  <meta property="og:url" content="//localhost:1313/post/linux/" />
+  <meta property="og:url" content="//localhost:1313/post/linux-copy/" />
   <meta
     property="og:site_name"
     content=""
@@ -180,10 +180,6 @@
         <li><a href="#网络请求和下载">网络请求和下载</a></li>
         <li><a href="#网络传输之端口">网络传输之端口</a></li>
         <li><a href="#进程管理">进程管理</a></li>
-        <li><a href="#主机状态">主机状态</a></li>
-        <li><a href="#环境变量">环境变量</a></li>
-        <li><a href="#上传下载">上传、下载</a></li>
-        <li><a href="#压缩解压">压缩、解压</a></li>
       </ul>
     </li>
   </ul>
@@ -202,7 +198,7 @@
 </div>
 <div class="sidebar-state">
   <div class="sidebar-state-article">
-    <div>文章</div><div class="sidebar-state-number">5</div>
+    <div>文章</div><div class="sidebar-state-number">6</div>
   </div>
   <a class="sidebar-state-category" href="/categories/" aria-label="sidebar-state-category-link">
     <div>分类</div>
@@ -1383,252 +1379,7 @@ IP地址、主机名
 <h3 id="进程管理">
 <a class="header-anchor" href="#%e8%bf%9b%e7%a8%8b%e7%ae%a1%e7%90%86"></a>
 进程管理
-</h3><p>​	程序运行在操作系统中，是被操作系统所管理的。</p>
-<p>​	为管理运行的程序，每一个程序在运行的时候，便被操作系统注册为系统中的一个：进程，并会为每一个进程都分配一个独有的：进程ID（pid）</p>
-<ol>
-<li>查看进程，可以通过ps命令查看Linux系统中的进程信息
-<ul>
-<li>语法：<code>ps [-e -f]</code>
-<ul>
-<li>选项-e，显示出全部的进程</li>
-<li>选项-f，以完全格式化的形式展示信息（展示全部信息）</li>
-<li>一般来说，固定用法就是：ps -ef 列出全部进程的全部信息</li>
-<li>输出格式：
-<ul>
-<li><code>UID         PID   PPID  C STIME TTY          TIME CMD</code></li>
-<li><code>luosaier   2165   1746  0 11:49 ?        00:00:00 /usr/libexec/gsd-media-keys</code></li>
-<li>uid：进程所属用户的id；pid：进程的进程号id；ppid：进程的父id（启动此进程的其他进程）</li>
-<li>c：此进程的cpu占用率；stime：进程的启动时间；tty：启动此进程的终端序号，如显示？，表示非终端启动</li>
-<li>time：进程占用cpu的时间；cmd：进程对应的名称或启动路径或启动命令</li>
-</ul>
-</li>
-<li>配合管道符使用进行过滤
-<ul>
-<li><code>ps -ef | grep 30001</code> &ndash;&gt; 过滤带有30001关键字的进程信息（一般指代过滤30001进程号）</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>关闭进程
-<ul>
-<li>语法：<code>kill [-9] 进程ID</code>
-<ul>
-<li>选项-9，表示强制关闭进程。不使用此选项会向进程发送信号要求其关闭，但是否关闭看进程自身的处理机制</li>
-<li><code>kill 123</code>&mdash;&gt;Terminated，表示已经终止，“自我了断”</li>
-<li><code>kill -9 123</code>&mdash;&gt;killed，表示强制终止，“他杀”</li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-<hr>
-<h3 id="主机状态">
-<a class="header-anchor" href="#%e4%b8%bb%e6%9c%ba%e7%8a%b6%e6%80%81"></a>
-主机状态
-</h3><ol>
-<li>查看<code>系统资源</code>占用：通过top命令查看cpu、内存使用情况，类似Windows的任务管理器
-<ul>
-<li>默认每5秒刷新一次；语法：直接输入<code>top</code>即可，按q 或者ctrl + c 退出</li>
-<li>top输出结果的前五行：第一行是系统相关；第二行是进程相关；第三行是cpu相关；第四、五行是内存相关</li>
-<li>top命令也支持选项：
-<ul>
-<li>-p，只显示某个进程的信息</li>
-<li>-d，设置刷新时间，默认5s</li>
-<li>-c，显示产生进程的完整命令，默认是进程名</li>
-<li>-n，指定刷新次数后退出，如top -n 3 表示刷新输出3此后退出</li>
-<li>-i，不显示任何闲置（idle）或无用（zombie）的进程</li>
-<li>-u，查找特定用户启动的程序</li>
-<li>-b，以非交互非全屏模式运行，以批次的方式执行top，一般配合-n指定输出几次统计信息，将输出重定向到指定文件，比如：top -b -n 3 &gt; /tem/top.tmp</li>
-</ul>
-</li>
-<li>top的交互式选项（非-b选项启动）
-<ul>
-<li>按下<code>h</code>键，会显示帮助画面</li>
-<li><code>c</code>，会显示产生进程的完整命令，等同于-c</li>
-<li><code>f</code>，可以选择需要展示的项目</li>
-<li><code>M</code>，根据驻留的内存大小（RES）排序</li>
-<li><code>P</code>，根据cpu使用百分比排序</li>
-<li><code>T</code>，根据时间/累计时间排序</li>
-<li><code>E、e、l、t、m</code>，<strong>切换</strong>顶部内存显示单位\进程内存显示单位\显示平均负载和启动时间信息\显示CPU状态信息\显示内存信息</li>
-<li><code>i</code>，不显示闲置或无用的进程，等同于-i</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><code>磁盘信息</code>监控：使用df命令，查看硬盘的使用情况
-<ul>
-<li>语法：<code>df [-h]</code>
-<ul>
-<li>选项-h，以更加人性化的单位显示</li>
-</ul>
-</li>
-<li>可以使用iostat命令查看cpu、磁盘的速率等相关信息
-<ul>
-<li>语法：<code>iostat [-x] [num1] [num2]</code>
-<ul>
-<li>选项-x，显示更多信息</li>
-<li>num1：数字，刷新时间；num2：数字，刷新次数</li>
-</ul>
-</li>
-<li>重要参数：
-<ul>
-<li><code>rKB/s</code>：每秒发送到设备的读取请求数</li>
-<li><code>wKB/s</code>：每秒发送到设备的写入请求数</li>
-<li><code>%util</code>：磁盘利用率</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><code>网络状态</code>监控：可以使用sar命令查看网络的相关统计
-<ul>
-<li>语法：<code>sar -n DEV num1 num2</code>
-<ul>
-<li>-n，查看网络；DEV表示查看网络接口</li>
-<li>num1、num2同iostat命令</li>
-</ul>
-</li>
-<li>重要参数：
-<ul>
-<li><code>rxKB/s</code>：每秒接受的数据包大小，单位KB</li>
-<li><code>txKB/s</code>：每秒发送的数据包大小，单位KB</li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-<hr>
-<h3 id="环境变量">
-<a class="header-anchor" href="#%e7%8e%af%e5%a2%83%e5%8f%98%e9%87%8f"></a>
-环境变量
-</h3><p>​	环境变量是操作系统在运行的时候，记录的一些关键性信息，用以辅助系统运行。在Linux系统中，执行<code>env</code>命令即可查看当前系统中记录的环境变量。</p>
-<p>​	环境变量是一种KeyValue型结构，即名称=值 。<code>env | grep PATH</code>&mdash;&gt; <code>PATH=/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/luosaier/.local/bi</code></p>
-<ol>
-<li>
-<p><code>$</code>符号：在Linux系统中，该符号被用于取“变量”的值</p>
-<ul>
-<li>
-<p>环境变量记录的值，除了给操作系统使用外，如果自己想要取用，也可以使用</p>
-</li>
-<li>
-<p>取得环境变量的值就可以通过语法：<code>$环境变量名</code>来取得</p>
-</li>
-<li>
-<p>eg：<code>echo $PATH</code>，就可以获取改变量的值并输出；<code>echo ${PATH}ABC</code>&ndash;&gt;通过{}来标注获取的变量，ABC是其他想要输出的内容，不是环境变量</p>
-</li>
-</ul>
-</li>
-<li>
-<p>自行设置环境变量</p>
-<ul>
-<li>Linux环境变量可以由用户自行设置，其中分为
-<ol>
-<li>临时设置，语法：<code>export 变量名=变量值</code>，重启系统后失效</li>
-<li>永久生效：
-<ul>
-<li>针对当前用户生效，配置在当前用户的：<code>~/.bashrc</code>文件中</li>
-<li>针对所有用户生效，配置在系统的：<code>/etc/profile</code>文件中</li>
-<li>并通过语法：<code>source 配置文件</code>，进行立刻生效，或者重启系统生效</li>
-</ul>
-</li>
-</ol>
-</li>
-</ul>
-</li>
-<li>
-<p>环境变量PATH会记录一组目录，目录之间用：隔开。这里记录的是目录的搜索路径，当执行命令会从记录中的目录中逐个搜索要执行的命令并执行-&gt;可以通过修改这个项目的值，加入自定义的命令的搜索路径</p>
-<ul>
-<li>eg：<code>export PATH=$PATH:/HOME/luosaier/wjl</code>，将后面的wjl暂时加入了搜索路径</li>
-</ul>
-</li>
-</ol>
-<hr>
-<h3 id="上传下载">
-<a class="header-anchor" href="#%e4%b8%8a%e4%bc%a0%e4%b8%8b%e8%bd%bd"></a>
-上传、下载
-</h3><ul>
-<li>第一种方法很简单，就是在传输和被传输的地方拖拽文件进行上传和下载~</li>
-<li>第二种方法：通过rz、sz命令进行文件的传输
-<ul>
-<li>通过：<code>yum -y install lrzsz</code>安装</li>
-<li><code>rz</code>命令，进行上传，语法：直接输入rz（从Windows上传到Linux）</li>
-<li><code>sz</code>命令，进行下载，语法：<code>sz 要下载的文件</code>，文件会自动下载到桌面的：<code>fsdownload</code>文件夹</li>
-</ul>
-</li>
-<li>第一种方法更方便，而且更适合大文件的传输，第二种方法适合小文件的传输~</li>
-</ul>
-<hr>
-<h3 id="压缩解压">
-<a class="header-anchor" href="#%e5%8e%8b%e7%bc%a9%e8%a7%a3%e5%8e%8b"></a>
-压缩、解压
-</h3><p>​	Linux系统中常见的压缩格式有<code>.tar</code>和<code>.gzip</code>和<code>.zip</code>。</p>
-<ul>
-<li><code>.tar</code>，称之为tarball，归档文件，即简单的将文件组装到一个<code>.tar</code>的文件内，并没有太多文件体积的减少，仅仅是简单的封装</li>
-<li><code>.gz</code>，也常见为<code>.tar.gz</code>，gzip格式压缩文件，即使用gzip压缩算法将文件压缩到一个文件内，可以极大减少压缩后的体积</li>
-<li>针对这两种格式，使用tar命令均可以进行压缩和解压缩的操作</li>
-</ul>
-<ol>
-<li>
-<p>tar命令</p>
-<ul>
-<li>
-<p>语法：<code>tar [-c -v -x -f -z -C] 参数1 参数2...参数N</code></p>
-<ul>
-<li>-c，创建压缩文件，用于压缩模式 !</li>
-<li>-v，显示压缩，解压过程，用于查看进度</li>
-<li>-x，解压模式 !</li>
-<li>-f，要创建的文件或要解压的文件，<strong>-f 必须在所有选项中的位置处于最后一个</strong></li>
-<li>-z，gzip模式，不使用-z就是普通的tarball格式，若要使用这个选项，一般处于选项第一个位置</li>
-<li>-C，选择解压的目的地，用于解压模式，该参数单独使用，和解压所需的其他参数分开</li>
-</ul>
-</li>
-<li>
-<p>Eg：</p>
-<ul>
-<li>压缩：<code>tar -zcvf test.tar.gz 1.txt 2.txt 3.txt</code>&ndash;&gt;将123文件压缩到test.tar.gz文件内，使用gzip模式</li>
-<li>解压：
-<ul>
-<li><code>tar -xvf test.tar</code>&ndash;&gt;解压test.tar，将文件解压至当前目录；</li>
-<li><code>tar -xvf test.tar -C /home/wjl</code>&ndash;&gt;解压文件，将文件解压到指定的目录中去</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p>zip命令压缩文件，可以用zip命令，压缩文件为zip压缩包</p>
-<ul>
-<li>语法：<code>zip [-r] 参数1 参数2... 参数N</code>
-<ul>
-<li>-r，被压缩的包含文件夹的时候，需要使用-r选项，和rm、cp等命令的-r效果一致</li>
-</ul>
-</li>
-<li>Eg：<code>zip -r  test.zip test lele.txt</code>&ndash;&gt;将test文件夹和lele.txt文件，压缩到test.zip文件内</li>
-</ul>
-</li>
-<li>
-<p>unzip命令解压文件，可以方便的解压缩zip压缩包</p>
-<ul>
-<li>语法：<code>unzip [-d] 参数</code>
-<ul>
-<li>-d，指定要解压去的位置，同tar中的-C选项</li>
-<li>参数，被解压的zip压缩包文件</li>
-<li>注意：解压的时候有同名文件会默认直接替换</li>
-</ul>
-</li>
-<li>Eg：
-<ul>
-<li><code>unzip test.zip -d /home/wjl</code>&ndash;&gt;解压test.zip文件到指定目录下</li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-</div>
+</h3></div>
     <footer class="article-footer"><ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in">
       <a
         class="article-tag-list-link"
@@ -1642,13 +1393,13 @@ IP地址、主机名
     id="article-nav"
     data-aos="fade-up"
   ><div class="article-nav-link-wrap article-nav-link-left"><img
-            data-src="https://kidle9527.github.io/images/33.png"
+            data-src="https://kidle9527.github.io/images/44.png"
             data-sizes="auto"
-            alt="CPP学习过程心得体会"
+            alt="linux学习过程心得体会"
             class="lazyload"
-          /><a href="//localhost:1313/post/cppnote/"></a>
+          /><a href="//localhost:1313/post/linux/"></a>
         <div class="article-nav-caption">前一篇</div>
-        <h3 class="article-nav-title">CPP学习过程心得体会</h3>
+        <h3 class="article-nav-title">linux学习过程心得体会</h3>
       </div></nav></article></section>
         </div><footer id="footer">
   <div style="width: 100%; overflow: hidden">
@@ -1669,10 +1420,10 @@ IP地址、主机名
         >
       </div><div>
         <span class="icon-brush"
-          >&nbsp;20.4k</span
+          >&nbsp;28.1k</span
         >
         &nbsp;|&nbsp;
-        <span class="icon-coffee">&nbsp;00:44</span>
+        <span class="icon-coffee">&nbsp;01:00</span>
       </div><div>
         <span class="icon-eye"></span>
         <span id="busuanzi_container_site_pv"
@@ -1733,10 +1484,6 @@ IP地址、主机名
         <li><a href="#网络请求和下载">网络请求和下载</a></li>
         <li><a href="#网络传输之端口">网络传输之端口</a></li>
         <li><a href="#进程管理">进程管理</a></li>
-        <li><a href="#主机状态">主机状态</a></li>
-        <li><a href="#环境变量">环境变量</a></li>
-        <li><a href="#上传下载">上传、下载</a></li>
-        <li><a href="#压缩解压">压缩、解压</a></li>
       </ul>
     </li>
   </ul>
@@ -1755,7 +1502,7 @@ IP地址、主机名
 </div>
 <div class="sidebar-state">
   <div class="sidebar-state-article">
-    <div>文章</div><div class="sidebar-state-number">5</div>
+    <div>文章</div><div class="sidebar-state-number">6</div>
   </div>
   <a class="sidebar-state-category" href="/categories/" aria-label="sidebar-state-category-link">
     <div>分类</div>
@@ -1907,7 +1654,7 @@ IP地址、主机名
         window.REIMU_POST = {
           author: "the_last_kid",
           title: "linux学习过程心得体会",
-          url: "\/\/localhost:1313\/post\/linux\/",
+          url: "\/\/localhost:1313\/post\/linux-copy\/",
           description: "\rLINUX 学习笔记\rLinux 基础命令\rLinux命令基础格式\rcommand [-options] [parameter] command：命令本身 -options：[可选，非必填]，命令的一些选项，可以通过选项控制命令的行为细节 parameter：[可选，非必填]，命令的参数，多数用于命令的指向目标 ls命令（查看目录下文件）\rls 命令的参数作用，可以指定要查看的文件夹（目录）的内容，如果不给定参数，默认当前工作目录的内容 ls 的命令选项： -a：可以展示出隐藏的内容 以.开头的文件或文件夹默认被隐藏，需要-a才能显示出来 -l：以列表的形式展示内容，并展示更多细节 -h：需 …",
           cover: "https:\/\/kidle9527.github.io\/images\/44.png",
         };

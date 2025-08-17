@@ -8,10 +8,10 @@
     <loc>//localhost:1313/categories/</loc>
     <lastmod>2025-08-10T22:02:00-08:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/post/linux/</loc>
+    <loc>//localhost:1313/tags/linux/</loc>
     <lastmod>2025-08-10T22:02:00-08:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/tags/mysql/</loc>
+    <loc>//localhost:1313/post/linux/</loc>
     <lastmod>2025-08-10T22:02:00-08:00</lastmod>
   </url><url>
     <loc>//localhost:1313/tags/</loc>
@@ -24,6 +24,9 @@
     <lastmod>2025-08-10T22:02:00-08:00</lastmod>
   </url><url>
     <loc>//localhost:1313/post/cppnote/</loc>
+    <lastmod>2025-08-10T22:02:00-08:00</lastmod>
+  </url><url>
+    <loc>//localhost:1313/tags/mysql/</loc>
     <lastmod>2025-08-10T22:02:00-08:00</lastmod>
   </url><url>
     <loc>//localhost:1313/post/mysql/</loc>

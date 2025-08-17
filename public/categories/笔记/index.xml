@@ -355,7 +355,42 @@ erase() 和 erase_if()
           <h1 id="linux-学习笔记">
 <a class="header-anchor" href="#linux-%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0"></a>
 LINUX 学习笔记
-</h1>
+</h1><h2 id="linux-基础命令">
+<a class="header-anchor" href="#linux-%e5%9f%ba%e7%a1%80%e5%91%bd%e4%bb%a4"></a>
+Linux 基础命令
+</h2><h3 id="linux命令基础格式">
+<a class="header-anchor" href="#linux%e5%91%bd%e4%bb%a4%e5%9f%ba%e7%a1%80%e6%a0%bc%e5%bc%8f"></a>
+Linux命令基础格式
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">command [-options] [parameter]
+</span></span></code></pre></div><ul>
+<li>command：命令本身</li>
+<li>-options：[可选，非必填]，命令的一些选项，可以通过选项控制命令的行为细节</li>
+<li>parameter：[可选，非必填]，命令的参数，多数用于命令的指向目标</li>
+</ul>
+<h3 id="ls命令查看目录下文件">
+<a class="header-anchor" href="#ls%e5%91%bd%e4%bb%a4%e6%9f%a5%e7%9c%8b%e7%9b%ae%e5%bd%95%e4%b8%8b%e6%96%87%e4%bb%b6"></a>
+ls命令（查看目录下文件）
+</h3><ol>
+<li>ls 命令的参数作用，可以指定要查看的文件夹（目录）的内容，如果不给定参数，默认当前工作目录的内容</li>
+<li>ls 的命令选项：
+<ul>
+<li>-a：可以展示出隐藏的内容
+<ul>
+<li>以<code>.</code>开头的文件或文件夹默认被隐藏，需要-a才能显示出来</li>
+</ul>
+</li>
+<li>-l：以列表的形式展示内容，并展示更多细节</li>
+<li>-h：需要和-l 选项搭配使用，以更加人性化的方式显示文件的大小单位</li>
+</ul>
+</li>
+<li>命令的选项是可以组合使用的，比如：<code>ls -lah = ls -a -l -h</code></li>
+</ol>
+<h3 id="cd-和-pwd-切换显示目录">
+<a class="header-anchor" href="#cd-%e5%92%8c-pwd-%e5%88%87%e6%8d%a2%e6%98%be%e7%a4%ba%e7%9b%ae%e5%bd%95"></a>
+cd 和 pwd （切换显示目录）
+</h3><ol>
+<li>
+<p>cd命令的作用</p>
         
         <hr><p>本文2025-08-10首发于<a href='//localhost:1313/'></a>，最后修改于2025-08-10</p>]]>
       </description>
