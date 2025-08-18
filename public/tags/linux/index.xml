@@ -12,7 +12,7 @@
     
     <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
     
-    <lastBuildDate>Sun, 10 Aug 2025 22:02:00 -0800</lastBuildDate>
+    <lastBuildDate>Sun, 17 Aug 2025 10:02:00 -0800</lastBuildDate>
     
     
     <atom:link href="//localhost:1313/tags/linux/index.xml" rel="self" type="application/rss&#43;xml" />
@@ -24,7 +24,7 @@
     <item>
       <title>linux学习过程心得体会</title>
       <link>//localhost:1313/post/linux/</link>
-      <pubDate>Sun, 10 Aug 2025 22:02:00 -0800</pubDate>
+      <pubDate>Sun, 17 Aug 2025 10:02:00 -0800</pubDate>
       <author>2267593025@qq.com (the_last_kid)</author>
       <guid>//localhost:1313/post/linux/</guid>
       <description>
@@ -70,7 +70,7 @@ cd 和 pwd （切换显示目录）
 <li>
 <p>cd命令的作用</p>
         
-        <hr><p>本文2025-08-10首发于<a href='//localhost:1313/'></a>，最后修改于2025-08-10</p>]]>
+        <hr><p>本文2025-08-17首发于<a href='//localhost:1313/'></a>，最后修改于2025-08-17</p>]]>
       </description>
       
         <category>笔记</category>

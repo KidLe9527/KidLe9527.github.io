@@ -2,7 +2,7 @@
 title: 'linux学习过程心得体会'
 
 data: 2025-08-11T10:25:00-08:00
-lastmod: 2025-08-10T22:02:00-08:00
+lastmod: 2025-08-17T17:32:00-08:00
 categories: ['笔记']
 tags: ['linux']
 cover: https://kidle9527.github.io/images/44.png
@@ -805,13 +805,11 @@ cd [linux路径]
      * 解压：
        * `tar -xvf test.tar`-->解压test.tar，将文件解压至当前目录；
        * `tar -xvf test.tar -C /home/wjl`-->解压文件，将文件解压到指定的目录中去
-
 2. zip命令压缩文件，可以用zip命令，压缩文件为zip压缩包
 
    * 语法：`zip [-r] 参数1 参数2... 参数N`
      * -r，被压缩的包含文件夹的时候，需要使用-r选项，和rm、cp等命令的-r效果一致
    * Eg：`zip -r  test.zip test lele.txt`-->将test文件夹和lele.txt文件，压缩到test.zip文件内
-
 3. unzip命令解压文件，可以方便的解压缩zip压缩包
 
    * 语法：`unzip [-d] 参数`
@@ -820,3 +818,8 @@ cd [linux路径]
      * 注意：解压的时候有同名文件会默认直接替换
    * Eg：
      * `unzip test.zip -d /home/wjl`-->解压test.zip文件到指定目录下
+
+---
+
+## 实战部分（见黑马程序员章节5，暂时先告一段落，等有空再看吧~~）
+  实战部分的操作文档在Linux系统软件安装，注意：实战只是涉及linux系统命令的使用，~不含安装的软件的使用~**只是**对linux系统的熟练操作
