@@ -12,12 +12,93 @@
     
     <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
     
-    <lastBuildDate>Sun, 10 Aug 2025 22:02:00 -0800</lastBuildDate>
+    <lastBuildDate>Mon, 18 Aug 2025 00:00:00 +0000</lastBuildDate>
     
     
     <atom:link href="//localhost:1313/categories/%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss&#43;xml" />
     
 
+    
+    
+
+    <item>
+      <title>python学习过程心得体会</title>
+      <link>//localhost:1313/post/pythonnote/</link>
+      <pubDate>Mon, 18 Aug 2025 00:00:00 &#43;0000</pubDate>
+      <author>2267593025@qq.com (the_last_kid)</author>
+      <guid>//localhost:1313/post/pythonnote/</guid>
+      <description>
+        <![CDATA[<h1>python学习过程心得体会</h1><p>作者：the_last_kid（2267593025@qq.com）</p>
+        
+          <h1 id="快速过一遍python的知识">
+<a class="header-anchor" href="#%e5%bf%ab%e9%80%9f%e8%bf%87%e4%b8%80%e9%81%8dpython%e7%9a%84%e7%9f%a5%e8%af%86"></a>
+快速过一遍python的知识~
+</h1>
+        
+        <hr><p>本文2025-08-18首发于<a href='//localhost:1313/'></a>，最后修改于2025-08-18</p>]]>
+      </description>
+      
+        <category>笔记</category>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>linux学习过程心得体会</title>
+      <link>//localhost:1313/post/linux/</link>
+      <pubDate>Sun, 17 Aug 2025 00:00:00 &#43;0000</pubDate>
+      <author>2267593025@qq.com (the_last_kid)</author>
+      <guid>//localhost:1313/post/linux/</guid>
+      <description>
+        <![CDATA[<h1>linux学习过程心得体会</h1><p>作者：the_last_kid（2267593025@qq.com）</p>
+        
+          <h1 id="linux-学习笔记">
+<a class="header-anchor" href="#linux-%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0"></a>
+LINUX 学习笔记
+</h1><h2 id="linux-基础命令">
+<a class="header-anchor" href="#linux-%e5%9f%ba%e7%a1%80%e5%91%bd%e4%bb%a4"></a>
+Linux 基础命令
+</h2><h3 id="linux命令基础格式">
+<a class="header-anchor" href="#linux%e5%91%bd%e4%bb%a4%e5%9f%ba%e7%a1%80%e6%a0%bc%e5%bc%8f"></a>
+Linux命令基础格式
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">command [-options] [parameter]
+</span></span></code></pre></div><ul>
+<li>command：命令本身</li>
+<li>-options：[可选，非必填]，命令的一些选项，可以通过选项控制命令的行为细节</li>
+<li>parameter：[可选，非必填]，命令的参数，多数用于命令的指向目标</li>
+</ul>
+<h3 id="ls命令查看目录下文件">
+<a class="header-anchor" href="#ls%e5%91%bd%e4%bb%a4%e6%9f%a5%e7%9c%8b%e7%9b%ae%e5%bd%95%e4%b8%8b%e6%96%87%e4%bb%b6"></a>
+ls命令（查看目录下文件）
+</h3><ol>
+<li>ls 命令的参数作用，可以指定要查看的文件夹（目录）的内容，如果不给定参数，默认当前工作目录的内容</li>
+<li>ls 的命令选项：
+<ul>
+<li>-a：可以展示出隐藏的内容
+<ul>
+<li>以<code>.</code>开头的文件或文件夹默认被隐藏，需要-a才能显示出来</li>
+</ul>
+</li>
+<li>-l：以列表的形式展示内容，并展示更多细节</li>
+<li>-h：需要和-l 选项搭配使用，以更加人性化的方式显示文件的大小单位</li>
+</ul>
+</li>
+<li>命令的选项是可以组合使用的，比如：<code>ls -lah = ls -a -l -h</code></li>
+</ol>
+<h3 id="cd-和-pwd-切换显示目录">
+<a class="header-anchor" href="#cd-%e5%92%8c-pwd-%e5%88%87%e6%8d%a2%e6%98%be%e7%a4%ba%e7%9b%ae%e5%bd%95"></a>
+cd 和 pwd （切换显示目录）
+</h3><ol>
+<li>
+<p>cd命令的作用</p>
+        
+        <hr><p>本文2025-08-17首发于<a href='//localhost:1313/'></a>，最后修改于2025-08-17</p>]]>
+      </description>
+      
+        <category>笔记</category>
+      
+    </item>
     
     
 
@@ -90,10 +171,14 @@ KMP算法
       <description>
         <![CDATA[<h1>MySQL学习过程心得体会</h1><p>作者：the_last_kid（2267593025@qq.com）</p>
         
-          <h1 id="mysql学习笔记">
+          <h1 id="mysql学习记录">
+<a class="header-anchor" href="#mysql%e5%ad%a6%e4%b9%a0%e8%ae%b0%e5%bd%95"></a>
+MySQL学习记录
+</h1><h2 id="mysql学习笔记">
 <a class="header-anchor" href="#mysql%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0"></a>
 MySQL学习笔记
-</h1><h2 id="针对mysql刷题过程中遇到的一些问题及解决办法">
+</h2><hr>
+<h2 id="针对mysql刷题过程中遇到的一些问题及解决办法">
 <a class="header-anchor" href="#%e9%92%88%e5%af%b9mysql%e5%88%b7%e9%a2%98%e8%bf%87%e7%a8%8b%e4%b8%ad%e9%81%87%e5%88%b0%e7%9a%84%e4%b8%80%e4%ba%9b%e9%97%ae%e9%a2%98%e5%8f%8a%e8%a7%a3%e5%86%b3%e5%8a%9e%e6%b3%95"></a>
 针对MySQL刷题过程中遇到的一些问题及解决办法
 </h2><h3 id="派生表必须要有别名">

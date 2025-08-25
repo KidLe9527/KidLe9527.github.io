@@ -30,10 +30,14 @@
       <description>
         <![CDATA[<h1>MySQL学习过程心得体会</h1><p>作者：the_last_kid（2267593025@qq.com）</p>
         
-          <h1 id="mysql学习笔记">
+          <h1 id="mysql学习记录">
+<a class="header-anchor" href="#mysql%e5%ad%a6%e4%b9%a0%e8%ae%b0%e5%bd%95"></a>
+MySQL学习记录
+</h1><h2 id="mysql学习笔记">
 <a class="header-anchor" href="#mysql%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0"></a>
 MySQL学习笔记
-</h1><h2 id="针对mysql刷题过程中遇到的一些问题及解决办法">
+</h2><hr>
+<h2 id="针对mysql刷题过程中遇到的一些问题及解决办法">
 <a class="header-anchor" href="#%e9%92%88%e5%af%b9mysql%e5%88%b7%e9%a2%98%e8%bf%87%e7%a8%8b%e4%b8%ad%e9%81%87%e5%88%b0%e7%9a%84%e4%b8%80%e4%ba%9b%e9%97%ae%e9%a2%98%e5%8f%8a%e8%a7%a3%e5%86%b3%e5%8a%9e%e6%b3%95"></a>
 针对MySQL刷题过程中遇到的一些问题及解决办法
 </h2><h3 id="派生表必须要有别名">

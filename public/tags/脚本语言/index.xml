@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>脚本语言 on </title>
+    <link>//localhost:1313/tags/%E8%84%9A%E6%9C%AC%E8%AF%AD%E8%A8%80/</link>
+    <description>Recent content from </description>
+    <generator>Hugo</generator>
+    <language>zh-cn</language>
+    
+    <managingEditor>2267593025@qq.com (the_last_kid)</managingEditor>
+    <webMaster>2267593025@qq.com (the_last_kid)</webMaster>
+    
+    <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
+    
+    <lastBuildDate>Mon, 18 Aug 2025 00:00:00 +0000</lastBuildDate>
+    
+    
+    <atom:link href="//localhost:1313/tags/%E8%84%9A%E6%9C%AC%E8%AF%AD%E8%A8%80/index.xml" rel="self" type="application/rss&#43;xml" />
+    
+
+    
+    
+
+    <item>
+      <title>python学习过程心得体会</title>
+      <link>//localhost:1313/post/pythonnote/</link>
+      <pubDate>Mon, 18 Aug 2025 00:00:00 &#43;0000</pubDate>
+      <author>2267593025@qq.com (the_last_kid)</author>
+      <guid>//localhost:1313/post/pythonnote/</guid>
+      <description>
+        <![CDATA[<h1>python学习过程心得体会</h1><p>作者：the_last_kid（2267593025@qq.com）</p>
+        
+          <h1 id="快速过一遍python的知识">
+<a class="header-anchor" href="#%e5%bf%ab%e9%80%9f%e8%bf%87%e4%b8%80%e9%81%8dpython%e7%9a%84%e7%9f%a5%e8%af%86"></a>
+快速过一遍python的知识~
+</h1>
+        
+        <hr><p>本文2025-08-18首发于<a href='//localhost:1313/'></a>，最后修改于2025-08-18</p>]]>
+      </description>
+      
+        <category>笔记</category>
+      
+    </item>
+    
+  </channel>
+</rss>

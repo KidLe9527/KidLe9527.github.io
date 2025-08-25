@@ -8,7 +8,15 @@ tags: ['MySQL']
 cover: https://kidle9527.github.io/images/55.png
 ---
 
-# MySQL学习笔记
+# MySQL学习记录
+
+## MySQL学习笔记
+
+
+
+---
+
+
 
 ## 针对MySQL刷题过程中遇到的一些问题及解决办法
 
@@ -136,3 +144,51 @@ ORDER BY
    * case when xxx , true -> then , false -> else; 注意最后有一个 `END`
 
 * 然后就是总结，对于比较复杂的数据库问题，可以在select的时候就筛选条件，也可以在from后面的派生表里筛选条件（注意要有别名），聚合函数不能出现在where里面等等...
+
+---
+
+### 判断条件的规范
+
+* [1251. 平均售价 - 力扣（LeetCode）](https://leetcode.cn/problems/average-selling-price/)
+
+~~~
+# 一开始的代码
+select p.product_id, ifnull(ROUND(sum(p.price * u.units) / sum(u.units), 2), 0) average_price
+from Prices p LEFT JOIN UnitsSold u using(product_id)
+WHERE u.purchase_date BETWEEN p.start_date AND p.end_date -- 这里需要限制条件在开始结束期内买入，确保只计算有效价格期内的销售
+GROUP BY p.product_id;
+~~~
+
+* 问题所在：
+
+  1. 首先，`ifnull(value1, value2)`函数的判断是**只有value1为`null`**，才会返回value2，其他不管是0还是什么都会返回value1
+
+     * 跟函数`if(value, t, f`)的区别在于，如果value是0或者null（或者等式但不成立），返回false，其他都是被返回true
+
+  2. `join ....using(xx)  ==  join ... on  a.xx = b.xx`:注意这里必须两表的相关项同名，using才能使用，on没有这个限制
+
+  3. 最重要的一点! 对于销量units为0也就是本应记录平均价格为0的产品会被过滤
+
+     * 原因在于**WHERE子句过滤掉了所有没有销售记录的产品**！
+
+     ~~~
+     当使用LEFT JOIN后立即使用WHERE条件时：
+     对于有销售记录的产品：u.purchase_date BETWEEN p.start_date AND p.end_date条件成立，记录被保留
+     对于没有销售记录的产品：u.purchase_date为NULL，NULL BETWEEN ...的结果为NULL（即false），这些记录被WHERE过滤掉了
+     ~~~
+
+  4. 解决方法就是将where条件转移到join的on条件里
+
+     * 区别：join在where操作前，决定哪些记录参与join操作，不影响主表的记录保留；where对所有join后的记录进行筛选，会影响最终结果
+
+~~~
+# 最终的代码呈现：
+select p.product_id, if(sum(u.units) > 0 ,ROUND(sum(p.price * u.units) / sum(u.units), 2), 0) average_price
+from Prices p LEFT JOIN UnitsSold u 
+ON p.product_id = u.product_id
+AND u.purchase_date BETWEEN p.start_date AND p.end_date
+GROUP BY p.product_id;
+~~~
+
+
+

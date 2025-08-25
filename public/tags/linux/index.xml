@@ -12,7 +12,7 @@
     
     <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
     
-    <lastBuildDate>Sun, 17 Aug 2025 10:02:00 -0800</lastBuildDate>
+    <lastBuildDate>Sun, 17 Aug 2025 00:00:00 +0000</lastBuildDate>
     
     
     <atom:link href="//localhost:1313/tags/linux/index.xml" rel="self" type="application/rss&#43;xml" />
@@ -24,7 +24,7 @@
     <item>
       <title>linux学习过程心得体会</title>
       <link>//localhost:1313/post/linux/</link>
-      <pubDate>Sun, 17 Aug 2025 10:02:00 -0800</pubDate>
+      <pubDate>Sun, 17 Aug 2025 00:00:00 &#43;0000</pubDate>
       <author>2267593025@qq.com (the_last_kid)</author>
       <guid>//localhost:1313/post/linux/</guid>
       <description>
@@ -74,6 +74,35 @@ cd 和 pwd （切换显示目录）
       </description>
       
         <category>笔记</category>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>linux系统软件安装说明文档</title>
+      <link>//localhost:1313/post/linux%E7%B3%BB%E7%BB%9F%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85/</link>
+      <pubDate>Sat, 17 Sep 2022 00:00:00 &#43;0000</pubDate>
+      <author>2267593025@qq.com (the_last_kid)</author>
+      <guid>//localhost:1313/post/linux%E7%B3%BB%E7%BB%9F%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85/</guid>
+      <description>
+        <![CDATA[<h1>linux系统软件安装说明文档</h1><p>作者：the_last_kid（2267593025@qq.com）</p>
+        
+          <h1 id="实战章节在linux上部署各类软件">
+<a class="header-anchor" href="#%e5%ae%9e%e6%88%98%e7%ab%a0%e8%8a%82%e5%9c%a8linux%e4%b8%8a%e9%83%a8%e7%bd%b2%e5%90%84%e7%b1%bb%e8%bd%af%e4%bb%b6"></a>
+实战章节：在Linux上部署各类软件
+</h1><h1 id="前言">
+<a class="header-anchor" href="#%e5%89%8d%e8%a8%80"></a>
+前言
+</h1><h2 id="为什么学习各类软件在linux上的部署">
+<a class="header-anchor" href="#%e4%b8%ba%e4%bb%80%e4%b9%88%e5%ad%a6%e4%b9%a0%e5%90%84%e7%b1%bb%e8%bd%af%e4%bb%b6%e5%9c%a8linux%e4%b8%8a%e7%9a%84%e9%83%a8%e7%bd%b2"></a>
+为什么学习各类软件在Linux上的部署
+</h2><p>在前面，我们学习了许多的Linux命令和高级技巧，这些知识点比较零散，同学们跟随着课程的内容进行练习虽然可以基础掌握这些命令和技巧的使用，但是并没有一些具体的实操能够串联起来这些知识点。</p>
+        
+        <hr><p>本文2022-09-17首发于<a href='//localhost:1313/'></a>，最后修改于2022-09-17</p>]]>
+      </description>
+      
+        <category>资料</category>
       
     </item>
     

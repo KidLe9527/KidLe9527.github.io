@@ -1,8 +1,8 @@
 ---
 title: 'linux系统软件安装说明文档'
 
-data: 2022-08-11T10:25:00-08:00
-lastmod: 2022-08-17T17:32:00-08:00
+data: 2022-08-11
+lastmod: 2022-09-17
 categories: ['资料']
 tags: ['linux']
 cover: https://kidle9527.github.io/images/99.png
