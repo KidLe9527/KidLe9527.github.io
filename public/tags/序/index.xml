@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>序 on </title>
+    <link>//localhost:1313/tags/%E5%BA%8F/</link>
+    <description>Recent content from </description>
+    <generator>Hugo</generator>
+    <language>zh-cn</language>
+    
+    <managingEditor>2267593025@qq.com (the_last_kid)</managingEditor>
+    <webMaster>2267593025@qq.com (the_last_kid)</webMaster>
+    
+    <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
+    
+    <lastBuildDate>Sat, 09 Aug 2025 19:13:00 -0800</lastBuildDate>
+    
+    
+    <atom:link href="//localhost:1313/tags/%E5%BA%8F/index.xml" rel="self" type="application/rss&#43;xml" />
+    
+
+    
+    
+
+    <item>
+      <title>真正意义上的第一篇博客</title>
+      <link>//localhost:1313/post/firstblog/</link>
+      <pubDate>Sat, 09 Aug 2025 11:32:00 -0800</pubDate>
+      <author>2267593025@qq.com (the_last_kid)</author>
+      <guid>//localhost:1313/post/firstblog/</guid>
+      <description>
+        <![CDATA[<h1>真正意义上的第一篇博客</h1><p>作者：the_last_kid（2267593025@qq.com）</p>
+        
+          <h1 id="正式开始小白乐的博客生涯">
+<a class="header-anchor" href="#%e6%ad%a3%e5%bc%8f%e5%bc%80%e5%a7%8b%e5%b0%8f%e7%99%bd%e4%b9%90%e7%9a%84%e5%8d%9a%e5%ae%a2%e7%94%9f%e6%b6%af"></a>
+正式开始小白乐的博客生涯
+</h1><h2 id="先记录一下搭建博客的过程">
+<a class="header-anchor" href="#%e5%85%88%e8%ae%b0%e5%bd%95%e4%b8%80%e4%b8%8b%e6%90%ad%e5%bb%ba%e5%8d%9a%e5%ae%a2%e7%9a%84%e8%bf%87%e7%a8%8b"></a>
+先记录一下搭建博客的过程！
+</h2><ol>
+<li>过程真的很繁琐，网上的视频教程不是很详细，虽然但是，仅凭我一个人真的搞不定，所以在淘宝上花rmb请人帮我实操了，该说不说，这位大哥确实很顶，态度非常之诚恳，技术相当之过硬，话术非常之高端（听起来很专业~），对于我的每一个请求，都相当之耐心，就我觉得太麻烦不好实现的功能，这位哥还是很坚持的帮助我实现‘愿望’，虽然但是，可能不是很完美的还原功能，但是大哥的心意和精神，相当的值得肯定，牛逼！佬！然后就是一些细枝末节的外观美化和小tips，这些就交给小白乐自己弄吧，确实不好意思再麻烦大哥了，总共就给人家100软妹币，不仅给我讲解操作，还直接远程操控我电脑帮我弄，还给我解决问题，前前后后大概四五个小时，他人真的我哭死。感觉对面也就是大我五六岁（最多）的样子，但是看看人家，再看看我，感觉我是个飞舞，啥都不会~还是计算机专业的学生，这&hellip;&hellip;</li>
+<li>但是，还是搞定了，不管过程怎么样，结果是好的就行，嘻嘻！</li>
+</ol>
+<h2 id="再记录一下搭建博客中遇到的一些问题">
+<a class="header-anchor" href="#%e5%86%8d%e8%ae%b0%e5%bd%95%e4%b8%80%e4%b8%8b%e6%90%ad%e5%bb%ba%e5%8d%9a%e5%ae%a2%e4%b8%ad%e9%81%87%e5%88%b0%e7%9a%84%e4%b8%80%e4%ba%9b%e9%97%ae%e9%a2%98"></a>
+再记录一下搭建博客中遇到的一些问题
+</h2><ol>
+<li>
+<p>首先就是心仪的这个二次元的主题跟视频里的文件结构不一样，所以憨憨乐找不到对应的文件（这就是不看人家readme的下场），所以迫不得已才寻求help，但是都是小问题</p>
+        
+        <hr><p>本文2025-08-09首发于<a href='//localhost:1313/'></a>，最后修改于2025-08-09</p>]]>
+      </description>
+      
+        <category>Meaningful</category>
+      
+    </item>
+    
+  </channel>
+</rss>
