@@ -203,8 +203,12 @@
     <li><a href="#常用的内置模块">常用的内置模块</a>
       <ul>
         <li><a href="#第十一章马上就要看完了加油">第十一章，马上就要看完了~加油！</a></li>
+        <li><a href="#111数学计算模块math">11.1数学计算模块——math</a></li>
+        <li><a href="#112日期时间模块">11.2日期时间模块</a></li>
+        <li><a href="#113正则表达式模块re">11.3正则表达式模块——re</a></li>
       </ul>
     </li>
+    <li><a href="#文件读写">文件读写</a></li>
     <li><a href="#运算符">运算符</a></li>
     <li><a href="#程序流程控制">程序流程控制</a>
       <ul>
@@ -1673,8 +1677,463 @@
 </h2><h3 id="第十一章马上就要看完了加油">
 <a class="header-anchor" href="#%e7%ac%ac%e5%8d%81%e4%b8%80%e7%ab%a0%e9%a9%ac%e4%b8%8a%e5%b0%b1%e8%a6%81%e7%9c%8b%e5%ae%8c%e4%ba%86%e5%8a%a0%e6%b2%b9"></a>
 第十一章，马上就要看完了~加油！
-</h3><p>傻逼好像更新不能关掉cmd，是吗</p>
-<p>??</p>
+</h3><p>​	在真正做项目时，我们会使用别人已经开发好的模块，这样就不必从零开发项目了，还可以加快开发速度。这些模块可能是Python官方提供的，也可能是第三方开发的。Python官方提供的模块，就叫作“内置模块”。</p>
+<h3 id="111数学计算模块math">
+<a class="header-anchor" href="#111%e6%95%b0%e5%ad%a6%e8%ae%a1%e7%ae%97%e6%a8%a1%e5%9d%97math"></a>
+11.1数学计算模块——math
+</h3><ul>
+<li>在math模块中包含数学运算相关的函数等，例如指数、对数、平方根和三角函数等。</li>
+<li>犯错！！！<code>round()</code>函数四舍五入，这个是python的内置函数，<del>无需导入模块直接使用</del>···</li>
+<li>数学函数说明表</li>
+</ul>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: center">函数</th>
+          <th style="text-align: center">说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center"><strong>ceil(x)</strong></td>
+          <td style="text-align: center">返回大于或等于 x 的最小整数</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><strong>floor(x)</strong></td>
+          <td style="text-align: center">返回小于或等于 x 的最大整数</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><strong>sqrt(x)</strong></td>
+          <td style="text-align: center">返回 x 的平方根</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><strong>pow(x, y)</strong></td>
+          <td style="text-align: center">返回 x 的 y 次幂的值</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><strong>math.log(x[, base])</strong></td>
+          <td style="text-align: center">返回以 base 为底的 x 的对数，若省略底数 base，则计算 x 的自然对数</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><strong>sin(x)</strong></td>
+          <td style="text-align: center">返回弧度 x 的三角正弦值</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><strong>degrees(x)</strong></td>
+          <td style="text-align: center">将弧度 x 转换为角度</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><strong>radians(x)</strong></td>
+          <td style="text-align: center">将角度 x 转换为弧度</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">math.pi</td>
+          <td style="text-align: center">数学常量圆周率</td>
+      </tr>
+  </tbody>
+</table>
+<ul>
+<li>举例说明：
+<ul>
+<li><code>math.log(125, 5)  = 3,0000000000000</code></li>
+<li><code>math.degrees(0.5 * math.pi) = 90.0</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="112日期时间模块">
+<a class="header-anchor" href="#112%e6%97%a5%e6%9c%9f%e6%97%b6%e9%97%b4%e6%a8%a1%e5%9d%97"></a>
+11.2日期时间模块
+</h3><ul>
+<li>Python官方提供的日期和时间模块主要是datetime模块。在datetime模块中提供以下几个类</li>
+</ul>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: center">类名</th>
+          <th style="text-align: center">用途</th>
+          <th style="text-align: center">主要属性</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center"><strong><code>datetime</code></strong></td>
+          <td style="text-align: center">包含日期和时间</td>
+          <td style="text-align: center">year, month, day, hour, minute, second</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><strong><code>date</code></strong></td>
+          <td style="text-align: center">只包含日期</td>
+          <td style="text-align: center">year, month, day</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><strong><code>time</code></strong></td>
+          <td style="text-align: center">只包含时间</td>
+          <td style="text-align: center">hour, minute, second, microsecond</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><strong><code>timedelta</code></strong></td>
+          <td style="text-align: center">时间间隔（持续时间）</td>
+          <td style="text-align: center">weeks，days, hour，minute，seconds,</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><strong><code>tzinfo</code></strong></td>
+          <td style="text-align: center">时区信息（抽象基类）</td>
+          <td style="text-align: center"></td>
+      </tr>
+  </tbody>
+</table>
+<ul>
+<li>datetime类的常用方法如下：
+<ul>
+<li><code>datetime.today（）</code>：返回当前的本地日期和时间</li>
+<li><code>datetime.now（tz=None）</code>：返回指定时区的当前日期和时间，参数tz用于设置时区，如果参数tz为None或省略，则等同于today（）</li>
+<li><code>datetime.fromtimestamp（timestamp，tz=None）</code>：返回与UNIX时间戳对应的本地日期和时间。UNIX时间戳是从1970年1月1日00：00：00开始到现在为止的总秒数。</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">datetime</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 获取当前日期和时间</span>
+</span></span><span class="line"><span class="cl"><span class="n">now</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;当前时间:&#34;</span><span class="p">,</span> <span class="n">now</span><span class="p">)</span>  <span class="c1"># 输出: 2024-01-15 14:30:25.123456</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 获取当前日期</span>
+</span></span><span class="line"><span class="cl"><span class="n">today</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;今天日期:&#34;</span><span class="p">,</span> <span class="n">today</span><span class="p">)</span>  <span class="c1"># 输出: 2024-01-15</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 创建特定日期时间</span>
+</span></span><span class="line"><span class="cl"><span class="n">dt</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2024</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;圣诞节:&#34;</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>  <span class="c1"># 输出: 2024-12-25 20:30:00</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 时间计算（使用 timedelta）</span>
+</span></span><span class="line"><span class="cl"><span class="n">tz</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">tomorrow</span> <span class="o">=</span> <span class="n">today</span> <span class="o">+</span> <span class="n">tz</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;明天:&#34;</span><span class="p">,</span> <span class="n">tomorrow</span><span class="p">)</span>  <span class="c1"># 输出: 2024-01-16</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">next_hour</span> <span class="o">=</span> <span class="n">now</span> <span class="o">+</span> <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;一小时后:&#34;</span><span class="p">,</span> <span class="n">next_hour</span><span class="p">)</span>
+</span></span></code></pre></div><ul>
+<li>
+<p>时间格式化</p>
+<ol>
+<li><strong>将日期时间对象转换为字符串时</strong>，称之为日期时间格式化。在Python中使用<code>strftime（）</code>方法进行日期时间的格式化，在datetime、date和time三个类中都有一个实例方法strftime（format）。</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="c1"># strftime() - 将时间对象格式化为字符串</span>
+</span></span><span class="line"><span class="cl"><span class="n">now</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 常用格式化符号</span>
+</span></span><span class="line"><span class="cl"><span class="n">formatted</span> <span class="o">=</span> <span class="n">now</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&#34;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;标准格式:&#34;</span><span class="p">,</span> <span class="n">formatted</span><span class="p">)</span>  <span class="c1"># 输出: 2024-01-15 14:30:25</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">formatted2</span> <span class="o">=</span> <span class="n">now</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&#34;%A, %B </span><span class="si">%d</span><span class="s2">, %Y&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;友好格式:&#34;</span><span class="p">,</span> <span class="n">formatted2</span><span class="p">)</span>  <span class="c1"># 输出: Monday, January 15, 2024</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">formatted3</span> <span class="o">=</span> <span class="n">now</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&#34;%Y年%m月</span><span class="si">%d</span><span class="s2">日 %H时%M分&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;中文格式:&#34;</span><span class="p">,</span> <span class="n">formatted3</span><span class="p">)</span>  <span class="c1"># 输出: 2024年01月15日 14时30分</span>
+</span></span></code></pre></div><ol start="2">
+<li><strong>将字符串转换为日期时间对象的过程</strong>，叫作日期时间解析。在Python中使用<code>datetime.strptime（date_string，format）</code>类方法进行日期时间解析。
+<ul>
+<li>注意：提供的字符串应该可以表示一个有效的日期时间字符串，否则会发生ValueError异常！</li>
+</ul>
+</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="c1"># strptime() - 将字符串解析为时间对象</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">date_str</span> <span class="o">=</span> <span class="s2">&#34;2024-12-25 20:30:00&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">dt_obj</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">date_str</span><span class="p">,</span> <span class="s2">&#34;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;解析结果:&#34;</span><span class="p">,</span> <span class="n">dt_obj</span><span class="p">)</span>  <span class="c1"># 输出: 2024-12-25 20:30:00</span>
+</span></span></code></pre></div><ol start="3">
+<li>常用格式化符号：</li>
+</ol>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: center">符号</th>
+          <th style="text-align: center">含义</th>
+          <th style="text-align: center">示例</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center"><code>%Y</code></td>
+          <td style="text-align: center">4位数的年份</td>
+          <td style="text-align: center">2024</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><code>%m</code></td>
+          <td style="text-align: center">2位数的月份（01-12）</td>
+          <td style="text-align: center">01</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><code>%d</code></td>
+          <td style="text-align: center">2位数的日期（01-31）</td>
+          <td style="text-align: center">15</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><code>%H</code></td>
+          <td style="text-align: center">24小时制的小时（00-23）</td>
+          <td style="text-align: center">14</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><code>%M</code></td>
+          <td style="text-align: center">分钟（00-59）</td>
+          <td style="text-align: center">30</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><code>%S</code></td>
+          <td style="text-align: center">秒（00-59）</td>
+          <td style="text-align: center">25</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><code>%A</code></td>
+          <td style="text-align: center">完整的星期几名称</td>
+          <td style="text-align: center">Monday</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><code>%B</code></td>
+          <td style="text-align: center">完整的月份名称</td>
+          <td style="text-align: center">January</td>
+      </tr>
+  </tbody>
+</table>
+</li>
+</ul>
+<h3 id="113正则表达式模块re">
+<a class="header-anchor" href="#113%e6%ad%a3%e5%88%99%e8%a1%a8%e8%be%be%e5%bc%8f%e6%a8%a1%e5%9d%97re"></a>
+11.3正则表达式模块——re
+</h3><p>​	正则表达式指预先定义好一个“字符串模板”，通过这个“字符串模板”可以匹配、查找和替换那些匹配“字符串模板”的字符串。正则表达式推荐使用原始字符串表示（即双引号前加上<code>r</code>）</p>
+<ul>
+<li>
+<p>11.3.1字符串<strong>匹配</strong></p>
+<ul>
+<li>字符串匹配指验证一个字符串是否符合指定的“字符串模板”，常用于用户输入验证。例如，用户在注册时要输入邮箱，所以需要验证邮箱是否有效，这就要用到字符串匹配验证。</li>
+<li>使用<code>match（p，text）</code>函数进行字符串匹配，其中的参数p是正则表达式，即字符串模板，text是要验证的字符串。如果匹配成功，则返回一个Match对象（匹配对象），否则返回None</li>
+</ul>
+</li>
+<li>
+<p>11.3.2字符串<strong>查找</strong></p>
+<ul>
+<li>字符串查找指从一个字符串中查找匹配正则表达式的子字符串，常用于数据分析、网络爬虫等数据处理中</li>
+<li><code>search（p，text）</code>：在text字符串中查找匹配的内容，如果找到，则返回第1个匹配的Match对象，否则返回None。p是正则表达式。</li>
+<li><code>findall（p，text）</code>：在text字符串中查找所有匹配的内容，如果找到，则返回所有匹配的字符串<strong>列表</strong>；如果一个都没有匹配，则返回None。p是正则表达式。</li>
+</ul>
+</li>
+<li>
+<p>11.3.3字符串<strong>替换</strong></p>
+<ul>
+<li>正则表达式的字符串替换函数是sub（），该函数替换匹配的子字符串，返回值是替换之后的字符串，其语法格式如下：
+<ul>
+<li><code>re.sub(pattern, repl, string, count = 0)</code>
+<ul>
+<li>参数pattern是正则表达式；</li>
+<li>参数repl是用于替换的新字符串；</li>
+<li>参数string是即将被替换的旧字符串；</li>
+<li>参数count是要替换的最大数量，默认值为零，表示不限制替换数量。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>11.3.4字符串<strong>分割</strong></p>
+<ul>
+<li>在Python中使用re模块中的split（）函数进行字符串分割，该函数按照匹配的子字符串进行字符串分割，返回字符串列表对象，其语法格式如下：
+<ul>
+<li><code>re.split(pattern, string, maxsplit = 0)</code>
+<ul>
+<li>参数pattern是正则表达式；</li>
+<li>参数string是要分割的字符串；</li>
+<li>参数maxsplit是最大分割次数；maxsplit的默认值为零，表示分割次数没有限制  &ndash;&gt; 分割结果是列表结构</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>常用元字符(有点绕，暂时不管，以后需要再看)</p>
+</li>
+</ul>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: center">元字符</th>
+          <th style="text-align: center">描述</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center"><code>.</code></td>
+          <td style="text-align: center">匹配任意字符（除换行符<code>\n</code>）</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><code>^</code></td>
+          <td style="text-align: center">匹配字符串开头</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><code>$</code></td>
+          <td style="text-align: center">匹配字符串结尾</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><code>*</code></td>
+          <td style="text-align: center">匹配前一个字符0次或多次</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><code>+</code></td>
+          <td style="text-align: center">匹配前一个字符1次或多次</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><code>?</code></td>
+          <td style="text-align: center">匹配前一个字符0次或1次</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><code>{n}</code></td>
+          <td style="text-align: center">匹配前一个字符n次</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><code>{n,}</code></td>
+          <td style="text-align: center">匹配前一个字符至少n次</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><code>{n,m}</code></td>
+          <td style="text-align: center">匹配前一个字符n到m次</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><code>[]</code></td>
+          <td style="text-align: center">字符集，匹配其中任意一个字符</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">`</td>
+          <td style="text-align: center">`</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><code>()</code></td>
+          <td style="text-align: center">分组，捕获匹配的内容</td>
+      </tr>
+  </tbody>
+</table>
+<ul>
+<li>
+<p><code>.group()</code>是 Python 正则表达式模块 <code>re</code>中 <code>Match</code>对象的一个方法，用于获取正则表达式匹配的结果。</p>
+<ul>
+<li>
+<p>作用：</p>
+<ul>
+<li>当使用 <code>re.match()</code>、<code>re.search()</code>或 <code>re.finditer()</code>等方法时，返回的是一个 <code>Match</code>对象。</li>
+<li><code>.group()</code>用于从 <code>Match</code>对象中提取匹配到的字符串</li>
+</ul>
+</li>
+<li>
+<p>常见用法：</p>
+<ul>
+<li>
+<p>**<code>.group()</code>或 <code>.group(0)</code>**返回整个匹配的字符串。如果匹配失败（<code>match</code>为 <code>None</code>），调用 <code>.group()</code>会抛出 <code>AttributeError</code>，因此建议先检查 <code>match</code>是否存在。</p>
+</li>
+<li>
+<p>**<code>.group(n)</code>**返回第 <code>n</code>个括号分组（<code>()</code>捕获的分组）的内容（从 1 开始计数）。如果尝试访问不存在的分组（如 <code>.group(4)</code>），会抛出 <code>IndexError</code>。</p>
+</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">text</span> <span class="o">=</span> <span class="s2">&#34;2025-09-09&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 匹配日期，并用分组分离年、月、日</span>
+</span></span><span class="line"><span class="cl"><span class="n">pattern</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&#34;(\d</span><span class="si">{4}</span><span class="s2">)-(\d</span><span class="si">{2}</span><span class="s2">)-(\d</span><span class="si">{2}</span><span class="s2">)&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="k">match</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="k">match</span><span class="o">.</span><span class="n">group</span><span class="p">())</span>    <span class="c1"># 输出整个匹配: &#34;2025-09-09&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="k">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>   <span class="c1"># 输出第1个分组: &#34;2025&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="k">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span> <span class="c1"># 输出第2和第3分组: (&#34;09&#34;, &#34;09&#34;)</span>
+</span></span></code></pre></div></li>
+<li>
+<p>总结，正则表达式常用函数方法</p>
+</li>
+</ul>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: center">方法</th>
+          <th style="text-align: center">描述</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center"><code>re.match()</code></td>
+          <td style="text-align: center">从字符串开头匹配模式</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><code>re.search()</code></td>
+          <td style="text-align: center">在字符串中搜索模式</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><code>re.findall()</code></td>
+          <td style="text-align: center">返回所有匹配的子串</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><code>re.finditer()</code></td>
+          <td style="text-align: center">返回匹配的迭代器</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><code>re.sub()</code></td>
+          <td style="text-align: center">替换匹配的子串</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><code>re.split()</code></td>
+          <td style="text-align: center">根据模式分割字符串</td>
+      </tr>
+  </tbody>
+</table>
+<ul>
+<li><code>r'\d+'</code>：\d是正则表达式中的特殊序列，匹配任意<strong>数字字符</strong>(0-9)；+是量词，表示&quot;匹配前面的元素<strong>一次或多次</strong>&quot;，所以<code>\d+</code>会匹配<strong>一个或多个连续的数字</strong></li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">text</span> <span class="o">=</span> <span class="s2">&#34;apple 123 banana 456 cherry 789&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># re.match() - 从开头匹配数字	</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="k">match</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\d+&#39;</span><span class="p">,</span> <span class="n">text</span><span class="p">))</span>  <span class="c1"># None (开头不是数字)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># re.search() - 搜索第一个数字</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\d+&#39;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span><span class="o">.</span><span class="n">group</span><span class="p">())</span>  <span class="c1"># 123</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># re.findall() - 查找所有数字</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\d+&#39;</span><span class="p">,</span> <span class="n">text</span><span class="p">))</span>  <span class="c1"># [&#39;123&#39;, &#39;456&#39;, &#39;789&#39;]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># re.finditer() - 迭代所有数字匹配</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="k">match</span> <span class="ow">in</span> <span class="n">re</span><span class="o">.</span><span class="n">finditer</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\d+&#39;</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="k">match</span><span class="o">.</span><span class="n">group</span><span class="p">(),</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span>  <span class="c1"># 123 456 789</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># re.sub() - 替换数字为&#39;X&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\d+&#39;</span><span class="p">,</span> <span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="n">text</span><span class="p">))</span>  <span class="c1"># apple X banana X cherry X</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># re.split() - 按数字分割字符串</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\d+&#39;</span><span class="p">,</span> <span class="n">text</span><span class="p">))</span>  <span class="c1"># [&#39;apple &#39;, &#39; banana &#39;, &#39; cherry &#39;, &#39;&#39;]</span>
+</span></span></code></pre></div><ul>
+<li>！区别：
+<ul>
+<li><strong><code>re.match()</code></strong>：<strong>必须从字符串开头匹配</strong>，如果开头不是数字，即使后面有数字也会返回 <code>None</code>。、
+<ul>
+<li><code>re.match(r'\d+', &quot;abc123&quot;)</code>→ <code>None</code>（因为开头是字母）</li>
+</ul>
+</li>
+<li><strong><code>re.search()</code></strong>：<strong>扫描整个字符串</strong>，找到第一个匹配的数字串。
+<ul>
+<li><code>re.search(r'\d+', &quot;abc123&quot;)</code>→ 匹配 <code>&quot;123&quot;</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="文件读写">
+<a class="header-anchor" href="#%e6%96%87%e4%bb%b6%e8%af%bb%e5%86%99"></a>
+文件读写
+</h2><p>​	文件是数据的载体，程序可以从文件中读取数据，也可以将数据写入文件中，本章重点介绍如何在Python中进行文件读写。</p>
 <hr>
 <h2 id="运算符">
 <a class="header-anchor" href="#%e8%bf%90%e7%ae%97%e7%ac%a6"></a>
@@ -2017,10 +2476,10 @@
         >
       </div><div>
         <span class="icon-brush"
-          >&nbsp;60.2k</span
+          >&nbsp;63.6k</span
         >
         &nbsp;|&nbsp;
-        <span class="icon-coffee">&nbsp;02:05</span>
+        <span class="icon-coffee">&nbsp;02:12</span>
       </div><div>
         <span class="icon-eye"></span>
         <span id="busuanzi_container_site_pv"
@@ -2104,8 +2563,12 @@
     <li><a href="#常用的内置模块">常用的内置模块</a>
       <ul>
         <li><a href="#第十一章马上就要看完了加油">第十一章，马上就要看完了~加油！</a></li>
+        <li><a href="#111数学计算模块math">11.1数学计算模块——math</a></li>
+        <li><a href="#112日期时间模块">11.2日期时间模块</a></li>
+        <li><a href="#113正则表达式模块re">11.3正则表达式模块——re</a></li>
       </ul>
     </li>
+    <li><a href="#文件读写">文件读写</a></li>
     <li><a href="#运算符">运算符</a></li>
     <li><a href="#程序流程控制">程序流程控制</a>
       <ul>

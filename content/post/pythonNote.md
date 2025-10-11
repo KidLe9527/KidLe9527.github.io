@@ -1214,10 +1214,386 @@ class wjl_Exception(Exception):	# wjl_Exception这是自定义异常类的名称
 
 ### 第十一章，马上就要看完了~加油！
 
+​	在真正做项目时，我们会使用别人已经开发好的模块，这样就不必从零开发项目了，还可以加快开发速度。这些模块可能是Python官方提供的，也可能是第三方开发的。Python官方提供的模块，就叫作“内置模块”。
 
-傻逼好像更新不能关掉cmd，是吗
+### 11.1数学计算模块——math
 
-??~~
+* 在math模块中包含数学运算相关的函数等，例如指数、对数、平方根和三角函数等。
+* 犯错！！！`round()`函数四舍五入，这个是python的内置函数，~无需导入模块直接使用~···
+* 数学函数说明表
+
+|          函数           |                             说明                             |
+| :---------------------: | :----------------------------------------------------------: |
+|       **ceil(x)**       |                 返回大于或等于 x 的最小整数                  |
+|      **floor(x)**       |                 返回小于或等于 x 的最大整数                  |
+|       **sqrt(x)**       |                       返回 x 的平方根                        |
+|      **pow(x, y)**      |                     返回 x 的 y 次幂的值                     |
+| **math.log(x[, base])** | 返回以 base 为底的 x 的对数，若省略底数 base，则计算 x 的自然对数 |
+|       **sin(x)**        |                   返回弧度 x 的三角正弦值                    |
+|     **degrees(x)**      |                     将弧度 x 转换为角度                      |
+|     **radians(x)**      |                     将角度 x 转换为弧度                      |
+|         math.pi         |                        数学常量圆周率                        |
+
+* 举例说明：
+  * `math.log(125, 5)  = 3,0000000000000`
+  * `math.degrees(0.5 * math.pi) = 90.0`
+
+### 11.2日期时间模块
+
+* Python官方提供的日期和时间模块主要是datetime模块。在datetime模块中提供以下几个类
+
+|      类名       |         用途         |                主要属性                |
+| :-------------: | :------------------: | :------------------------------------: |
+| **`datetime`**  |    包含日期和时间    | year, month, day, hour, minute, second |
+|   **`date`**    |      只包含日期      |            year, month, day            |
+|   **`time`**    |      只包含时间      |   hour, minute, second, microsecond    |
+| **`timedelta`** | 时间间隔（持续时间） |  weeks，days, hour，minute，seconds,   |
+|  **`tzinfo`**   | 时区信息（抽象基类） |                                        |
+
+* datetime类的常用方法如下：
+  * `datetime.today（）`：返回当前的本地日期和时间
+  * `datetime.now（tz=None）`：返回指定时区的当前日期和时间，参数tz用于设置时区，如果参数tz为None或省略，则等同于today（）
+  * `datetime.fromtimestamp（timestamp，tz=None）`：返回与UNIX时间戳对应的本地日期和时间。UNIX时间戳是从1970年1月1日00：00：00开始到现在为止的总秒数。
+
+~~~py
+import datetime
+
+# 获取当前日期和时间
+now = datetime.datetime.now()
+print("当前时间:", now)  # 输出: 2024-01-15 14:30:25.123456
+
+# 获取当前日期
+today = datetime.date.today()
+print("今天日期:", today)  # 输出: 2024-01-15
+
+# 创建特定日期时间
+dt = datetime.datetime(2024, 12, 25, 20, 30, 0)
+print("圣诞节:", dt)  # 输出: 2024-12-25 20:30:00
+
+# 时间计算（使用 timedelta）
+tz = datetime.timedelta(days=1)
+tomorrow = today + tz
+print("明天:", tomorrow)  # 输出: 2024-01-16
+
+next_hour = now + datetime.timedelta(hours=1)
+print("一小时后:", next_hour)
+~~~
+
+* 时间格式化
+
+  1. **将日期时间对象转换为字符串时**，称之为日期时间格式化。在Python中使用`strftime（）`方法进行日期时间的格式化，在datetime、date和time三个类中都有一个实例方法strftime（format）。
+
+  ~~~py
+  # strftime() - 将时间对象格式化为字符串
+  now = datetime.datetime.now()
+  
+  # 常用格式化符号
+  formatted = now.strftime("%Y-%m-%d %H:%M:%S")
+  print("标准格式:", formatted)  # 输出: 2024-01-15 14:30:25
+  
+  formatted2 = now.strftime("%A, %B %d, %Y")
+  print("友好格式:", formatted2)  # 输出: Monday, January 15, 2024
+  
+  formatted3 = now.strftime("%Y年%m月%d日 %H时%M分")
+  print("中文格式:", formatted3)  # 输出: 2024年01月15日 14时30分
+  ~~~
+
+  2. **将字符串转换为日期时间对象的过程**，叫作日期时间解析。在Python中使用`datetime.strptime（date_string，format）`类方法进行日期时间解析。
+     * 注意：提供的字符串应该可以表示一个有效的日期时间字符串，否则会发生ValueError异常！
+
+  ~~~py
+  # strptime() - 将字符串解析为时间对象
+  
+  date_str = "2024-12-25 20:30:00"
+  dt_obj = datetime.datetime.strptime(date_str, "%Y-%m-%d %H:%M:%S")
+  print("解析结果:", dt_obj)  # 输出: 2024-12-25 20:30:00
+  ~~~
+
+  3. 常用格式化符号：
+
+  | 符号 |          含义           |  示例   |
+  | :--: | :---------------------: | :-----: |
+  | `%Y` |       4位数的年份       |  2024   |
+  | `%m` |  2位数的月份（01-12）   |   01    |
+  | `%d` |  2位数的日期（01-31）   |   15    |
+  | `%H` | 24小时制的小时（00-23） |   14    |
+  | `%M` |      分钟（00-59）      |   30    |
+  | `%S` |       秒（00-59）       |   25    |
+  | `%A` |    完整的星期几名称     | Monday  |
+  | `%B` |     完整的月份名称      | January |
+
+### 11.3正则表达式模块——re
+
+​	正则表达式指预先定义好一个“字符串模板”，通过这个“字符串模板”可以匹配、查找和替换那些匹配“字符串模板”的字符串。正则表达式推荐使用**原始字符串**表示（即双引号前加上`r`）
+
+* 11.3.1字符串**匹配**
+  * 字符串匹配指验证一个字符串是否符合指定的“字符串模板”，常用于用户输入验证。例如，用户在注册时要输入邮箱，所以需要验证邮箱是否有效，这就要用到字符串匹配验证。
+  * 使用`match（p，text）`函数进行字符串匹配，其中的参数p是正则表达式，即字符串模板，text是要验证的字符串。如果匹配成功，则返回一个Match对象（匹配对象），否则返回None
+* 11.3.2字符串**查找**
+  * 字符串查找指从一个字符串中查找匹配正则表达式的子字符串，常用于数据分析、网络爬虫等数据处理中
+  * `search（p，text）`：在text字符串中查找匹配的内容，如果找到，则返回第1个匹配的Match对象，否则返回None。p是正则表达式。
+  * `findall（p，text）`：在text字符串中查找所有匹配的内容，如果找到，则返回所有匹配的字符串**列表**；如果一个都没有匹配，则返回None。p是正则表达式。
+* 11.3.3字符串**替换**
+  * 正则表达式的字符串替换函数是sub（），该函数替换匹配的子字符串，返回值是替换之后的字符串，其语法格式如下：
+    * `re.sub(pattern, repl, string, count = 0)`
+      * 参数pattern是正则表达式；
+      * 参数repl是用于替换的新字符串；
+      * 参数string是即将被替换的旧字符串；
+      * 参数count是要替换的最大数量，默认值为零，表示不限制替换数量。
+
+* 11.3.4字符串**分割**
+  * 在Python中使用re模块中的split（）函数进行字符串分割，该函数按照匹配的子字符串进行字符串分割，返回字符串列表对象，其语法格式如下：
+    * `re.split(pattern, string, maxsplit = 0)`
+      * 参数pattern是正则表达式；
+      * 参数string是要分割的字符串；
+      * 参数maxsplit是最大分割次数；maxsplit的默认值为零，表示分割次数没有限制  --> 分割结果是列表结构
+
+* 常用元字符(有点绕，暂时不管，以后需要再看)
+
+| 元字符  |             描述             |
+| :-----: | :--------------------------: |
+|   `.`   | 匹配任意字符（除换行符`\n`） |
+|   `^`   |        匹配字符串开头        |
+|   `$`   |        匹配字符串结尾        |
+|   `*`   |   匹配前一个字符0次或多次    |
+|   `+`   |   匹配前一个字符1次或多次    |
+|   `?`   |    匹配前一个字符0次或1次    |
+|  `{n}`  |      匹配前一个字符n次       |
+| `{n,}`  |    匹配前一个字符至少n次     |
+| `{n,m}` |     匹配前一个字符n到m次     |
+|  `[]`   | 字符集，匹配其中任意一个字符 |
+|    `    |              `               |
+|  `()`   |     分组，捕获匹配的内容     |
+
+* `.group()`是 Python 正则表达式模块 `re`中 `Match`对象的一个方法，用于获取正则表达式匹配的结果。
+
+  * 作用：
+
+    * 当使用 `re.match()`、`re.search()`或 `re.finditer()`等方法时，返回的是一个 `Match`对象。
+    * `.group()`用于从 `Match`对象中提取匹配到的字符串
+
+  * 常见用法：
+
+    * **`.group()`或 `.group(0)`**返回整个匹配的字符串。如果匹配失败（`match`为 `None`），调用 `.group()`会抛出 `AttributeError`，因此建议先检查 `match`是否存在。
+
+    * **`.group(n)`**返回第 `n`个括号分组（`()`捕获的分组）的内容（从 1 开始计数）。如果尝试访问不存在的分组（如 `.group(4)`），会抛出 `IndexError`。
+
+  ~~~python
+  import re
+  
+  text = "2025-09-09"
+  
+  # 匹配日期，并用分组分离年、月、日
+  pattern = r"(\d{4})-(\d{2})-(\d{2})"
+  match = re.search(pattern, text)
+  
+  if match:
+      print(match.group())    # 输出整个匹配: "2025-09-09"
+      print(match.group(1))   # 输出第1个分组: "2025"
+      print(match.group(2, 3)) # 输出第2和第3分组: ("09", "09")
+  ~~~
+
+  
+
+* 总结，正则表达式常用函数方法
+
+|      方法       |         描述         |
+| :-------------: | :------------------: |
+|  `re.match()`   | 从字符串开头匹配模式 |
+|  `re.search()`  |  在字符串中搜索模式  |
+| `re.findall()`  |  返回所有匹配的子串  |
+| `re.finditer()` |   返回匹配的迭代器   |
+|   `re.sub()`    |    替换匹配的子串    |
+|  `re.split()`   |  根据模式分割字符串  |
+
+* `r'\d+'`：\d是正则表达式中的特殊序列，匹配任意**数字字符**(0-9)；+是量词，表示"匹配前面的元素**一次或多次**"，所以`\d+`会匹配**一个或多个连续的数字**
+
+~~~python
+import re
+
+text = "apple 123 banana 456 cherry 789"
+
+# re.match() - 从开头匹配数字	
+print(re.match(r'\d+', text))  # None (开头不是数字)
+
+# re.search() - 搜索第一个数字
+print(re.search(r'\d+', text).group())  # 123
+
+# re.findall() - 查找所有数字
+print(re.findall(r'\d+', text))  # ['123', '456', '789']
+
+# re.finditer() - 迭代所有数字匹配
+for match in re.finditer(r'\d+', text):
+    print(match.group(), end=' ')  # 123 456 789
+print()
+
+# re.sub() - 替换数字为'X'
+print(re.sub(r'\d+', 'X', text))  # apple X banana X cherry X
+
+# re.split() - 按数字分割字符串
+print(re.split(r'\d+', text))  # ['apple ', ' banana ', ' cherry ', '']
+~~~
+
+* ！区别：
+  * **`re.match()`**：**必须从字符串开头匹配**，如果开头不是数字，即使后面有数字也会返回 `None`。、
+    * `re.match(r'\d+', "abc123")`→ `None`（因为开头是字母）
+  * **`re.search()`**：**扫描整个字符串**，找到第一个匹配的数字串。
+    * `re.search(r'\d+', "abc123")`→ 匹配 `"123"`
+
+---
+
+## 文件读写
+
+​	文件是数据的载体，程序可以从文件中读取数据，也可以将数据写入文件中，本章重点介绍如何在Python中进行文件读写。
+
+* 辨别：文本文件和二进制文件的区别是什么?
+  1. 在文本文件的内部以**字符形式**存储数据，字符是有编码的，例如GBK (简体中文) 、UTF-8等; 
+  2. 在二进制文件的内部以**字节形式**存储数据，没有编码的概念。二进制文件较为常用，例如Wincows中的
+     EXE、图片 Upg、jpng等) ，以及Word、ExXcel和PPT等文件。
+
+### 打开文件
+
+* `open(file, mode = 'r', encoding = None, errors = None)`
+  * open（）函数中的参数还有很多，这里介绍4个常用参数，这些参数的含义如下。
+  * file参数：
+    * file参数用于表示要打开的文件，可以是字符串或整数。如果file是字符串，则表示文件名，文件名既可以是当前目录的相对路径，也可以是绝对路径；如果file是整数，则表示一个已经打开的文件
+  * mode参数：
+    * mode参数用于设置文件打开模式，用字符串表示，例如rb表示以只读模式打开二进制文件。用于设置文件打开模式的字符串中的每一个字符都表示不同的含义，对这些字符的具体说明如下。
+      * t：以文本文件模式打开文件。
+      * b：以二进制文件模式打开文件。
+      * r：以**只读**模式打开文件。
+      * w：以**只写**模式打开文件，不能读内容。如果文件不存在，则创建
+        文件；如果文件存在，则覆盖文件的内容。
+      * x：以**独占创建**模式打开文件，如果文件不存在，则创建并以写入
+        模式打开；如果文件已存在，则引发FileExistsError异常。
+      * a：以**追加**模式打开文件，不能读内容。如果文件不存在，则创建
+        文件；如果文件存在，则在文件末尾追加。
+      * +：以更新（读写）模式打开文件，必须与r、w或a组合使用，才能
+        设置文件为读写模式。
+    * 这些字符可以进行组合，以表示不同类型的文件的打开模式
+  * encoding参数：
+    * encoding用来指定打开文件时的文件编码，默认是UTF-8编码，主要用于打开文本文件。
+  * errors参数：
+    * errors参数用来指定在文本文件发生编码错误时如何处理。推荐errors参数的取值为`ignore`，表示在遇到编码错误时忽略该错误，程序会继续执行，不会退出。
+
+### 关闭文件
+
+​	在打开文件后，如果不再使用该文件，则应该将其关闭，会用到`close()`方法
+
+* 在**finally代码块**中关闭文件
+
+  * 对文件的操作往往会抛出异常，为了保证对文件的操作无论是正常结束还异常结束，都能够关闭文件，我们应该将对close（）方法的调用放在异常处理的finally代码块中。
+
+  ~~~py
+  # 使用finally关闭文件
+  f_name = 'test.txt'
+  f = None
+  try:
+      f = open(f_name)	# 可能引发FileNotFoundRError异常
+      print('打开文件成功')
+      content = f.read()	# 可能引发OSError异常
+      print(content)
+  except FileNotFoundError as e:
+      print('文件不存在，请先使用ch12_1.py程序创建文件')
+  except OSError as e:
+      print('处理OSError异常')
+  finally:
+      if f is not None:
+          f.close()
+      print('关闭文件成功')
+  ~~~
+
+* 在**with as**代码块中关闭文件
+
+  * python提供了一个`with as`代码块，能够帮助释放资源（包括关闭文件的操作），可以替代finally代码块，优化代码结构，提高可读性
+
+  ~~~python
+  # 使用with as自动关闭文件
+  f_name = 'test.txt'
+  
+  try:
+      with open(f_name) as f:  # 使用with as打开文件
+          print('打开文件成功')
+          content = f.read()
+          print(content)
+  except FileNotFoundError as e:
+      print('文件不存在，请先使用ch12_1.py程序创建文件')
+  except OSError as e:
+      print('处理OSError异常')
+  # 不需要finally块来手动关闭文件！
+  ~~~
+
+  * **with as**的优势总结
+    1. **代码简洁**：不需要显式调用 `close()`方法
+    2. **安全可靠**：即使代码块中发生异常，文件也会被正确关闭
+    3. **可读性强**：明确表达了"在这个范围内使用这个资源"的意图
+    4. **避免错误**：不会忘记关闭文件，也不会出现需要判断 `f is not None`的情况
+
+### 读写文本文件
+
+* `read（size=-1）`：从文件中读取字符串，size限制读取的字符数，size=-1指对读取的字符数没有限制。
+* `readline（size=-1）`：在读取到换行符或文件尾时返回单行字符串。如果已经到文件尾，则返回一个空字符串。size是限制读取的字符数，size=-1表示没有限制。
+* `readlines（）`：读取文件数据到一个字符串列表中，每一行数据都是列表的一个元素。
+* `write（s）`：将字符串s写入文件中，并返回写入的字符数。
+* `writelines（lines）`：向文件中写入一个字符串列表。不添加行分隔符，因此通常为每一行末尾都提供行分隔符。
+* `flush（）`：刷新写缓冲区，在文件没有关闭的情况下将数据写入文件中
+
+### 读写二进制文件
+
+~~~
+二进制文件的读写单位是字节，不需要考虑编码问题。
+~~~
+
+* `read（size=-1）`：从文件中读取字节，size限制读取的字节数，如果size=-1，则读取全部字节。
+* `readline（size=-1）`：从文件中读取并返回一行。size是限制读取的行数，如果size=-1，则没有限制。
+* `readlines（）`：读取文件数据到一个字节列表中，每一行数据都是列表的一个元素。
+* `write（b）`：写入b字节，并返回写入的字节数。
+* `writelines（lines）`：向文件中写入一个字节列表。不添加行分隔符，因此通常为每一行末尾都提供行分隔符。
+* `flush（）`：刷新写缓冲区，在文件没有关闭的情况下将数据写入文件中。
+
+~~~py
+# 文本文件 vs 二进制文件读写对比
+
+# 准备测试数据
+text_data = "你好，世界！\nHello, World!"  # 包含中文和英文的文本
+binary_data = b'\x48\x65\x6C\x6C\x6F\x20\x57\x6F\x72\x6C\x64'  # "Hello World"的二进制表示
+
+# 1. 文本文件读写 (默认使用UTF-8编码)
+with open('text_file.txt', 'w', encoding='utf-8') as f:  # 必须指定编码
+    f.write(text_data)  # 写入字符串
+
+with open('text_file.txt', 'r', encoding='utf-8') as f:
+    text_read = f.read()  # 读取内容自动解码为字符串
+    print(f"文本文件内容: {text_read!r}")  # !r显示原始表示形式
+
+# 2. 二进制文件读写
+with open('binary_file.bin', 'wb') as f:  # 'b'表示二进制模式
+    f.write(binary_data)  # 只能写入bytes类型
+
+with open('binary_file.bin', 'rb') as f:
+    binary_read = f.read()  # 读取内容为bytes对象
+    print(f"二进制文件内容: {binary_read}")  # 显示原始字节
+~~~
+
+* 经典错误
+
+~~~python
+# 尝试用文本模式写二进制数据会报错
+with open('error.txt', 'w') as f:
+    f.write(binary_data)  # TypeError: write() argument must be str, not bytes
+~~~
+
+---
+
+## 最后一点学不动了
+
+### 图形用户界面
+
+### 网络通信
+
+### 访问数据库
+
+### 多线程
 
 
 ---

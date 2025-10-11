@@ -106,7 +106,7 @@ string concat = reduce(strs.begin(), strs.end());  // ""+"a"+"b"+"c" = "abc"
 
 * `std::count_if`是 C++ 标准库中的一个算法函数，用于**统计满足特定条件的元素个数**。它定义在 `<algorithm>`头文件中，是 STL 算法的重要组成部分。
 
-```
+```c++
 函数原型：
 template< class InputIt, class UnaryPredicate >
 typename iterator_traits<InputIt>::difference_type
@@ -258,3 +258,123 @@ std::cout << binary_date << std::endl;  // 输出 "11111100001-1000-1100"
 5. toupper() 和 tolower()，字母大小写转换，其他字符返回本身
 6. isdigit(c)，用于**检查字符 `c`是否为十进制数字（0-9）**，检查 `'0'-'9'`。
 7. isxdight(c)，检查 `'0'-'9'`、`'A'-'F'`、`'a'-'f'`（十六进制数字）。
+
+
+
+
+
+---
+
+* popcount() 函数
+
+* `__builtin__popcount()`函数
+
+---
+
+### 函数模板的基本概念
+
+* 函数模板是C++中的一种特性，它允许您编写通用的函数代码，这些函数可以处理多种数据类型而不需要为每种类型重写函数。
+
+~~~cpp
+// 没有模板时，需要为不同类型写多个重载函数
+int max(int a, int b) { return a > b ? a : b; }
+float max(float a, float b) { return a > b ? a : b; }
+double max(double a, double b) { return a > b ? a : b; }
+
+// 使用模板，只需写一次
+template <typename T>
+T max(T a, T b) { return a > b ? a : b; }
+~~~
+
+* 函数模板的基本语法结构
+
+~~~cpp
+template <typename T>  // 或者 template <class T>
+返回类型 函数名(参数列表) {
+    // 函数体
+}
+~~~
+
+* 模板参数
+
+~~~cpp
+// 单个模板参数
+template <typename T>
+void print(T value) {
+    cout << value << endl;
+}
+
+// 多个模板参数
+template <typename T, typename U>
+void printPair(T first, U second) {
+    cout << first << ", " << second << endl;
+}
+
+// 非类型模板参数
+template <typename T, int size>
+class Array {
+    T data[size];
+};
+~~~
+
+* 函数模板的显示实例化
+
+~~~cpp
+template <typename T>	// 隐式实例化就是一般使用方法
+T multiply(T a, T b) {
+    return a * b;
+}
+
+int main() {
+    cout << multiply<int>(5, 3.2);    // 显式指定T为int，3.2被转换为3
+    cout << multiply<double>(2, 3.5); // 显式指定T为double，2被转换为2.0
+    return 0;
+}
+~~~
+
+* C++20引入concepts来约束模板参数类型
+  * Concepts 是 **C++20** 引入的一种机制，用于对模板参数施加约束，明确指定模板参数必须满足的要求。它解决了传统模板编程中类型约束不明确、错误信息晦涩难懂的问题。
+
+~~~cpp
+//定义 Concepts
+template <typename T>
+concept Addable = requires(T a, T b) {
+    { a + b } -> std::same_as<T>;  // 要求a+b的结果类型必须与T相同
+};
+
+//使用  concepts约束模板
+template <Addable T>
+T add(T a, T b) { return a + b; }
+
+// 或者使用  requires子句
+template <typename T>
+requires Addable<T>
+T add(T a, T b) { return a + b; }
+~~~
+
+* 举例说明
+
+~~~cpp
+template <typename T>
+concept Arithmetic = requires(T a, T b) {
+    a + b;
+    a - b;
+    a * b;
+    a / b;
+};
+
+template <Arithmetic T>
+T calculate(T a, T b) {
+    return a * b + a / b;
+}
+~~~
+
+1. `template <typename T> concept Arithmetic`定义了一个名为 `Arithmetic`的概念
+2. `requires(T a, T b)`表示这个概念的约束条件将通过两个类型为 T 的参数 a 和 b 来验证
+3. 约束条件是：类型T必须支持加减乘除运算，这些表达式必须合法（能够编译通过），但不关心返回类型
+4. **受约束的模板函数**：
+   1. `template <Arithmetic T>`表示这个模板只接受满足 `Arithmetic`概念的类型 T
+   2. 函数实现中 `a * b + a / b`正好使用了概念中要求的所有四种运算
+5. **编译时类型检查**：
+   1. 当尝试用不支持这些操作的类型调用时，编译会在模板实例化时直接报错
+   2. 错误信息会明确指出类型不满足 `Arithmetic`概念
