@@ -222,5 +222,32 @@ AND u.purchase_date BETWEEN p.start_date AND p.end_date
 GROUP BY p.product_id;
 ~~~
 
+### where 和 having group的区别
+
+* 针对力扣题目https://leetcode.cn/problems/sales-analysis-iii/
+
+```mysql
+select product_id, product_name
+from Sales join Product using(product_id)
+where min(sale_date) >= "2019-01-01" and max(sale_date) <=  "2019-03-31";
+```
+
+* 这个 SQL 语句的错误在于**在 `WHERE` 子句中使用了聚合函数 `MIN()` 和 `MAX()`**，这在 SQL 语法中是不允许的。
+  * 具体原因在于：
+    1. **`WHERE` 子句的作用**：用于筛选**单条记录**，它在聚合函数（如 `MIN`/`MAX`）计算之前执行。
+    2. **聚合函数的特性**：`MIN()`、`MAX()` 等聚合函数是对**一组记录**进行计算（如计算某个分组的最小值 / 最大值），需要在 `GROUP BY` 分组之后执行。
+    3. 冲突点：
+       * 你的语句想要通过 `MIN(sale_date)` 和 `MAX(sale_date)` 判断「某个商品的所有销售日期是否都在 2019-01-01 到 2019-03-31 之间」。
+       * 但 `WHERE` 子句无法直接使用聚合函数的结果作为筛选条件，因为此时还未进行分组和聚合计算。
+  * 因此，**不能够在where语句中使用聚合函数**，应使用 `HAVING` 子句配合 `GROUP BY`，因为 `HAVING` 是在聚合计算后对**分组结果**进行筛选
+
+```mysql
+SELECT product_id, product_name
+FROM Sales 
+JOIN Product USING(product_id)
+GROUP BY product_id, product_name  -- 按商品分组
+HAVING MIN(sale_date) >= "2019-01-01" 
+   AND MAX(sale_date) <= "2019-03-31";  -- 对分组后的聚合结果筛选
+```
 
 
