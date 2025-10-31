@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>动态规划 on </title>
+    <link>//localhost:1313/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/</link>
+    <description>Recent content from </description>
+    <generator>Hugo</generator>
+    <language>zh-cn</language>
+    
+    <managingEditor>2267593025@qq.com (the_last_kid)</managingEditor>
+    <webMaster>2267593025@qq.com (the_last_kid)</webMaster>
+    
+    <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
+    
+    <lastBuildDate>Mon, 20 Oct 2025 00:00:00 +0000</lastBuildDate>
+    
+    
+    <atom:link href="//localhost:1313/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/index.xml" rel="self" type="application/rss&#43;xml" />
+    
+
+    
+    
+
+    <item>
+      <title>动态规划专题</title>
+      <link>//localhost:1313/post/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/</link>
+      <pubDate>Mon, 20 Oct 2025 00:00:00 &#43;0000</pubDate>
+      <author>2267593025@qq.com (the_last_kid)</author>
+      <guid>//localhost:1313/post/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/</guid>
+      <description>
+        <![CDATA[<h1>动态规划专题</h1><p>作者：the_last_kid（2267593025@qq.com）</p>
+        
+          <h1 id="动态规划">
+<a class="header-anchor" href="#%e5%8a%a8%e6%80%81%e8%a7%84%e5%88%92"></a>
+动态规划
+</h1><h2 id="条件转移方程">
+<a class="header-anchor" href="#%e6%9d%a1%e4%bb%b6%e8%bd%ac%e7%a7%bb%e6%96%b9%e7%a8%8b"></a>
+条件转移方程
+</h2><ul>
+<li>为什么状态转移方程有时候不一样</li>
+</ul>
+<table>
+  <thead>
+      <tr>
+          <th>对比维度</th>
+          <th>当前代码的逻辑（<code>memo[i]</code>对应<code>a[0]~a[i]</code>）</th>
+          <th>你提到的转移方程逻辑（<code>memo[i]</code>对应<code>sum[0]~sum[i-1]</code>）</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>memo[i]</code>定义</td>
+          <td>前<code>i+1</code>个元素（<code>a[0]~a[i]</code>）的最大收益</td>
+          <td>前<code>i</code>个元素（<code>sum[0]~sum[i-1]</code>）的最大收益</td>
+      </tr>
+      <tr>
+          <td>转移方程</td>
+          <td><code>max(dfs(i-1), dfs(i-2)+a[i])</code></td>
+          <td><code>max(dfs(i-1), dfs(i-2)+sum[i-1])</code></td>
+      </tr>
+      <tr>
+          <td>对应<code>a</code>/<code>sum</code>的元素</td>
+          <td>选<code>a[i]</code>时加<code>a[i]</code></td>
+          <td>选<code>sum[i-1]</code>时加<code>sum[i-1]</code></td>
+      </tr>
+  </tbody>
+</table>
+<ul>
+<li>
+<p>值域打家劫舍https://leetcode.cn/problems/maximum-total-damage-with-spell-casting/solutions/2812389/tao-lu-da-jia-jie-she-pythonjavacgo-by-e-p9b5/</p>
+        
+        <hr><p>本文2025-10-20首发于<a href='//localhost:1313/'></a>，最后修改于2025-10-20</p>]]>
+      </description>
+      
+        <category>笔记</category>
+      
+    </item>
+    
+  </channel>
+</rss>

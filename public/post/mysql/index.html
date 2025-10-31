@@ -159,6 +159,7 @@
         <li><a href="#聚合函数的使用位置">聚合函数的使用位置</a></li>
         <li><a href="#小难的题目">小难的题目</a></li>
         <li><a href="#判断条件的规范">判断条件的规范</a></li>
+        <li><a href="#where-和-having-group的区别">where 和 having group的区别</a></li>
       </ul>
     </li>
   </ul>
@@ -177,7 +178,7 @@
 </div>
 <div class="sidebar-state">
   <div class="sidebar-state-article">
-    <div>文章</div><div class="sidebar-state-number">8</div>
+    <div>文章</div><div class="sidebar-state-number">10</div>
   </div>
   <a class="sidebar-state-category" href="/categories/" aria-label="sidebar-state-category-link">
     <div>分类</div>
@@ -187,7 +188,7 @@
   </a>
   <a class="sidebar-state-tag" href="/tags/" aria-label="sidebar-state-tag-link">
     <div>标签</div>
-    <div class="sidebar-state-number">8</div>
+    <div class="sidebar-state-number">9</div>
   </a>
 </div>
 <div class="sidebar-social"><div class="icon-bilibili sidebar-social-icon">
@@ -513,7 +514,41 @@ MySQL学习笔记
 </span></span><span class="line"><span class="cl">ON p.product_id = u.product_id
 </span></span><span class="line"><span class="cl">AND u.purchase_date BETWEEN p.start_date AND p.end_date
 </span></span><span class="line"><span class="cl">GROUP BY p.product_id;
-</span></span></code></pre></div></div>
+</span></span></code></pre></div><h3 id="where-和-having-group的区别">
+<a class="header-anchor" href="#where-%e5%92%8c-having-group%e7%9a%84%e5%8c%ba%e5%88%ab"></a>
+where 和 having group的区别
+</h3><ul>
+<li>针对力扣题目https://leetcode.cn/problems/sales-analysis-iii/</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-mysql" data-lang="mysql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="n">product_id</span><span class="p">,</span><span class="w"> </span><span class="n">product_name</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">Sales</span><span class="w"> </span><span class="k">join</span><span class="w"> </span><span class="n">Product</span><span class="w"> </span><span class="k">using</span><span class="p">(</span><span class="n">product_id</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w"> </span><span class="nf">min</span><span class="p">(</span><span class="n">sale_date</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="s2">&#34;2019-01-01&#34;</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="nf">max</span><span class="p">(</span><span class="n">sale_date</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;=</span><span class="w">  </span><span class="s2">&#34;2019-03-31&#34;</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><ul>
+<li>这个 SQL 语句的错误在于<strong>在 <code>WHERE</code> 子句中使用了聚合函数 <code>MIN()</code> 和 <code>MAX()</code></strong>，这在 SQL 语法中是不允许的。
+<ul>
+<li>具体原因在于：
+<ol>
+<li><strong><code>WHERE</code> 子句的作用</strong>：用于筛选<strong>单条记录</strong>，它在聚合函数（如 <code>MIN</code>/<code>MAX</code>）计算之前执行。</li>
+<li><strong>聚合函数的特性</strong>：<code>MIN()</code>、<code>MAX()</code> 等聚合函数是对<strong>一组记录</strong>进行计算（如计算某个分组的最小值 / 最大值），需要在 <code>GROUP BY</code> 分组之后执行。</li>
+<li>冲突点：
+<ul>
+<li>你的语句想要通过 <code>MIN(sale_date)</code> 和 <code>MAX(sale_date)</code> 判断「某个商品的所有销售日期是否都在 2019-01-01 到 2019-03-31 之间」。</li>
+<li>但 <code>WHERE</code> 子句无法直接使用聚合函数的结果作为筛选条件，因为此时还未进行分组和聚合计算。</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>因此，<strong>不能够在where语句中使用聚合函数</strong>，应使用 <code>HAVING</code> 子句配合 <code>GROUP BY</code>，因为 <code>HAVING</code> 是在聚合计算后对<strong>分组结果</strong>进行筛选</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-mysql" data-lang="mysql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">product_id</span><span class="p">,</span><span class="w"> </span><span class="n">product_name</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">Sales</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">JOIN</span><span class="w"> </span><span class="n">Product</span><span class="w"> </span><span class="k">USING</span><span class="p">(</span><span class="n">product_id</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">product_id</span><span class="p">,</span><span class="w"> </span><span class="n">product_name</span><span class="w">  </span><span class="c1">-- 按商品分组
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">HAVING</span><span class="w"> </span><span class="nf">MIN</span><span class="p">(</span><span class="n">sale_date</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="s2">&#34;2019-01-01&#34;</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">   </span><span class="k">AND</span><span class="w"> </span><span class="nf">MAX</span><span class="p">(</span><span class="n">sale_date</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="s2">&#34;2019-03-31&#34;</span><span class="p">;</span><span class="w">  </span><span class="c1">-- 对分组后的聚合结果筛选
+</span></span></span></code></pre></div></div>
     <footer class="article-footer"><ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in">
       <a
         class="article-tag-list-link"
@@ -562,10 +597,10 @@ MySQL学习笔记
         >
       </div><div>
         <span class="icon-brush"
-          >&nbsp;60.2k</span
+          >&nbsp;70.9k</span
         >
         &nbsp;|&nbsp;
-        <span class="icon-coffee">&nbsp;02:05</span>
+        <span class="icon-coffee">&nbsp;02:27</span>
       </div><div>
         <span class="icon-eye"></span>
         <span id="busuanzi_container_site_pv"
@@ -605,6 +640,7 @@ MySQL学习笔记
         <li><a href="#聚合函数的使用位置">聚合函数的使用位置</a></li>
         <li><a href="#小难的题目">小难的题目</a></li>
         <li><a href="#判断条件的规范">判断条件的规范</a></li>
+        <li><a href="#where-和-having-group的区别">where 和 having group的区别</a></li>
       </ul>
     </li>
   </ul>
@@ -623,7 +659,7 @@ MySQL学习笔记
 </div>
 <div class="sidebar-state">
   <div class="sidebar-state-article">
-    <div>文章</div><div class="sidebar-state-number">8</div>
+    <div>文章</div><div class="sidebar-state-number">10</div>
   </div>
   <a class="sidebar-state-category" href="/categories/" aria-label="sidebar-state-category-link">
     <div>分类</div>
@@ -633,7 +669,7 @@ MySQL学习笔记
   </a>
   <a class="sidebar-state-tag" href="/tags/" aria-label="sidebar-state-tag-link">
     <div>标签</div>
-    <div class="sidebar-state-number">8</div>
+    <div class="sidebar-state-number">9</div>
   </a>
 </div>
 <div class="sidebar-social"><div class="icon-bilibili sidebar-social-icon">

@@ -208,7 +208,22 @@
         <li><a href="#113正则表达式模块re">11.3正则表达式模块——re</a></li>
       </ul>
     </li>
-    <li><a href="#文件读写">文件读写</a></li>
+    <li><a href="#文件读写">文件读写</a>
+      <ul>
+        <li><a href="#打开文件">打开文件</a></li>
+        <li><a href="#关闭文件">关闭文件</a></li>
+        <li><a href="#读写文本文件">读写文本文件</a></li>
+        <li><a href="#读写二进制文件">读写二进制文件</a></li>
+      </ul>
+    </li>
+    <li><a href="#最后一点学不动了">最后一点学不动了</a>
+      <ul>
+        <li><a href="#图形用户界面">图形用户界面</a></li>
+        <li><a href="#网络通信">网络通信</a></li>
+        <li><a href="#访问数据库">访问数据库</a></li>
+        <li><a href="#多线程">多线程</a></li>
+      </ul>
+    </li>
     <li><a href="#运算符">运算符</a></li>
     <li><a href="#程序流程控制">程序流程控制</a>
       <ul>
@@ -239,7 +254,7 @@
 </div>
 <div class="sidebar-state">
   <div class="sidebar-state-article">
-    <div>文章</div><div class="sidebar-state-number">8</div>
+    <div>文章</div><div class="sidebar-state-number">10</div>
   </div>
   <a class="sidebar-state-category" href="/categories/" aria-label="sidebar-state-category-link">
     <div>分类</div>
@@ -249,7 +264,7 @@
   </a>
   <a class="sidebar-state-tag" href="/tags/" aria-label="sidebar-state-tag-link">
     <div>标签</div>
-    <div class="sidebar-state-number">8</div>
+    <div class="sidebar-state-number">9</div>
   </a>
 </div>
 <div class="sidebar-social"><div class="icon-bilibili sidebar-social-icon">
@@ -1901,7 +1916,7 @@
 <h3 id="113正则表达式模块re">
 <a class="header-anchor" href="#113%e6%ad%a3%e5%88%99%e8%a1%a8%e8%be%be%e5%bc%8f%e6%a8%a1%e5%9d%97re"></a>
 11.3正则表达式模块——re
-</h3><p>​	正则表达式指预先定义好一个“字符串模板”，通过这个“字符串模板”可以匹配、查找和替换那些匹配“字符串模板”的字符串。正则表达式推荐使用原始字符串表示（即双引号前加上<code>r</code>）</p>
+</h3><p>​	正则表达式指预先定义好一个“字符串模板”，通过这个“字符串模板”可以匹配、查找和替换那些匹配“字符串模板”的字符串。正则表达式推荐使用<strong>原始字符串</strong>表示（即双引号前加上<code>r</code>）</p>
 <ul>
 <li>
 <p>11.3.1字符串<strong>匹配</strong></p>
@@ -2134,7 +2149,184 @@
 <a class="header-anchor" href="#%e6%96%87%e4%bb%b6%e8%af%bb%e5%86%99"></a>
 文件读写
 </h2><p>​	文件是数据的载体，程序可以从文件中读取数据，也可以将数据写入文件中，本章重点介绍如何在Python中进行文件读写。</p>
-<hr>
+<ul>
+<li>辨别：文本文件和二进制文件的区别是什么?
+<ol>
+<li>在文本文件的内部以<strong>字符形式</strong>存储数据，字符是有编码的，例如GBK (简体中文) 、UTF-8等;</li>
+<li>在二进制文件的内部以<strong>字节形式</strong>存储数据，没有编码的概念。二进制文件较为常用，例如Wincows中的
+EXE、图片 Upg、jpng等) ，以及Word、ExXcel和PPT等文件。</li>
+</ol>
+</li>
+</ul>
+<h3 id="打开文件">
+<a class="header-anchor" href="#%e6%89%93%e5%bc%80%e6%96%87%e4%bb%b6"></a>
+打开文件
+</h3><ul>
+<li><code>open(file, mode = 'r', encoding = None, errors = None)</code>
+<ul>
+<li>open（）函数中的参数还有很多，这里介绍4个常用参数，这些参数的含义如下。</li>
+<li>file参数：
+<ul>
+<li>file参数用于表示要打开的文件，可以是字符串或整数。如果file是字符串，则表示文件名，文件名既可以是当前目录的相对路径，也可以是绝对路径；如果file是整数，则表示一个已经打开的文件</li>
+</ul>
+</li>
+<li>mode参数：
+<ul>
+<li>mode参数用于设置文件打开模式，用字符串表示，例如rb表示以只读模式打开二进制文件。用于设置文件打开模式的字符串中的每一个字符都表示不同的含义，对这些字符的具体说明如下。
+<ul>
+<li>t：以文本文件模式打开文件。</li>
+<li>b：以二进制文件模式打开文件。</li>
+<li>r：以<strong>只读</strong>模式打开文件。</li>
+<li>w：以<strong>只写</strong>模式打开文件，不能读内容。如果文件不存在，则创建
+文件；如果文件存在，则覆盖文件的内容。</li>
+<li>x：以<strong>独占创建</strong>模式打开文件，如果文件不存在，则创建并以写入
+模式打开；如果文件已存在，则引发FileExistsError异常。</li>
+<li>a：以<strong>追加</strong>模式打开文件，不能读内容。如果文件不存在，则创建
+文件；如果文件存在，则在文件末尾追加。</li>
+<li>+：以更新（读写）模式打开文件，必须与r、w或a组合使用，才能
+设置文件为读写模式。</li>
+</ul>
+</li>
+<li>这些字符可以进行组合，以表示不同类型的文件的打开模式</li>
+</ul>
+</li>
+<li>encoding参数：
+<ul>
+<li>encoding用来指定打开文件时的文件编码，默认是UTF-8编码，主要用于打开文本文件。</li>
+</ul>
+</li>
+<li>errors参数：
+<ul>
+<li>errors参数用来指定在文本文件发生编码错误时如何处理。推荐errors参数的取值为<code>ignore</code>，表示在遇到编码错误时忽略该错误，程序会继续执行，不会退出。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="关闭文件">
+<a class="header-anchor" href="#%e5%85%b3%e9%97%ad%e6%96%87%e4%bb%b6"></a>
+关闭文件
+</h3><p>​	在打开文件后，如果不再使用该文件，则应该将其关闭，会用到<code>close()</code>方法</p>
+<ul>
+<li>
+<p>在<strong>finally代码块</strong>中关闭文件</p>
+<ul>
+<li>对文件的操作往往会抛出异常，为了保证对文件的操作无论是正常结束还异常结束，都能够关闭文件，我们应该将对close（）方法的调用放在异常处理的finally代码块中。</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="c1"># 使用finally关闭文件</span>
+</span></span><span class="line"><span class="cl"><span class="n">f_name</span> <span class="o">=</span> <span class="s1">&#39;test.txt&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="n">f</span> <span class="o">=</span> <span class="kc">None</span>
+</span></span><span class="line"><span class="cl"><span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">f_name</span><span class="p">)</span>	<span class="c1"># 可能引发FileNotFoundRError异常</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;打开文件成功&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">content</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>	<span class="c1"># 可能引发OSError异常</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">except</span> <span class="ne">FileNotFoundError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;文件不存在，请先使用ch12_1.py程序创建文件&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">except</span> <span class="ne">OSError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;处理OSError异常&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">finally</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">f</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;关闭文件成功&#39;</span><span class="p">)</span>
+</span></span></code></pre></div></li>
+<li>
+<p>在<strong>with as</strong>代码块中关闭文件</p>
+<ul>
+<li>python提供了一个<code>with as</code>代码块，能够帮助释放资源（包括关闭文件的操作），可以替代finally代码块，优化代码结构，提高可读性</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 使用with as自动关闭文件</span>
+</span></span><span class="line"><span class="cl"><span class="n">f_name</span> <span class="o">=</span> <span class="s1">&#39;test.txt&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">f_name</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>  <span class="c1"># 使用with as打开文件</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;打开文件成功&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">content</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">except</span> <span class="ne">FileNotFoundError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;文件不存在，请先使用ch12_1.py程序创建文件&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">except</span> <span class="ne">OSError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;处理OSError异常&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 不需要finally块来手动关闭文件！</span>
+</span></span></code></pre></div><ul>
+<li><strong>with as</strong>的优势总结
+<ol>
+<li><strong>代码简洁</strong>：不需要显式调用 <code>close()</code>方法</li>
+<li><strong>安全可靠</strong>：即使代码块中发生异常，文件也会被正确关闭</li>
+<li><strong>可读性强</strong>：明确表达了&quot;在这个范围内使用这个资源&quot;的意图</li>
+<li><strong>避免错误</strong>：不会忘记关闭文件，也不会出现需要判断 <code>f is not None</code>的情况</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="读写文本文件">
+<a class="header-anchor" href="#%e8%af%bb%e5%86%99%e6%96%87%e6%9c%ac%e6%96%87%e4%bb%b6"></a>
+读写文本文件
+</h3><ul>
+<li><code>read（size=-1）</code>：从文件中读取字符串，size限制读取的字符数，size=-1指对读取的字符数没有限制。</li>
+<li><code>readline（size=-1）</code>：在读取到换行符或文件尾时返回单行字符串。如果已经到文件尾，则返回一个空字符串。size是限制读取的字符数，size=-1表示没有限制。</li>
+<li><code>readlines（）</code>：读取文件数据到一个字符串列表中，每一行数据都是列表的一个元素。</li>
+<li><code>write（s）</code>：将字符串s写入文件中，并返回写入的字符数。</li>
+<li><code>writelines（lines）</code>：向文件中写入一个字符串列表。不添加行分隔符，因此通常为每一行末尾都提供行分隔符。</li>
+<li><code>flush（）</code>：刷新写缓冲区，在文件没有关闭的情况下将数据写入文件中</li>
+</ul>
+<h3 id="读写二进制文件">
+<a class="header-anchor" href="#%e8%af%bb%e5%86%99%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6"></a>
+读写二进制文件
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">二进制文件的读写单位是字节，不需要考虑编码问题。
+</span></span></code></pre></div><ul>
+<li><code>read（size=-1）</code>：从文件中读取字节，size限制读取的字节数，如果size=-1，则读取全部字节。</li>
+<li><code>readline（size=-1）</code>：从文件中读取并返回一行。size是限制读取的行数，如果size=-1，则没有限制。</li>
+<li><code>readlines（）</code>：读取文件数据到一个字节列表中，每一行数据都是列表的一个元素。</li>
+<li><code>write（b）</code>：写入b字节，并返回写入的字节数。</li>
+<li><code>writelines（lines）</code>：向文件中写入一个字节列表。不添加行分隔符，因此通常为每一行末尾都提供行分隔符。</li>
+<li><code>flush（）</code>：刷新写缓冲区，在文件没有关闭的情况下将数据写入文件中。</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="c1"># 文本文件 vs 二进制文件读写对比</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 准备测试数据</span>
+</span></span><span class="line"><span class="cl"><span class="n">text_data</span> <span class="o">=</span> <span class="s2">&#34;你好，世界！</span><span class="se">\n</span><span class="s2">Hello, World!&#34;</span>  <span class="c1"># 包含中文和英文的文本</span>
+</span></span><span class="line"><span class="cl"><span class="n">binary_data</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;</span><span class="se">\x48\x65\x6C\x6C\x6F\x20\x57\x6F\x72\x6C\x64</span><span class="s1">&#39;</span>  <span class="c1"># &#34;Hello World&#34;的二进制表示</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 1. 文本文件读写 (默认使用UTF-8编码)</span>
+</span></span><span class="line"><span class="cl"><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;text_file.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>  <span class="c1"># 必须指定编码</span>
+</span></span><span class="line"><span class="cl">    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">text_data</span><span class="p">)</span>  <span class="c1"># 写入字符串</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;text_file.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">text_read</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>  <span class="c1"># 读取内容自动解码为字符串</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;文本文件内容: </span><span class="si">{</span><span class="n">text_read</span><span class="si">!r}</span><span class="s2">&#34;</span><span class="p">)</span>  <span class="c1"># !r显示原始表示形式</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 2. 二进制文件读写</span>
+</span></span><span class="line"><span class="cl"><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;binary_file.bin&#39;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>  <span class="c1"># &#39;b&#39;表示二进制模式</span>
+</span></span><span class="line"><span class="cl">    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">binary_data</span><span class="p">)</span>  <span class="c1"># 只能写入bytes类型</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;binary_file.bin&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">binary_read</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>  <span class="c1"># 读取内容为bytes对象</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;二进制文件内容: </span><span class="si">{</span><span class="n">binary_read</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>  <span class="c1"># 显示原始字节</span>
+</span></span></code></pre></div><ul>
+<li>经典错误</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 尝试用文本模式写二进制数据会报错</span>
+</span></span><span class="line"><span class="cl"><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;error.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">binary_data</span><span class="p">)</span>  <span class="c1"># TypeError: write() argument must be str, not bytes</span>
+</span></span></code></pre></div><hr>
+<h2 id="最后一点学不动了">
+<a class="header-anchor" href="#%e6%9c%80%e5%90%8e%e4%b8%80%e7%82%b9%e5%ad%a6%e4%b8%8d%e5%8a%a8%e4%ba%86"></a>
+最后一点学不动了
+</h2><h3 id="图形用户界面">
+<a class="header-anchor" href="#%e5%9b%be%e5%bd%a2%e7%94%a8%e6%88%b7%e7%95%8c%e9%9d%a2"></a>
+图形用户界面
+</h3><h3 id="网络通信">
+<a class="header-anchor" href="#%e7%bd%91%e7%bb%9c%e9%80%9a%e4%bf%a1"></a>
+网络通信
+</h3><h3 id="访问数据库">
+<a class="header-anchor" href="#%e8%ae%bf%e9%97%ae%e6%95%b0%e6%8d%ae%e5%ba%93"></a>
+访问数据库
+</h3><h3 id="多线程">
+<a class="header-anchor" href="#%e5%a4%9a%e7%ba%bf%e7%a8%8b"></a>
+多线程
+</h3><hr>
 <h2 id="运算符">
 <a class="header-anchor" href="#%e8%bf%90%e7%ae%97%e7%ac%a6"></a>
 运算符
@@ -2476,10 +2668,10 @@
         >
       </div><div>
         <span class="icon-brush"
-          >&nbsp;63.6k</span
+          >&nbsp;70.9k</span
         >
         &nbsp;|&nbsp;
-        <span class="icon-coffee">&nbsp;02:12</span>
+        <span class="icon-coffee">&nbsp;02:27</span>
       </div><div>
         <span class="icon-eye"></span>
         <span id="busuanzi_container_site_pv"
@@ -2568,7 +2760,22 @@
         <li><a href="#113正则表达式模块re">11.3正则表达式模块——re</a></li>
       </ul>
     </li>
-    <li><a href="#文件读写">文件读写</a></li>
+    <li><a href="#文件读写">文件读写</a>
+      <ul>
+        <li><a href="#打开文件">打开文件</a></li>
+        <li><a href="#关闭文件">关闭文件</a></li>
+        <li><a href="#读写文本文件">读写文本文件</a></li>
+        <li><a href="#读写二进制文件">读写二进制文件</a></li>
+      </ul>
+    </li>
+    <li><a href="#最后一点学不动了">最后一点学不动了</a>
+      <ul>
+        <li><a href="#图形用户界面">图形用户界面</a></li>
+        <li><a href="#网络通信">网络通信</a></li>
+        <li><a href="#访问数据库">访问数据库</a></li>
+        <li><a href="#多线程">多线程</a></li>
+      </ul>
+    </li>
     <li><a href="#运算符">运算符</a></li>
     <li><a href="#程序流程控制">程序流程控制</a>
       <ul>
@@ -2599,7 +2806,7 @@
 </div>
 <div class="sidebar-state">
   <div class="sidebar-state-article">
-    <div>文章</div><div class="sidebar-state-number">8</div>
+    <div>文章</div><div class="sidebar-state-number">10</div>
   </div>
   <a class="sidebar-state-category" href="/categories/" aria-label="sidebar-state-category-link">
     <div>分类</div>
@@ -2609,7 +2816,7 @@
   </a>
   <a class="sidebar-state-tag" href="/tags/" aria-label="sidebar-state-tag-link">
     <div>标签</div>
-    <div class="sidebar-state-number">8</div>
+    <div class="sidebar-state-number">9</div>
   </a>
 </div>
 <div class="sidebar-social"><div class="icon-bilibili sidebar-social-icon">
