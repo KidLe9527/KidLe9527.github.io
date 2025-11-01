@@ -7,7 +7,7 @@ tags: ['MySQL']
 cover: https://kidle9527.github.io/images/55.png
 ---
 
-# MySQL学习记录
+# 数据库学习记录
 
 ## 1. MySQL学习笔记
 
@@ -69,9 +69,6 @@ select sell_date, count(distinct product) as num_sold,
   WHERE id IS NOT NULL -- 结果：TRUE 或 FALSE
   ~~~
 
-  
-
-  ## 2. 详细解释
 
 ### 派生表必须要有别名
 
@@ -131,13 +128,15 @@ FROM (
 
 
 
-### 小难的题目
+## 3.小难的题目
 
-1. [3642. 查找有两极分化观点的书籍 - 力扣（LeetCode）](https://leetcode.cn/problems/find-books-with-polarized-opinions/description/)
+### using 和round函数的妙用
+
+* [3642. 查找有两极分化观点的书籍 - 力扣（LeetCode）](https://leetcode.cn/problems/find-books-with-polarized-opinions/description/)
 
 * 别人写的代码
 
-```
+```sql
 # Write your MySQL query statement below
 select b.book_id, title, author, genre, pages, rating_spread, polarization_score
 from books b
@@ -171,7 +170,7 @@ order by polarization_score desc, title desc
 
 * 自己写的然后用yb改的
 
-```
+```sql
 SELECT 
     b.*,
     MAX(r.session_rating) - MIN(r.session_rating) AS rating_spread,
@@ -204,7 +203,7 @@ ORDER BY
 
 * [1251. 平均售价 - 力扣（LeetCode）](https://leetcode.cn/problems/average-selling-price/)
 
-~~~
+~~~sql
 # 一开始的代码
 select p.product_id, ifnull(ROUND(sum(p.price * u.units) / sum(u.units), 2), 0) average_price
 from Prices p LEFT JOIN UnitsSold u using(product_id)
@@ -234,7 +233,7 @@ GROUP BY p.product_id;
 
      * 区别：join在where操作前，决定哪些记录参与join操作，不影响主表的记录保留；where对所有join后的记录进行筛选，会影响最终结果
 
-~~~
+~~~sql
 # 最终的代码呈现：
 select p.product_id, if(sum(u.units) > 0 ,ROUND(sum(p.price * u.units) / sum(u.units), 2), 0) average_price
 from Prices p LEFT JOIN UnitsSold u 
@@ -273,7 +272,7 @@ HAVING MIN(sale_date) >= "2019-01-01"
 
 ---
 
-# SQL语言篇温习
+## 4. SQL语言篇温习
 
 ### 1. 创建数据库
 
@@ -563,13 +562,13 @@ ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='员工
 
 ---
 
-# SQL 表修改语法详解
+## 5.SQL 表修改语法详解
 
 SQL 提供了多种修改表结构的语句，主要包括创建表、修改表结构、重命名表和删除表等操作。
 
-## 1. CREATE TABLE - 创建表
+### 1. CREATE TABLE - 创建表
 
-### 基本语法
+#### 基本语法
 
 ```mysql
 CREATE TABLE table_name (
@@ -580,7 +579,7 @@ CREATE TABLE table_name (
 );
 ```
 
-### 示例
+#### 示例
 
 ```sql
 -- 创建学生表
@@ -602,9 +601,9 @@ CREATE TABLE courses (
 );
 ```
 
-## 2. ALTER TABLE - 修改表结构
+### 2. ALTER TABLE - 修改表结构
 
-### 添加列
+#### 添加列
 
 ```sql
 ALTER TABLE table_name 
@@ -622,7 +621,7 @@ ADD (
 );
 ```
 
-### 修改列定义
+#### 修改列定义
 
 ```sql
 -- 修改数据类型
@@ -641,7 +640,7 @@ MODIFY (
 );
 ```
 
-### 重命名列
+#### 重命名列
 
 ```sql
 -- MySQL
@@ -657,7 +656,7 @@ ALTER TABLE students
 CHANGE name full_name VARCHAR(100);
 ```
 
-### 删除列
+#### 删除列
 
 ```sql
 ALTER TABLE table_name 
@@ -673,7 +672,7 @@ DROP COLUMN address,
 DROP COLUMN birth_date;
 ```
 
-### 添加约束
+#### 添加约束
 
 ```sql
 -- 添加主键
@@ -701,7 +700,7 @@ ADD CONSTRAINT fk_student
 FOREIGN KEY (student_id) REFERENCES students(student_id);
 ```
 
-### 删除约束
+#### 删除约束
 
 ```sql
 -- 删除约束（需要知道约束名）
@@ -721,7 +720,7 @@ ALTER TABLE students
 DROP CONSTRAINT chk_age;
 ```
 
-## 3. RENAME TABLE - 重命名表
+### 3. RENAME TABLE - 重命名表
 
 ```sql
 -- MySQL
@@ -737,7 +736,7 @@ sp_rename 'old_name', 'new_name';
 RENAME TABLE students TO university_students;
 ```
 
-## 4. TRUNCATE TABLE - 清空表数据
+### 4. TRUNCATE TABLE - 清空表数据
 
 ```sql
 TRUNCATE TABLE table_name;
@@ -746,7 +745,7 @@ TRUNCATE TABLE table_name;
 TRUNCATE TABLE courses;
 ```
 
-## 5. DROP TABLE - 删除表
+### 5. DROP TABLE - 删除表
 
 ```SQL
 DROP TABLE table_name;
@@ -761,9 +760,9 @@ DROP TABLE IF EXISTS table_name;
 DROP TABLE IF EXISTS old_students;
 ```
 
-## 6. 复杂示例
+### 6. 复杂示例
 
-### 完整的表修改流程
+#### 完整的表修改流程
 
 ```SQL
 -- 创建初始表
@@ -800,9 +799,9 @@ DROP COLUMN dept_name;
 ALTER TABLE employees RENAME TO company_employees;
 ```
 
-## 7. 数据库特定的语法差异
+### 7. 数据库特定的语法差异
 
-### MySQL 特有语法
+#### MySQL 特有语法
 
 ```sql
 -- 添加自增属性
@@ -814,7 +813,7 @@ ALTER TABLE table_name
 ADD INDEX index_name (column_name);
 ```
 
-### PostgreSQL 特有语法
+#### PostgreSQL 特有语法
 
 ```sql
 -- 添加自增序列
@@ -826,7 +825,7 @@ ALTER TABLE table_name
 ALTER COLUMN column_name TYPE new_data_type USING expression;
 ```
 
-### SQL Server 特有语法
+#### SQL Server 特有语法
 
 ```sql
 -- 添加标识列
@@ -838,14 +837,14 @@ ALTER TABLE table_name
 ALTER COLUMN column_name data_type NULL|NOT NULL;
 ```
 
-## 注意事项
+### 8. 注意事项
 
 1. **备份数据**：在修改表结构前，务必备份重要数据
 2. **影响性能**：大型表的修改操作可能很耗时
 3. **依赖关系**：修改有外键关联的表时需要特别小心
 4. **事务处理**：在事务中执行修改操作，以便在出错时回滚
 
-## 最佳实践
+### 9. 最佳实践
 
 ```sql
 -- 使用事务确保操作原子性
@@ -869,11 +868,9 @@ SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'employees';
 
 ---
 
+## 6. DML 语言详解：增删改操作
 
-
-# DML 语言详解：增删改操作
-
-## 1. DML 概述
+### 1. DML 概述
 
 **DML**（Data Manipulation Language，数据操作语言）用于对数据库中的**数据进行操作**，主要包括：
 
@@ -882,32 +879,32 @@ SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'employees';
 - **DELETE** - 删除数据
 - **SELECT** - 查询数据（通常也归为DML）
 
-## 2. INSERT - 插入数据
+### 2. INSERT - 插入数据
 
-### 基本语法
+#### 基本语法
 
 ```SQL
 INSERT INTO table_name (column1, column2, column3, ...)
 VALUES (value1, value2, value3, ...);
 ```
 
-### 详细语法变体
+#### 详细语法变体
 
-#### 方式1：指定列名插入
+##### 方式1：指定列名插入
 
 ```SQL
 INSERT INTO employees (employee_id, name, department, salary, hire_date)
 VALUES (1, '张三', '技术部', 8000.00, '2023-01-15');
 ```
 
-#### 方式2：省略列名（必须提供所有列的值）
+##### 方式2：省略列名（必须提供所有列的值）
 
 ```SQL
 INSERT INTO employees
 VALUES (2, '李四', '销售部', 7000.00, '2023-02-20');
 ```
 
-#### 方式3：插入多行数据
+##### 方式3：插入多行数据
 
 ```SQL
 INSERT INTO employees (employee_id, name, department, salary, hire_date)
@@ -917,7 +914,7 @@ VALUES
     (5, '钱七', '技术部', 8500.00, '2023-05-12');
 ```
 
-#### 方式4：从其他表插入数据
+##### 方式4：从其他表插入数据
 
 ```SQL
 -- 从临时表插入
@@ -926,9 +923,9 @@ SELECT temp_id, temp_name, temp_dept FROM temp_employees
 WHERE temp_status = 'active';
 ```
 
-### 实际示例
+#### 实际示例
 
-#### 创建测试表
+##### 创建测试表
 
 ```SQL
 CREATE TABLE students (
@@ -941,7 +938,7 @@ CREATE TABLE students (
 );
 ```
 
-#### 插入操作示例
+##### 插入操作示例
 
 ```SQL
 -- 插入单条记录（指定列）
@@ -963,9 +960,9 @@ INSERT INTO students (name, age, gender)
 VALUES ('孙八', 23, '男');
 ```
 
-## 3. UPDATE - 更新数据
+### 3. UPDATE - 更新数据
 
-### 基本语法
+#### 基本语法
 
 ```SQL
 UPDATE table_name
@@ -973,9 +970,9 @@ SET column1 = value1, column2 = value2, ...
 WHERE condition;
 ```
 
-### 详细语法变体
+#### 详细语法变体
 
-#### 更新单列
+##### 更新单列
 
 ```SQL
 UPDATE employees 
@@ -983,7 +980,7 @@ SET salary = 9000.00
 WHERE employee_id = 1;
 ```
 
-#### 更新多列
+##### 更新多列
 
 ```SQL
 UPDATE employees 
@@ -991,7 +988,7 @@ SET salary = 9500.00, department = '高级技术部'
 WHERE employee_id = 1;
 ```
 
-#### 基于表达式的更新
+##### 基于表达式的更新
 
 ```SQL
 -- 工资上涨10%
@@ -1000,7 +997,7 @@ SET salary = salary * 1.1
 WHERE department = '技术部';
 ```
 
-#### 使用子查询更新
+##### 使用子查询更新
 
 ```SQL
 -- 根据平均工资调整
@@ -1009,9 +1006,9 @@ SET salary = salary * 1.05
 WHERE salary < (SELECT AVG(salary) FROM employees);
 ```
 
-### 实际示例
+#### 实际示例
 
-#### 创建测试数据
+##### 创建测试数据
 
 ```SQL
 CREATE TABLE products (
@@ -1030,7 +1027,7 @@ INSERT INTO products VALUES
 (4, 'AirPods', '耳机', 1299.00, 200, '2023-01-01');
 ```
 
-#### 更新操作示例
+##### 更新操作示例
 
 ```SQL
 -- 更新单个产品的价格
@@ -1058,35 +1055,35 @@ END,
 last_updated = CURRENT_DATE;
 ```
 
-## 4. DELETE - 删除数据
+### 4. DELETE - 删除数据
 
-### 基本语法
+#### 基本语法
 
 ```SQL
 DELETE FROM table_name WHERE condition;
 ```
 
-### 详细语法变体
+#### 详细语法变体
 
-#### 删除特定记录
+##### 删除特定记录
 
 ```SQL
 DELETE FROM employees WHERE employee_id = 5;
 ```
 
-#### 删除满足条件的多条记录
+##### 删除满足条件的多条记录
 
 ```SQL
 DELETE FROM employees WHERE department = '临时部';
 ```
 
-#### 清空整个表
+##### 清空整个表
 
 ```SQL
 DELETE FROM employees;  -- 删除所有记录，但表结构保留
 ```
 
-#### 使用子查询删除
+##### 使用子查询删除
 
 ```SQL
 -- 删除工资低于平均工资的员工
@@ -1094,9 +1091,9 @@ DELETE FROM employees
 WHERE salary < (SELECT AVG(salary) FROM employees);
 ```
 
-### 实际示例
+#### 实际示例
 
-#### 创建测试数据
+##### 创建测试数据
 
 ```SQL
 CREATE TABLE orders (
@@ -1116,7 +1113,7 @@ INSERT INTO orders VALUES
 (5, 104, 4, 5, '2023-10-04', 'pending');
 ```
 
-#### 删除操作示例
+##### 删除操作示例
 
 ```SQL
 -- 删除特定订单
@@ -1134,9 +1131,9 @@ AND order_date < DATE_SUB(CURRENT_DATE, INTERVAL 30 DAY);
 DELETE FROM orders WHERE customer_id = 101;
 ```
 
+---
 
-
-## 5. 总结
+### 5. 总结
 
 **DML三大操作核心要点：**
 
@@ -1170,9 +1167,9 @@ DELETE FROM orders WHERE customer_id = 101;
 - 使用事务保证操作原子性
 - 测试环境验证后再在生产环境执行
 
+---
 
-
-## alter 和 update、modify、add的区别！
+## 7. alter 和 update、modify、add的区别！
 
 ### alter 和 update的核心区别
 
@@ -1198,9 +1195,9 @@ UPDATE employees SET salary = 5000 WHERE id = 1;
 UPDATE employees SET department = 'IT', title = '经理' WHERE name = '张三';
 ~~~
 
-### ADD vs MODIFY 的核心区别
+### add vs modify 的核心区别
 
-##### *  根本区别（都是ALTER的子命令）
+* 根本区别（都是ALTER的子命令）
 
 | 特性         | ADD                    | MODIFY           |
 | :----------- | :--------------------- | :--------------- |
@@ -1239,7 +1236,7 @@ ALTER TABLE employees MODIFY COLUMN salary DECIMAL(12,2) DEFAULT 0;  -- 修改�
 
 ---
 
-# DQL语句详解
+## 8. DQL语句详解
 
 ~~~sql
 -- DQL 查询语句，语法结构如下：
@@ -1383,6 +1380,1532 @@ select gender, count(*) from emp where age < 60 group by gender;
 **结论：** **凡是能放在 WHERE 子句中的过滤条件，都不要放在 HAVING 子句中。** HAVING 只应用于那些必须在分组后才能确定的过滤条件（即涉及聚合函数的条件）。
 
 ---
+
+## 9. SQL函数详解
+
+SQL 函数主要可以分为两大类：**聚合函数** 和 **标量函数**。
+
+### 1. 聚合函数
+
+这类函数对一组值执行计算，并返回一个单一的值。它们通常与 `GROUP BY`子句一起使用，用于将多行数据分组并对每个组进行汇总。
+
+- **`COUNT()`**: 返回匹配指定条件的行数。`COUNT(*)`: 计算所有行数，包括 NULL 值。`COUNT(column_name)`: 计算指定列中非 NULL 值的数量。
+- **`SUM()`**: 返回数值列的总和。
+- **`AVG()`**: 返回数值列的平均值。
+- **`MAX()`**: 返回一列中的最大值。
+- **`MIN()`**: 返回一列中的最小值。
+- **`GROUP_CONCAT()`** (MySQL) / **`STRING_AGG()`** (SQL Server/PostgreSQL): 将一组行的字符串值连接成一个字符串。
+
+~~~sql
+-- 查询每个学生选修的所有课程（用分号分隔，去重并按课程名排序）
+SELECT 
+    student_id,
+    GROUP_CONCAT(DISTINCT course ORDER BY course SEPARATOR '; ') AS courses
+FROM students
+GROUP BY student_id;
+-- -------->结果见下
+~~~
+
+| student_id | courses    |
+| :--------- | :--------- |
+| 1          | 数学; 英语 |
+| 2          | 化学; 物理 |
+
+### 2. 标量函数
+
+这类函数对单个值进行操作，并基于输入值返回另一个单一的值。它们可以应用于 SELECT、WHERE 等子句中。
+
+标量函数又可以细分为以下几类：
+
+- **字符串函数**：用于处理文本字符串。
+
+  - `UPPER() / LOWER()`: 将字符串转换为大写/小写。
+  - `LENGTH() / LEN()`: 返回字符串的长度。
+  - `TRIM()`: 去除字符串首尾的空格或指定字符。
+  - `CONCAT()`: 将两个或多个字符串连接起来。
+  - `SUBSTRING() / SUBSTR()`: 从字符串中提取子串。
+
+  ~~~sql
+  -- 正常情况：从位置1开始
+  SELECT SUBSTRING('Hello MySQL', 1, 5);  -- 结果: 'Hello'
+  
+  -- 从位置0开始
+  SELECT SUBSTRING('Hello MySQL', 0, 5);  -- 结果: ''
+  -- 在 SQL 的世界里，字符串位置从 1 开始计数。
+  
+  -- 从位置2开始
+  SELECT SUBSTRING('Hello MySQL', 2, 5);  -- 结果: 'ello '
+  
+  -- 省略长度参数，提取到末尾
+  SELECT SUBSTRING('Hello MySQL', 7);     -- 结果: 'MySQL'
+  
+  -- 使用负值（从末尾开始计数）
+  SELECT SUBSTRING('Hello MySQL', -5);    -- 结果: 'MySQL'
+  ~~~
+
+  
+
+  - `REPLACE()`: 替换字符串中的内容。
+
+- **数值函数**：用于执行数学运算。
+
+  - `ROUND(x,  y)`: 对数值进行四舍五入。
+  - `CEIL() / CEILING()`: 向上取整。
+  - `FLOOR()`: 向下取整。
+  - `ABS()`: 返回绝对值。
+  - `RAND()`: 生成一个随机数。（0~1之间）
+
+- **日期和时间函数**：用于处理日期和时间值。
+
+  - `NOW() / GETDATE()`: 返回当前的日期和时间。
+  - `CURDATE() / GETDATE()`: 返回当前日期。
+  - `CURTIME()`: 返回当前时间。
+  - `date_add(date, INTERVAL expr type)`: 返回一个日期/时间值加上一个时间间隔expr后的时间值 ---------------> 好用！
+  - `DATEDIFF(date1, date2)`: 返回两个日期 （前-后）之间的差值。
+  - `YEAR() / MONTH() / DAY()`: 从日期中提取年、月、日。
+
+- **转换函数**：用于转换数据类型。
+
+  - `CAST()`: 将一种数据类型转换为另一种。
+  - `CONVERT()`: 功能类似 `CAST`，但语法可能不同（尤其在 SQL Server 中）。
+
+- **条件函数**：实现类似 `IF...ELSE`的逻辑。
+
+  - `CASE ... WHEN ... THEN ... END`: 强大的条件表达式
+  - `IF()`(MySQL): 简单的条件判断。
+  - `COALESCE()`: 返回参数列表中第一个非 NULL 的值。
+  - `ISNULL()`(SQL Server) / `IFNULL()`(MySQL): 检查是否为 NULL，并返回替代值。
+
+---
+
+## 10. 外键约束完整语法详解
+
+### 1. **基本语法结构**
+
+```sql
+ALTER TABLE 子表名称
+ADD CONSTRAINT 外键约束名称
+FOREIGN KEY (子表字段) 
+REFERENCES 父表名称(父表字段)
+[ON DELETE 参照动作]
+[ON UPDATE 参照动作];
+```
+
+### 2. **语法组成部分详解**
+
+#### **📍 子表 (从表)**🍭
+
+包含外键字段的表
+
+```sql
+ALTER TABLE orders  -- orders是子表
+```
+
+#### **📍 外键约束名称**
+
+自定义的外键标识符
+
+```sql
+ADD CONSTRAINT fk_orders_user_id  -- 推荐命名：fk_子表_字段
+```
+
+#### **📍 外键字段**
+
+子表中引用父表的字段
+
+```sql
+FOREIGN KEY (user_id)  -- orders表中的user_id字段
+```
+
+#### **📍 父表 (主表)**
+
+被引用的主表
+
+```sql
+REFERENCES users(id)  -- 引用users表（父表）的id字段
+```
+
+### 3. **参照动作 (Referential Actions)**
+
+#### **ON DELETE 动作**
+
+| 动作          | 说明                                       | 示例                              |
+| ------------- | ------------------------------------------ | --------------------------------- |
+| `RESTRICT`    | **默认**，阻止删除父表记录                 | 有订单的用户不能被删除            |
+| `CASCADE`     | **级联**删除子表记录                       | 删除用户时，同时删除其所有订单    |
+| `SET NULL`    | 将子表外键设为NULL（要求外键允许取值NULL） | 删除用户时，订单的user_id设为NULL |
+| `NO ACTION`   | 同RESTRICT                                 |                                   |
+| `SET DEFAULT` | 设为默认值（MySQL不支持）                  |                                   |
+
+#### **ON UPDATE 动作**
+
+| 动作       | 说明               | 示例                                |
+| ---------- | ------------------ | ----------------------------------- |
+| `CASCADE`  | 级联更新子表外键   | 用户id改变时，订单的user_id同步更新 |
+| `SET NULL` | 将子表外键设为NULL |                                     |
+| `RESTRICT` | 阻止更新父表主键   |                                     |
+
+### 4. **实际示例**
+
+#### **示例1：简单的用户-订单关系**
+
+```sql
+-- 父表：用户表
+CREATE TABLE users (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(50)
+);
+
+-- 子表：订单表
+CREATE TABLE orders (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT,
+    amount DECIMAL(10,2),
+    -- 添加外键约束
+    CONSTRAINT fk_orders_user 
+    FOREIGN KEY (user_id) REFERENCES users(id)
+    ON DELETE RESTRICT  -- 阻止删除有订单的用户
+    ON UPDATE CASCADE   -- 用户id更新时，订单同步更新
+);
+```
+
+#### **示例2：部门-员工关系（级联删除）**
+
+```sql
+CREATE TABLE departments (
+    dept_id INT PRIMARY KEY,
+    dept_name VARCHAR(50)
+);
+
+CREATE TABLE employees (
+    emp_id INT PRIMARY KEY,
+    dept_id INT,
+    emp_name VARCHAR(50),
+    CONSTRAINT fk_emp_dept 
+    FOREIGN KEY (dept_id) REFERENCES departments(dept_id)
+    ON DELETE CASCADE   -- 删除部门时，员工自动删除
+    ON DELETE SET NULL  -- 或者：删除部门时，员工部门设为NULL
+);
+```
+
+### 5. **外键约束的要求和限制**
+
+#### **🔑 字段要求**
+
+```sql
+-- 父表字段必须是主键或唯一键
+CREATE TABLE parent (
+    id INT PRIMARY KEY,           -- ✅ 可以
+    code VARCHAR(20) UNIQUE       -- ✅ 也可以
+);
+
+-- 子表外键字段类型必须与父表完全一致
+CREATE TABLE child (
+    parent_id INT,                -- 必须与父表id类型一致
+    FOREIGN KEY (parent_id) REFERENCES parent(id)
+);
+```
+
+#### **🚫 存储引擎限制**
+
+```sql
+-- 只有InnoDB支持外键
+SHOW ENGINES;  -- 确认使用InnoDB
+
+-- 创建表时指定引擎
+CREATE TABLE example (
+    id INT PRIMARY KEY
+) ENGINE=InnoDB;
+```
+
+### 6. **外键管理操作**
+
+#### **查看外键**
+
+```sql
+-- 查看表的外键约束（就是查看建表语句）
+SHOW CREATE TABLE orders;
+
+-- 从信息模式查看
+SELECT 
+    CONSTRAINT_NAME,
+    TABLE_NAME,
+    COLUMN_NAME,
+    REFERENCED_TABLE_NAME,
+    REFERENCED_COLUMN_NAME
+FROM information_schema.KEY_COLUMN_USAGE 
+WHERE REFERENCED_TABLE_NAME IS NOT NULL;
+```
+
+#### **删除外键**
+
+```sql
+ALTER TABLE orders DROP FOREIGN KEY fk_orders_user;
+```
+
+#### **添加外键**
+
+```sql
+ALTER TABLE orders 
+ADD CONSTRAINT fk_orders_user 
+FOREIGN KEY (user_id) REFERENCES users(id)
+ON DELETE CASCADE;
+```
+
+### 7. **外键使用的最佳实践**
+
+1. **命名规范**：`fk_子表名_字段名`
+2. **谨慎使用CASCADE**：避免误删数据
+3. **索引优化**：外键字段自动创建索引
+4. **数据一致性**：确保引用完整性
+
+**外键的核心作用：维护数据库的引用完整性，防止"孤儿记录"的产生。**
+
+---
+
+## 11. 多表查询详细解释
+
+### 1. **多表查询的基本概念**
+
+#### 什么是多表查询？
+
+从多个表中检索相关数据，通过表之间的关联关系组合结果。
+
+#### 为什么需要多表查询？
+
+- 数据规范化：避免数据冗余
+- 关系建模：实体之间的关联
+- 信息整合：从多个来源获取完整信息
+
+### 2. **多表查询的语法基础**
+
+#### 基本语法结构
+
+```sql
+SELECT 列名1, 列名2, ...
+FROM 表1
+[连接类型] JOIN 表2 ON 连接条件
+[WHERE 过滤条件]
+[ORDER BY 排序字段];
+```
+
+### 3. **连接类型详解**
+
+#### 3.1 **内连接 (INNER JOIN)**
+
+**返回两个表中匹配的记录**
+
+```sql
+-- 语法
+SELECT columns
+FROM table1
+INNER JOIN table2 ON table1.column = table2.column;
+
+-- 示例：查询员工及其部门信息
+SELECT e.name, d.dept_name
+FROM employees e
+INNER JOIN departments d ON e.dept_id = d.dept_id;
+```
+
+**维恩图表示：**
+
+```
+表A ∩ 表B (交集)
+```
+
+#### 3.2 **左外连接 (LEFT JOIN)**
+
+**返回左表所有记录 + 右表匹配记录**
+
+```sql
+-- 语法
+SELECT columns
+FROM table1
+LEFT JOIN table2 ON table1.column = table2.column;
+
+-- 示例：查询所有员工，包括没有部门的员工
+SELECT e.name, d.dept_name
+FROM employees e
+LEFT JOIN departments d ON e.dept_id = d.dept_id;
+```
+
+**维恩图表示：**
+
+```
+表A ∪ (表A ∩ 表B)
+```
+
+#### 3.3 **右外连接 (RIGHT JOIN)**
+
+**返回右表所有记录 + 左表匹配记录**
+
+```sql
+-- 语法
+SELECT columns
+FROM table1
+RIGHT JOIN table2 ON table1.column = table2.column;
+
+-- 示例：查询所有部门，包括没有员工的部门
+SELECT e.name, d.dept_name
+FROM employees e
+RIGHT JOIN departments d ON e.dept_id = d.dept_id;
+```
+
+**维恩图表示：**
+
+```
+表B ∪ (表A ∩ 表B)
+```
+
+#### 3.4 **全外连接 (FULL OUTER JOIN)**
+
+**返回两个表的所有记录（MySQL不支持，但可以模拟）**
+
+```sql
+-- MySQL模拟全外连接
+SELECT e.name, d.dept_name
+FROM employees e
+LEFT JOIN departments d ON e.dept_id = d.dept_id
+UNION
+SELECT e.name, d.dept_name
+FROM employees e
+RIGHT JOIN departments d ON e.dept_id = d.dept_id;
+```
+
+**维恩图表示：**
+
+```
+表A ∪ 表B
+```
+
+#### 3.5 **交叉连接 (CROSS JOIN)**
+
+**返回两个表的笛卡尔积**
+
+```sql
+-- 语法
+SELECT columns
+FROM table1
+CROSS JOIN table2;
+
+-- 示例：生成所有可能的员工-部门组合
+SELECT e.name, d.dept_name
+FROM employees e
+CROSS JOIN departments d;
+```
+
+### 4. **多表查询的高级技巧**
+
+#### 4.1 **自连接 (Self Join)**
+
+```sql
+-- 查询员工及其经理的信息（假设manager_id引用emp_id）
+SELECT 
+    e1.name AS 员工姓名,
+    e2.name AS 经理姓名
+FROM employees e1
+LEFT JOIN employees e2 ON e1.manager_id = e2.emp_id;
+```
+
+#### 4.2 **多对多关系查询**
+
+```sql
+-- 学生选课系统（需要中间表）
+SELECT 
+    s.student_name,
+    c.course_name
+FROM students s
+INNER JOIN student_courses sc ON s.student_id = sc.student_id
+INNER JOIN courses c ON sc.course_id = c.course_id;
+```
+
+#### 4.3 **使用USING简化连接**
+
+```sql
+-- 当连接字段名称相同时可以使用USING
+SELECT e.name, d.dept_name
+FROM employees e
+INNER JOIN departments d USING(dept_id);  -- 代替 ON e.dept_id = d.dept_id
+```
+
+### 5. **性能优化建议**
+
+#### 5.1 **索引优化**
+
+```sql
+-- 为连接字段创建索引
+CREATE INDEX idx_employees_dept ON employees(dept_id);
+CREATE INDEX idx_projects_emp ON projects(emp_id);
+```
+
+#### 5.2 **查询优化技巧**
+
+```sql
+-- 1. 只选择需要的列
+SELECT e.name, d.dept_name  -- 而不是 SELECT *
+
+-- 2. 尽早过滤数据
+FROM employees e
+INNER JOIN departments d ON e.dept_id = d.dept_id
+WHERE e.salary > 5000  -- 在JOIN前先过滤
+
+-- 3. 使用EXPLAIN分析查询计划
+EXPLAIN SELECT e.name, d.dept_name FROM employees e JOIN departments d...
+```
+
+### 6. **常见错误和注意事项**
+
+#### 6.1 **笛卡尔积问题**
+
+```sql
+-- 错误：忘记连接条件，产生大量无意义数据
+SELECT e.name, d.dept_name
+FROM employees e, departments d;  -- 错误！
+
+-- 正确：明确连接条件
+SELECT e.name, d.dept_name
+FROM employees e
+INNER JOIN departments d ON e.dept_id = d.dept_id;
+```
+
+#### 6.2 **表别名使用**
+
+```sql
+-- 推荐使用表别名提高可读性
+SELECT emp.name, dept.dept_name
+FROM employees emp
+INNER JOIN departments dept ON emp.dept_id = dept.dept_id;
+```
+
+#### 6.3 **NULL值处理**
+
+```sql
+-- 左连接时注意NULL值
+SELECT 
+    e.name,
+    COALESCE(d.dept_name, '未分配部门') AS 部门名称
+FROM employees e
+LEFT JOIN departments d ON e.dept_id = d.dept_id;
+```
+
+### 7.  **综合实战练习**
+
+```sql
+-- 复杂查询：统计每个部门薪资最高的员工信息
+WITH DeptMaxSalary AS (
+    SELECT 
+        dept_id,
+        MAX(salary) as max_salary
+    FROM employees
+    GROUP BY dept_id
+)
+SELECT 
+    e.name AS 员工姓名,
+    e.salary AS 薪资,
+    d.dept_name AS 部门名称
+FROM employees e
+INNER JOIN DeptMaxSalary dms ON e.dept_id = dms.dept_id AND e.salary = dms.max_salary
+INNER JOIN departments d ON e.dept_id = d.dept_id
+ORDER BY e.salary DESC;
+```
+
+**多表查询的核心要点：理解表之间的关系，选择合适的连接类型，优化查询性能。**
+
+---
+
+## 12. 子查询的易错点详解
+
+### 1. **子查询返回多行错误**
+
+#### ❌ 常见错误：使用 = 比较多行子查询
+
+```sql
+-- 错误：子查询可能返回多个结果
+SELECT name FROM employees 
+WHERE salary = (SELECT MAX(salary) FROM employees GROUP BY dept_id);
+
+-- 正确：使用 IN 或 ANY/SOME
+SELECT name FROM employees 
+WHERE salary IN (SELECT MAX(salary) FROM employees GROUP BY dept_id);
+
+-- 或者使用 ANY
+SELECT name FROM employees 
+WHERE salary = ANY (SELECT MAX(salary) FROM employees GROUP BY dept_id);
+```
+
+### 2. **子查询性能问题**
+
+#### ❌ Nested Loops 导致的性能问题
+
+```sql
+-- 低效：对每行员工都执行一次子查询
+SELECT e1.name, e1.salary
+FROM employees e1
+WHERE e1.salary > (SELECT AVG(salary) FROM employees e2 WHERE e2.dept_id = e1.dept_id);
+
+-- 高效：使用窗口函数或JOIN重写
+SELECT name, salary
+FROM (
+    SELECT name, salary, AVG(salary) OVER (PARTITION BY dept_id) as avg_salary
+    FROM employees
+) t
+WHERE salary > avg_salary;
+```
+
+### 3. **NULL值处理不当**
+
+#### ❌ NULL值导致意外结果
+
+```sql
+-- 如果子查询返回NULL，整个条件可能失效
+SELECT name FROM employees 
+WHERE dept_id NOT IN (SELECT dept_id FROM departments WHERE status = 'inactive');
+
+-- 问题：如果子查询返回NULL，NOT IN 会返回空结果
+-- 解决：确保子查询不返回NULL
+SELECT name FROM employees 
+WHERE dept_id NOT IN (SELECT dept_id FROM departments 
+                      WHERE status = 'inactive' AND dept_id IS NOT NULL);
+```
+
+### 4. **关联子查询的循环引用**
+
+#### ❌ 错误的关联条件
+
+```sql
+-- 错误：可能导致无限循环或错误结果
+SELECT e1.name
+FROM employees e1
+WHERE EXISTS (
+    SELECT 1 FROM employees e2 
+    WHERE e2.manager_id = e1.emp_id 
+    AND e1.salary > e2.salary  -- 混乱的关联
+);
+
+-- 正确：明确父子查询关系
+SELECT e1.name
+FROM employees e1
+WHERE EXISTS (
+    SELECT 1 FROM employees e2 
+    WHERE e2.manager_id = e1.emp_id 
+    AND e2.salary > 10000  -- 只引用父查询的字段s
+);
+```
+
+### 5. **SELECT列表中的子查询返回多行**
+
+#### ❌ 在SELECT中使用可能返回多行的子查询
+
+```sql
+-- 错误：子查询返回了多行
+SELECT 
+    name,
+    (SELECT dept_name FROM departments WHERE dept_id = employees.dept_id) as dept_name
+FROM employees;
+
+-- 正确：确保子查询只返回一行
+SELECT 
+    name,
+    (SELECT dept_name FROM departments WHERE dept_id = employees.dept_id LIMIT 1) as dept_name
+FROM employees;
+
+-- 更好的做法：使用JOIN
+SELECT e.name, d.dept_name
+FROM employees e
+LEFT JOIN departments d ON e.dept_id = d.dept_id;
+```
+
+### 6. **子查询中的ORDER BY误解**
+
+#### ❌ 错误使用ORDER BY
+
+```sql
+-- 错误：子查询中的ORDER BY通常无效（除非有LIMIT）
+SELECT name FROM employees 
+WHERE salary > (SELECT salary FROM employees ORDER BY salary DESC LIMIT 1);
+
+-- 正确：明确使用LIMIT
+SELECT name FROM employees 
+WHERE salary > (SELECT salary FROM employees ORDER BY salary DESC LIMIT 1 OFFSET 0);
+```
+
+### 7. **数据一致性问题**
+
+#### ❌ 子查询读取到未提交的数据
+
+```sql
+-- 在事务中可能读到不一致的数据
+START TRANSACTION;
+
+UPDATE accounts SET balance = balance - 100 WHERE id = 1;
+
+-- 子查询可能读到更新前的数据
+SELECT balance FROM accounts 
+WHERE balance > (SELECT balance FROM accounts WHERE id = 1);
+
+COMMIT;
+
+-- 解决：使用事务隔离级别或避免在事务中混合读写
+```
+
+### 8. **EXISTS vs IN 的性能陷阱**
+
+#### ❌ 错误选择EXISTS和IN
+
+```sql
+-- 情况1：外表大，子查询结果集小 - 适合IN
+SELECT * FROM large_table 
+WHERE id IN (SELECT id FROM small_table WHERE condition);
+
+-- 情况2：外表小，子查询需要索引 - 适合EXISTS
+SELECT * FROM small_table s
+WHERE EXISTS (SELECT 1 FROM large_table l WHERE l.id = s.id AND l.condition);
+```
+
+### 9. **子查询中的聚合函数错误**
+
+#### ❌ 错误的聚合使用
+
+```sql
+-- 错误：在WHERE中直接使用聚合函数
+SELECT name FROM employees 
+WHERE salary > AVG(salary);  -- 语法错误！
+
+-- 正确：使用子查询
+SELECT name FROM employees 
+WHERE salary > (SELECT AVG(salary) FROM employees);
+
+-- 错误：分组后的子查询
+SELECT dept_id, name, salary
+FROM employees e1
+WHERE salary > (SELECT AVG(salary) FROM employees e2 WHERE e2.dept_id = e1.dept_id)
+GROUP BY dept_id, name, salary;  -- 可能不是想要的结果
+```
+
+### 10. **CTE vs 子查询的选择**
+
+#### ❌ 过度使用嵌套子查询
+
+```sql
+-- 难以阅读的嵌套子查询
+SELECT * FROM (
+    SELECT dept_id, AVG(salary) as avg_sal
+    FROM (
+        SELECT * FROM employees WHERE status = 'active'
+    ) active_emps
+    GROUP BY dept_id
+) dept_avg WHERE avg_sal > 5000;
+
+-- 使用CTE提高可读性
+WITH active_emps AS (
+    SELECT * FROM employees WHERE status = 'active'
+),
+dept_avg AS (
+    SELECT dept_id, AVG(salary) as avg_sal
+    FROM active_emps
+    GROUP BY dept_id
+)
+SELECT * FROM dept_avg WHERE avg_sal > 5000;
+```
+
+### 11. **实际案例：常见的子查询错误**
+
+#### 案例1：找部门最高薪员工
+
+```sql
+-- ❌ 错误写法
+SELECT name, salary, dept_id
+FROM employees
+WHERE salary = (SELECT MAX(salary) FROM employees GROUP BY dept_id);
+
+-- ✅ 正确写法
+SELECT e1.name, e1.salary, e1.dept_id
+FROM employees e1
+INNER JOIN (
+    SELECT dept_id, MAX(salary) as max_salary
+    FROM employees
+    GROUP BY dept_id
+) e2 ON e1.dept_id = e2.dept_id AND e1.salary = e2.max_salary;
+```
+
+#### 案例2：存在性检查
+
+```sql
+-- ❌ 低效的NOT EXISTS
+SELECT name FROM employees e1
+WHERE NOT EXISTS (
+    SELECT 1 FROM employees e2 
+    WHERE e2.manager_id = e1.emp_id
+);
+
+-- ✅ 使用LEFT JOIN + IS NULL（通常更高效）
+SELECT e1.name
+FROM employees e1
+LEFT JOIN employees e2 ON e2.manager_id = e1.emp_id
+WHERE e2.emp_id IS NULL;
+```
+
+### 12. **调试和优化技巧**
+
+#### 检查子查询执行计划
+
+```sql
+-- 使用EXPLAIN分析
+EXPLAIN 
+SELECT name FROM employees 
+WHERE dept_id IN (SELECT dept_id FROM departments WHERE status = 'active');
+
+-- 单独测试子查询
+SELECT dept_id FROM departments WHERE status = 'active';
+```
+
+#### 性能优化建议
+
+1. **使用JOIN重写关联子查询**
+2. **为子查询中的连接字段创建索引**
+3. **避免在子查询中使用SELECT ***
+4. **考虑使用临时表或CTE替代复杂子查询**
+
+### 💡 **总结：子查询最佳实践**
+
+1. **明确返回行数**：确保子查询返回预期的行数
+2. **注意NULL值**：处理子查询可能返回的NULL
+3. **优先使用JOIN**：能用JOIN解决的问题不用子查询
+4. **测试性能**：使用EXPLAIN分析查询计划
+5. **保持简洁**：避免过度嵌套，使用CTE提高可读性
+
+没看懂~~~2025-11-01
+
+---
+
+## 13. 窗口函数详解
+
+* 例子对比
+
+~~~SQL
+-- GROUP BY：每个部门一行
+SELECT dept_id, AVG(salary)
+FROM employees
+GROUP BY dept_id;
+
+-- 窗口函数：每个人一行，但带部门平均
+SELECT name, dept_id, salary,
+       AVG(salary) OVER (PARTITION BY dept_id) AS avg_salary
+FROM employees;
+
+~~~
+
+### 1. **什么是窗口函数？**
+
+窗口函数（Window Function）是一种**对一组相关行进行计算**的特殊函数，它不会像普通聚合函数那样将多行合并为一行，而是**为每一行都返回一个计算结果**。
+
+#### 核心特点：
+
+- ✅ **保持原有行数**：不合并行，每行都有计算结果
+- ✅ **分组计算**：可以按指定字段分组计算
+- ✅ **排序支持**：可以在窗口内排序
+- ✅ **灵活窗口**：可以定义计算范围（当前行前后N行）
+
+### 2. **基本语法结构**
+
+```SQL
+聚合函数([参数]) OVER (
+    [PARTITION BY 分组字段]
+    [ORDER BY 排序字段]
+    [ROWS/RANGE 窗口范围]
+)
+```
+
+### 3. **您的查询详细解释**
+
+```SQL
+SELECT name, dept_id, salary,
+       AVG(salary) OVER (PARTITION BY dept_id) AS avg_salary
+FROM employees;
+```
+
+#### 执行过程：
+
+1. **按部门分组**：`PARTITION BY dept_id`
+2. **在每个部门内计算平均薪资**：`AVG(salary)`
+3. **为每个员工显示其部门的平均薪资**
+
+#### 示例结果：
+
+| name | dept_id | salary | avg_salary |
+| ---- | ------- | ------ | ---------- |
+| 张三 | 1       | 5000   | **5500**   |
+| 李四 | 1       | 6000   | **5500**   |
+| 王五 | 2       | 7000   | **7500**   |
+| 赵六 | 2       | 8000   | **7500**   |
+
+**注意**：同一部门的员工显示相同的`avg_salary`值！
+
+### 4. **窗口函数 vs 聚合函数**
+
+#### 传统聚合函数（行数减少）
+
+```SQL
+-- 结果：每个部门一行
+SELECT dept_id, AVG(salary) as avg_salary
+FROM employees
+GROUP BY dept_id;
+
+-- 结果：
+-- dept_id | avg_salary
+-- 1       | 5500
+-- 2       | 7500
+```
+
+#### 窗口函数（行数不变）
+
+```SQL
+-- 结果：每个员工一行，包含部门平均薪资
+SELECT name, dept_id, salary, AVG(salary) OVER (PARTITION BY dept_id) as avg_salary
+FROM employees;
+
+-- 结果：
+-- name | dept_id | salary | avg_salary
+-- 张三 | 1       | 5000   | 5500
+-- 李四 | 1       | 6000   | 5500
+-- 王五 | 2       | 7000   | 7500
+-- 赵六 | 2       | 8000   | 7500
+```
+
+### 5. **常用窗口函数分类**
+
+#### 5.1 **聚合窗口函数**
+
+```SQL
+-- 基本聚合
+AVG(salary) OVER (PARTITION BY dept_id)
+SUM(salary) OVER (PARTITION BY dept_id)
+COUNT(*) OVER (PARTITION BY dept_id)
+MAX(salary) OVER (PARTITION BY dept_id)
+MIN(salary) OVER (PARTITION BY dept_id)
+```
+
+#### 5.2 **排名窗口函数**
+
+```SQL
+-- 部门内薪资排名
+SELECT name, salary,
+       ROW_NUMBER() OVER (PARTITION BY dept_id ORDER BY salary DESC) as rank1, -- 连续排名(1,2,3)
+       RANK() OVER (PARTITION BY dept_id ORDER BY salary DESC) as rank2,       -- 并列排名(1,1,3)
+       DENSE_RANK() OVER (PARTITION BY dept_id ORDER BY salary DESC) as rank3  -- 密集排名(1,1,2)
+FROM employees;
+```
+
+#### 5.3 **位移窗口函数**
+
+```SQL
+-- 查看前后行的数据
+SELECT name, salary,
+       LAG(salary) OVER (ORDER BY salary) as prev_salary,    -- 上一行
+       LEAD(salary) OVER (ORDER BY salary) as next_salary,   -- 下一行
+       FIRST_VALUE(salary) OVER (PARTITION BY dept_id) as first_in_dept, -- 部门第一个
+       LAST_VALUE(salary) OVER (PARTITION BY dept_id) as last_in_dept    -- 部门最后一个
+FROM employees;
+```
+
+### 6. **窗口范围控制**
+
+#### 6.1 **ROWS vs RANGE**
+
+```SQL
+-- 计算移动平均（最近3行）
+SELECT date, sales,
+       AVG(sales) OVER (ORDER BY date ROWS BETWEEN 2 PRECEDING AND CURRENT ROW) as moving_avg
+FROM sales_data;
+
+-- 计算累计汇总
+SELECT date, sales,
+       SUM(sales) OVER (ORDER BY date ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) as cumulative_sum
+FROM sales_data;
+```
+
+#### 6.2 **常用窗口范围**
+
+```SQL
+ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW    -- 从开始到当前行
+ROWS BETWEEN 1 PRECEDING AND 1 FOLLOWING            -- 前后各一行
+ROWS BETWEEN CURRENT ROW AND UNBOUNDED FOLLOWING    -- 从当前行到最后
+```
+
+### 7. **实际应用场景**
+
+#### 场景1：员工薪资分析
+
+```SQL
+-- 查看员工薪资在部门内的位置
+SELECT name, dept_id, salary,
+       AVG(salary) OVER (PARTITION BY dept_id) as dept_avg,
+       salary - AVG(salary) OVER (PARTITION BY dept_id) as diff_from_avg,
+       RANK() OVER (PARTITION BY dept_id ORDER BY salary DESC) as dept_rank
+FROM employees;
+```
+
+#### 场景2：销售趋势分析
+
+```SQL
+-- 计算月度销售增长
+SELECT month, sales,
+       LAG(sales) OVER (ORDER BY month) as prev_month_sales,
+       sales - LAG(sales) OVER (ORDER BY month) as month_growth,
+       AVG(sales) OVER (ORDER BY month ROWS BETWEEN 2 PRECEDING AND CURRENT ROW) as moving_avg_3m
+FROM monthly_sales;
+```
+
+#### 场景3：市场份额计算
+
+```SQL
+-- 计算每个产品在品类中的份额
+SELECT product_id, category, sales,
+       sales / SUM(sales) OVER (PARTITION BY category) as market_share,
+       RANK() OVER (PARTITION BY category ORDER BY sales DESC) as category_rank
+FROM products;
+```
+
+### 8. **高级窗口函数技巧**
+
+#### 8.1 **多个窗口定义**
+
+```SQL
+SELECT name, dept_id, salary,
+       AVG(salary) OVER (PARTITION BY dept_id) as dept_avg,           -- 部门平均
+       AVG(salary) OVER (PARTITION BY dept_id, title) as title_avg,   -- 部门职位平均
+       AVG(salary) OVER () as company_avg                             -- 公司平均
+FROM employees;
+```
+
+#### 8.2 **命名窗口（Window Aliasing）**
+
+```SQL
+-- MySQL 8.0+ 支持
+SELECT name, salary,
+       AVG(salary) OVER w as avg_salary,
+       MAX(salary) OVER w as max_salary
+FROM employees
+WINDOW w AS (PARTITION BY dept_id ORDER BY hire_date);
+```
+
+### 9. **性能优化建议**
+
+#### 9.1 **索引策略**
+
+```SQL
+-- 为窗口函数的PARTITION BY和ORDER BY字段创建索引
+CREATE INDEX idx_employees_dept_hire ON employees(dept_id, hire_date);
+CREATE INDEX idx_employees_dept_salary ON employees(dept_id, salary);
+```
+
+#### 9.2 **避免全表扫描**
+
+```SQL
+-- 不好的写法：窗口函数应用在大量数据上
+SELECT *,
+       AVG(salary) OVER (PARTITION BY dept_id)
+FROM employees
+WHERE salary > 100000;  -- 过滤在窗口函数之后
+
+-- 好的写法：先过滤再应用窗口函数
+SELECT *,
+       AVG(salary) OVER (PARTITION BY dept_id)
+FROM (SELECT * FROM employees WHERE salary > 100000) filtered_emps;
+```
+
+### 10. **常见错误**
+
+#### 错误1：忘记PARTITION BY
+
+```SQL
+-- 错误：计算整个公司的平均，而不是部门平均
+SELECT name, dept_id, salary,
+       AVG(salary) OVER () as avg_salary  -- 缺少PARTITION BY dept_id
+FROM employees;
+```
+
+#### 错误2：窗口范围错误
+
+```SQL
+-- 可能不是想要的结果
+SELECT name, salary,
+       SUM(salary) OVER (ORDER BY salary) as running_total  -- 默认窗口范围可能有问题
+FROM employees;
+
+-- 明确指定窗口范围
+SELECT name, salary,
+       SUM(salary) OVER (ORDER BY salary ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) as running_total
+FROM employees;
+```
+
+## 🔍 窗口函数与GROUP By**核心区别：数据处理阶段不同**
+
+#### **GROUP BY 的数据处理流程**
+
+```sql
+SELECT dept_id, AVG(salary)
+FROM employees
+GROUP BY dept_id;
+```
+
+**执行步骤：**
+
+1. **读取所有数据**：从employees表读取所有行
+2. **按dept_id分组**：将数据分成多个组（每个部门一个组）
+3. **聚合计算**：对每个组计算AVG(salary)
+4. **输出结果**：**每个组只输出一行**
+
+```sql
+原始数据：
+name    | dept_id | salary
+张三    | 1       | 5000
+李四    | 1       | 6000  
+王五    | 2       | 7000
+赵六    | 2       | 8000
+
+GROUP BY处理后：
+dept_id | AVG(salary)
+1       | 5500
+2       | 7500
+```
+
+#### **窗口函数的数据处理流程**
+
+```sql
+SELECT name, dept_id, salary,
+       AVG(salary) OVER (PARTITION BY dept_id) AS avg_salary
+FROM employees;
+```
+
+**执行步骤：**
+
+1. **读取所有数据**：从employees表读取所有行
+2. **按dept_id逻辑分组**：只是逻辑上分组，**不合并行**
+3. **为每行计算窗口函数**：在每个逻辑组内计算AVG(salary)
+4. **输出结果**：**保持原始行数不变**
+
+```sql
+原始数据 + 窗口计算结果：
+name    | dept_id | salary | avg_salary
+张三    | 1       | 5000   | 5500
+李四    | 1       | 6000   | 5500
+王五    | 2       | 7000   | 7500  
+赵六    | 2       | 8000   | 7500
+```
+
+## 🎯 **关键理解：SELECT语句的执行顺序**
+
+#### **GROUP BY的执行顺序**
+
+```sql
+-- 实际执行顺序：
+1. FROM employees
+2. WHERE [条件]  -- 如果有WHERE
+3. GROUP BY dept_id  -- ⭐ 这里行数减少了！
+4. SELECT dept_id, AVG(salary)  -- 只能选择分组字段和聚合结果
+5. HAVING [条件]  -- 如果有HAVING
+```
+
+**GROUP BY在SELECT之前执行**，所以当执行到SELECT时，数据已经被合并了。
+
+#### **窗口函数的执行顺序**
+
+```sql
+-- 实际执行顺序：
+1. FROM employees
+2. WHERE [条件]  -- 如果有WHERE  
+3. SELECT name, dept_id, salary  -- ⭐ 先选择所有字段
+4. 窗口函数计算 AVG() OVER()  -- ⭐ 然后为每行添加窗口计算结果
+```
+
+**窗口函数在SELECT之后执行**，所以能访问到所有原始行数据。
+
+### 💡 **总结**
+
+**窗口函数的优势：**
+
+- 📊 **保持明细数据**：不丢失原始行信息
+- 🔄 **灵活计算**：支持分组、排序、范围控制
+- ⚡ **性能优秀**：比自连接或子查询更高效
+- 🎯 **功能强大**：排名、位移、累计计算等
+
+**您的查询正是一个经典的窗口函数应用：为每个员工显示其部门的平均薪资，同时保留每个员工的详细信息！**
+
+---
+
+## 14. 对窗口函数的辩证✅️
+
+### 举例说明
+
+~~~sql
+--  查询 "研发部" 员工的平均工资
+select e.name, avg(e.salary)
+from emp e join dept d on e.dept_id = d.id
+where d.name = '研发部';
+~~~
+
+* 这是错的，因为`avg(e.salary)`是聚合函数，会把所有相同的部门的工资算出平均值然后聚合成一行结果，但e.name是非聚合列，这里表示每个职工的名字，一个部门里有很多职工，所以这里一行对多行产生了`only_full_group_by`的错误
+* 也就是说当select句中出现聚合函数，说明多行聚合成一行，所有非聚合列（就是多列）必须出现在GROUP BY子句中--->通过分组成为一行
+
+~~~sql
+-- ---> 没有查询 "研发部" 员工的平均工资的作用，但是代码没有bug
+select e.name
+from emp e join dept d on e.dept_id = d.id
+where d.name = '研发部';
+~~~
+
+* 和上面的代码比较，去掉`AVG(e.salary)`后代码就能正常跑起来（~没有bug，但是意义不明~），这是因为现在不会出现一对多的情况
+
+~~~sql
+-- 如果想知道每个员工的薪资和部门平均薪资的对比
+SELECT e.name, e.salary, AVG(e.salary) OVER() as avg_salary
+FROM emp e JOIN dept d ON e.dept_id = d.id
+WHERE d.name = '研发部';
+
+-- 或者使用窗口函数按部门分区
+SELECT e.name, e.salary, 
+       AVG(e.salary) OVER(PARTITION BY d.id) as dept_avg_salary
+FROM emp e JOIN dept d ON e.dept_id = d.id
+WHERE d.name = '研发部';
+~~~
+
+* 这两段写法不会出现`only_full_group_by`错误的原因是：**它们使用了窗口函数而不是聚合函数**。
+* 具体来说就是，窗口函数是在聚合函数（比如avg）求每个部门平均薪资的情况下，把这个结果分给每一个这个部门的人的那一行
+* `AVG(e.salary) OVER()`是窗口函数， 它**不减少行数**，而是在每行后面添加计算结果
+*  `AVG(e.salary) OVER()` 和`AVG(e.salary) OVER(PARTITION BY d.id)`的区别
+  * 主要区别就是计算范围一个是整个查询结果集，一个是按照部门分局计算；由于where过滤了只有研发部，所以没区别
+
+### 为什么窗口函数不会触发only_full_group_by
+
+1. **不改变结果集行数**：窗口函数只是为每行添加计算列，不进行行聚合
+2. **保持列的一致性**：所有原始列都保持原样，没有聚合与非聚合列的冲突
+3. **符合SQL标准**：窗口函数是现代SQL的标准特性，设计时就考虑了这种使用场景
+
+### 总结 窗口 vs 聚合 函数
+
+窗口函数`AVG() OVER()`和传统聚合函数`AVG()`的关键区别：
+
+- **传统AVG()**：多行输入 → 单行输出（需要GROUP BY）
+- **窗口AVG() OVER()**：多行输入 → 多行输出（每行添加计算结果）
+
+这就是为什么窗口函数写法不会触发`only_full_group_by`错误的原因。
+
+---
+
+## 15. 外连接遇到空值的情况
+
+​	很好的问题！外连接的不同类型会对NULL值处理产生不同的结果。我用具体例子来说明：
+
+* 一句话，**保留主连接的所有情况，对不匹配的情况的另一张表的所有内容显示NULL**
+
+### 数据准备
+
+假设有两个表：
+
+**部门表(dept)**：
+
+| id   | name   |
+| ---- | ------ |
+| 1    | 研发部 |
+| 2    | 销售部 |
+| 3    | 人事部 |
+
+**员工表(emp)**：
+
+| id   | name | dept_id |
+| ---- | ---- | ------- |
+| 101  | 张三 | 1       |
+| 102  | 李四 | 1       |
+| 103  | 王五 | 2       |
+| 104  | 赵六 | NULL    |
+
+### 1. LEFT JOIN（左外连接）
+
+```sql
+SELECT d.name as dept_name, e.name as emp_name
+FROM dept d LEFT JOIN emp e ON d.id = e.dept_id
+ORDER BY d.id, e.id;
+```
+
+**结果**：
+
+| dept_name | emp_name |
+| --------- | -------- |
+| 研发部    | 张三     |
+| 研发部    | 李四     |
+| 销售部    | 王五     |
+| 人事部    | NULL     |
+|           |          |
+
+**特点**：保留左表所有记录，右表不匹配的显示NULL
+
+### 2. RIGHT JOIN（右外连接）
+
+```sql
+SELECT d.name as dept_name, e.name as emp_name  
+FROM dept d RIGHT JOIN emp e ON d.id = e.dept_id
+ORDER BY d.id, e.id;
+```
+
+**结果**：
+
+| dept_name | emp_name |
+| --------- | -------- |
+| 研发部    | 张三     |
+| 研发部    | 李四     |
+| 销售部    | 王五     |
+| NULL      | 赵六     |
+|           |          |
+
+**特点**：保留右表所有记录，左表不匹配的显示NULL
+
+### 3. FULL OUTER JOIN（全外连接）
+
+```sql
+-- MySQL不支持FULL JOIN，用UNION模拟
+SELECT d.name as dept_name, e.name as emp_name
+FROM dept d LEFT JOIN emp e ON d.id = e.dept_id
+UNION
+SELECT d.name as dept_name, e.name as emp_name  
+FROM dept d RIGHT JOIN emp e ON d.id = e.dept_id;
+```
+
+**结果**：
+
+| dept_name | emp_name |
+| --------- | -------- |
+| 研发部    | 张三     |
+| 研发部    | 李四     |
+| 销售部    | 王五     |
+| 人事部    | NULL     |
+| NULL      | 赵六     |
+
+**特点**：保留两个表的所有记录，不匹配的都显示NULL
+
+### 4. INNER JOIN（内连接）
+
+```sql
+SELECT d.name as dept_name, e.name as emp_name
+FROM dept d INNER JOIN emp e ON d.id = e.dept_id
+ORDER BY d.id, e.id;
+```
+
+**结果**：
+
+| dept_name | emp_name |
+| --------- | -------- |
+| 研发部    | 张三     |
+| 研发部    | 李四     |
+| 销售部    | 王五     |
+|           |          |
+
+**特点**：只返回两个表都能匹配的记录，排除所有NULL情况
+
+### 5. 总结对比
+
+| 连接类型       | 左表NULL处理     | 右表NULL处理     | 结果行数示例       |
+| -------------- | ---------------- | ---------------- | ------------------ |
+| **LEFT JOIN**  | 保留所有记录     | 不匹配的显示NULL | 4行（3部门+1NULL） |
+| **RIGHT JOIN** | 不匹配的显示NULL | 保留所有记录     | 4行（3员工+1NULL） |
+| **FULL JOIN**  | 保留所有记录     | 保留所有记录     | 5行（所有组合）    |
+| **INNER JOIN** | 排除不匹配的     | 排除不匹配的     | 3行（仅匹配的）    |
+
+### 实际应用场景
+
+#### 场景1：查看所有部门及员工（包括空部门）
+
+```sql
+-- 使用LEFT JOIN
+SELECT d.name, COUNT(e.id) as emp_count
+FROM dept d LEFT JOIN emp e ON d.id = e.dept_id
+GROUP BY d.id, d.name;
+```
+
+#### 场景2：查看所有员工及部门（包括未分配部门的员工）
+
+```sql
+-- 使用RIGHT JOIN  
+SELECT e.name, d.name as dept_name
+FROM dept d RIGHT JOIN emp e ON d.id = e.dept_id;
+```
+
+#### 场景3：完整的人员-部门关系视图
+
+```sql
+-- 使用FULL OUTER JOIN（模拟）
+SELECT d.name as dept_name, e.name as emp_name
+FROM dept d LEFT JOIN emp e ON d.id = e.dept_id
+UNION
+SELECT d.name as dept_name, e.name as emp_name
+FROM dept d RIGHT JOIN emp e ON d.id = e.dept_id;
+```
+
+**关键记忆点**：
+
+- **LEFT JOIN**：要左表的全部数据
+- **RIGHT JOIN**：要右表的全部数据
+- **FULL JOIN**：两个表的全部数据都要
+- **INNER JOIN**：只要两个表都有的数据
+
+---
+
+## 16. where和外连接的区别
+
+很好的对比！这两个SQL语句展示了**WHERE连接**和**外连接**的重要区别。让我详细解释：
+
+### 两个SQL语句的对比分析
+
+#### 语句1：WHERE连接（隐式内连接）
+
+```sql
+SELECT s.name, s.no, GROUP_CONCAT(c.name SEPARATOR ',') as '课程'
+FROM student s, course c, student_course sc
+WHERE s.id = sc.student_id AND sc.course_id = c.id
+GROUP BY s.name, s.no, '课程';  -- 注意：这里GROUP BY '课程'是错误的
+```
+
+#### 语句2：显式左外连接
+
+```sql
+SELECT 
+    s.name as 学生姓名,
+    s.no as 学号,
+    GROUP_CONCAT(c.name SEPARATOR ', ') as 所选课程
+FROM student s 
+LEFT JOIN student_course sc ON s.id = sc.student_id
+LEFT JOIN course c ON sc.course_id = c.id
+GROUP BY s.id, s.name, s.no
+ORDER BY s.no;
+```
+
+### 关键区别
+
+#### 1. **连接类型的本质区别**
+
+**WHERE连接（语句1）**：
+
+- 实际上是**隐式的INNER JOIN**
+- 只会返回**三个表都能匹配**的记录
+- **没有选课的学生不会显示**
+
+**LEFT JOIN（语句2）**：
+
+- 显式的**左外连接**
+- 返回**左表（student）的所有记录**
+- 即使学生没有选课也会显示
+
+#### 2. **结果差异示例**
+
+假设数据：
+
+- 学生：张三（有选课）、李四（有选课）、王五（没有选课）
+- 课程：数学、英语
+- 选课关系：张三选了数学和英语，李四选了数学
+
+**语句1（WHERE连接）结果**：
+
+| name | no   | 课程             |
+| ---- | ---- | ---------------- |
+| 张三 | 001  | 数学,英语        |
+| 李四 | 002  | 数学             |
+|      |      | ← 王五不会出现！ |
+
+**语句2（LEFT JOIN）结果**：
+
+| 学生姓名 | 学号 | 所选课程  |
+| -------- | ---- | --------- |
+| 张三     | 001  | 数学,英语 |
+| 李四     | 002  | 数学      |
+| 王五     | 003  | NULL      |
+
+#### 3. **语句1中的GROUP BY错误**
+
+```sql
+GROUP BY s.name, s.no, '课程'  -- 错误！
+```
+
+- `'课程'`是别名，不应该出现在GROUP BY中
+- 正确的应该是：`GROUP BY s.id, s.name, s.no`
+
+### WHERE在两种连接中的不同作用
+
+#### 在隐式连接中（语句1）
+
+```sql
+WHERE s.id = sc.student_id AND sc.course_id = c.id
+```
+
+- **WHERE子句同时承担连接条件和过滤条件**
+- 这些条件必须同时满足，否则记录被排除
+
+#### 在显式外连接中
+
+```sql
+FROM student s 
+LEFT JOIN student_course sc ON s.id = sc.student_id  -- 连接条件在ON中
+LEFT JOIN course c ON sc.course_id = c.id
+WHERE ...  -- 额外的过滤条件可以放在这里
+```
+
+### 实际应用场景
+
+#### 场景1：只想看有选课的学生（使用WHERE连接）
+
+```sql
+-- 只关心有选课记录的学生
+SELECT s.name, s.no, GROUP_CONCAT(c.name) as 课程
+FROM student s, course c, student_course sc
+WHERE s.id = sc.student_id AND sc.course_id = c.id
+GROUP BY s.id, s.name, s.no;
+```
+
+#### 场景2：查看所有学生的选课情况（使用LEFT JOIN）
+
+```sql
+-- 需要看到所有学生，包括没选课的
+SELECT s.name, s.no, 
+       COALESCE(GROUP_CONCAT(c.name), '未选课') as 选课情况
+FROM student s 
+LEFT JOIN student_course sc ON s.id = sc.student_id
+LEFT JOIN course c ON sc.course_id = c.id
+GROUP BY s.id, s.name, s.no;
+```
+
+#### 场景3：结合WHERE过滤（外连接+过滤）
+
+```sql
+-- 查看所有学生，但只显示选了"数学"课程的情况
+SELECT s.name, s.no,
+       CASE WHEN c.name = '数学' THEN '已选数学' ELSE '未选数学' END as 数学选课
+FROM student s 
+LEFT JOIN student_course sc ON s.id = sc.student_id AND sc.course_id = (
+    SELECT id FROM course WHERE name = '数学'
+)
+LEFT JOIN course c ON sc.course_id = c.id
+GROUP BY s.id, s.name, s.no;
+```
+
+### 总结 where语句 vs 外连接
+
+| 特性             | WHERE连接（隐式内连接） | 左外连接                     |
+| ---------------- | ----------------------- | ---------------------------- |
+| **连接条件位置** | WHERE子句中             | ON子句中                     |
+| **返回结果**     | 只返回匹配的记录        | 返回左表所有记录             |
+| **NULL处理**     | 排除不匹配的记录        | 保留不匹配的记录（显示NULL） |
+| **适用场景**     | 只需要关联数据时        | 需要完整数据视图时           |
+
+**选择建议**：
+
+- 如果确定所有学生都有选课 → 使用WHERE连接
+- 如果需要看到所有学生（包括没选课的）→ 使用LEFT JOIN
+- 现代SQL推荐使用显式的JOIN语法，更清晰易懂
+
+---
+
+
+
+
 
 
 
