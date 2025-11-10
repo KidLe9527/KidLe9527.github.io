@@ -47,10 +47,6 @@ select sell_date, count(distinct product) as num_sold,
 
 
 
-
-
-
-
 ---
 
 ## 2. 针对MySQL刷题过程中遇到的一些问题及解决办法

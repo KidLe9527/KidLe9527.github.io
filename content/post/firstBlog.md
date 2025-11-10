@@ -1,6 +1,5 @@
 ---
 title: '真正意义上的第一篇博客'
-
 date: 2025-08-09T11:32:00-08:00
 lastmod: 2025-08-09T19:13:00-08:00
 categories: ['Meaningful']
