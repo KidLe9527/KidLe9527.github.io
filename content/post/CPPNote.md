@@ -416,3 +416,116 @@ T calculate(T a, T b) {
 5. **编译时类型检查**：
    1. 当尝试用不支持这些操作的类型调用时，编译会在模板实例化时直接报错
    2. 错误信息会明确指出类型不满足 `Arithmetic`概念
+
+---
+
+## cpp中与upper、lower相关的函数
+
+在 C++ 标准库中，与 `upper` 和 `lower` 相关的函数主要集中在**算法库（`<algorithm>`）** 和**范围库（C++20 起的 `<ranges>`）** 中，用于在有序序列中进行二分查找，核心是 `lower_bound` 和 `upper_bound` 系列函数。此外，字符串处理中也有少量相关函数（如大小写转换）。
+
+### 一、二分查找相关函数（最核心）
+
+这些函数用于在**已排序的序列**中高效查找元素，时间复杂度为 `O(log n)`，要求序列按升序排列（默认用 `<` 比较）。
+
+#### 1. `std::lower_bound`（传统算法）
+
+- **功能**：查找第一个**大于等于（`>=`）** 目标值 `x` 的元素。
+
+- **参数**：`first, last`（迭代器范围）、`value`（目标值）。
+
+- **返回值**：指向找到的元素的迭代器；若所有元素都小于 `x`，返回 `last`。
+
+  ```cpp
+  #include <algorithm>
+  #include <vector>
+  std::vector<int> arr = {1, 3, 5, 7};
+  auto it = std::lower_bound(arr.begin(), arr.end(), 5);  // 指向 5
+  ```
+
+#### 2. `std::upper_bound`（传统算法）
+
+- **功能**：查找第一个**严格大于（`>`）** 目标值 `x` 的元素。
+
+- **参数**：同 `lower_bound`。
+
+- **返回值**：指向找到的元素的迭代器；若所有元素都小于等于 `x`，返回 `last`。
+
+  ```cpp
+  auto it = std::upper_bound(arr.begin(), arr.end(), 5);  // 指向 7
+  ```
+
+#### 3. `std::ranges::lower_bound`（C++20 范围版）
+
+- **功能**：同 `std::lower_bound`，但直接接受范围（如容器）作为参数，无需显式传递 `begin()` 和 `end()`。
+
+- **示例**：
+
+  ```cpp
+  #include <ranges>
+  auto it = std::ranges::lower_bound(arr, 5);  // 指向 5
+  ```
+
+#### 4. `std::ranges::upper_bound`（C++20 范围版）
+
+- **功能**：同 `std::upper_bound`，范围版简化调用。
+
+- **示例**：
+
+  ```cpp
+  auto it = std::ranges::upper_bound(arr, 5);  // 指向 7
+  ```
+
+#### 5. `std::equal_range`（传统算法）
+
+- **功能**：同时返回 `lower_bound` 和 `upper_bound` 的结果，即返回一个迭代器对 `[first, last)`，表示序列中**所有等于 `x` 的元素范围**（因为序列有序，相等元素会连续）。
+
+- **示例**：
+
+  ```cpp
+  auto [left, right] = std::equal_range(arr.begin(), arr.end(), 5);
+  // left 是 lower_bound 结果（>=5），right 是 upper_bound 结果（>5）
+  ```
+
+#### 6. `std::ranges::equal_range`（C++20 范围版）
+
+- **功能**：同 `std::equal_range`，范围版简化调用。
+
+- **示例**：
+
+  ```cpp
+  auto [left, right] = std::ranges::equal_range(arr, 5);
+  ```
+
+### 二、大小写转换相关函数（字符处理）
+
+在 `<cctype>` 库中，用于单个字符的大小写转换，名称包含 `lower` 和 `upper`：
+
+#### 1. `tolower(int c)`
+
+- **功能**：将大写字母转换为小写字母（非字母字符不变）。
+- **示例**：`tolower('A')` 返回 `'a'`，`tolower('3')` 返回 `'3'`。
+
+#### 2. `toupper(int c)`
+
+- **功能**：将小写字母转换为大写字母（非字母字符不变）。
+- **示例**：`toupper('b')` 返回 `'B'`，`toupper('!')` 返回 `'!'`。
+
+### 三、其他相关函数（字符串 / 容器）
+
+- **`std::string` 扩展**：部分实现（如微软 STL）可能提供非标准的 `_MakeLower` 或 `_MakeUpper`，但不建议使用，推荐用 `tolower`/`toupper` 遍历字符串实现。
+
+- **自定义比较**：上述二分查找函数均可通过传入自定义比较器（如 `greater<>`）处理降序序列，例如：
+
+  ```cpp
+  // 在降序序列中查找第一个小于等于 x 的元素（类似 lower_bound 的反向逻辑）
+  auto it = std::lower_bound(arr.begin(), arr.end(), 5, std::greater<int>());
+  ```
+
+### 总结💦
+
+| 类别     | 函数（传统版）        | 函数（范围版，C++20）      | 核心功能                                         |
+| -------- | --------------------- | -------------------------- | ------------------------------------------------ |
+| 二分查找 | `std::lower_bound`    | `std::ranges::lower_bound` | 找第一个 `>= x` 的元素                           |
+| 二分查找 | `std::upper_bound`    | `std::ranges::upper_bound` | 找第一个 `> x` 的元素                            |
+| 二分查找 | `std::equal_range`    | `std::ranges::equal_range` | 找所有等于 `x` 的元素范围（返回 [lower, upper)） |
+| 字符转换 | `tolower` / `toupper` | 无（直接使用）             | 单个字符大小写转换                               |
