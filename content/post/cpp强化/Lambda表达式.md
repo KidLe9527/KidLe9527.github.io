@@ -79,9 +79,6 @@ Lambda 表达式的完整语法格式如下：
 
 ```cpp
 auto print = []{cout << "Hello World!" << endl; };
-
-运行项目并下载源码cpp
-运行1
 ```
 
 编译器会把上面这一句翻译为下面的代码：
