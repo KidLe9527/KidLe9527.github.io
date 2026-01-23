@@ -108,7 +108,20 @@ C++ 标准库提供了三种主要的智能指针（`<memory>`头文件）：`st
   }
   ```
 
-  
+
+> ‼️  弱引用指针引用共享指针的方法～～～
+>
+> ```cpp
+>  /*weak_ptr 不能直接访问对象，必须通过 lock() 方法获取对应的 shared_ptr（如果前驱节点还存在，lock() 返回非空 shared_ptr；如果已销毁，返回 nullptr）。*/
+> // 下面这段代码，dummyTail_->prev_是dummyTail的前驱节点；dummyTail_->prev_.lock()指向后继节点
+> dummyTail_->prev_.lock()->next_ = node; // 使用lock()获取shared_ptr // dummyTail_->prev_ 是 weak_ptr
+> 
+> /*expired() 方法返回 bool：true 表示 prev_ 指向的对象已被销毁（即 node 没有有效前驱），false 表示前驱节点还存在。*/
+> // node->prev_ 是弱引用指针
+> if(!node->prev_.expired() && node->next_) // .expired() 用于检查 weak_ptr 是否指向一个已被销毁的对象
+> ```
+>
+> 
 
 - **原理**：
 
