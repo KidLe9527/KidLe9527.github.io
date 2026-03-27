@@ -56,7 +56,7 @@ int main() {
         exit(EXIT_FAILURE);
     }
 
-    // 2. 设置套接字选项（复用端口/IP）
+    // 2. 设置套接字选项（复用端口/IP） 🔥
     if (setsockopt(server_fd, SOL_SOCKET, SO_REUSEADDR | SO_REUSEPORT, &opt, sizeof(opt))) {
         perror("setsockopt");
         exit(EXIT_FAILURE);
@@ -350,14 +350,14 @@ struct sockaddr {
 
 ```c
 struct sockaddr_in {
-    short int sin_family;      // 必须为AF_INET（标识IPv4）
-    unsigned short sin_port;   // 端口号（16位，需用网络字节序）
+    short int sin_family;      // 必须为AF_INET（标识IPv4）-- 2字节
+    unsigned short sin_port;   // 端口号（16位，需用网络字节序）-- short 2字节
     struct in_addr sin_addr;   // IPv4地址（32位）
-    unsigned char sin_zero[8]; // 填充字段（凑齐16字节，与sockaddr大小一致，通常置0）
+    unsigned char sin_zero[8]; // 填充字段（凑齐16字节，与sockaddr大小一致，通常置0）--8字节
 };
 
 struct in_addr {
-    unsigned long s_addr;      // IPv4地址（32位，网络字节序）
+    unsigned long s_addr;      // IPv4地址（32位，网络字节序）-- 4字节
 };
 ```
 
@@ -366,6 +366,26 @@ struct in_addr {
   - `sin_port`：必须用`htons()`转换为网络字节序（不能直接赋值主机字节序的端口号）；
   - `sin_zero`：仅用于填充，需用`memset(&addr.sin_zero, 0, 8)`置 0，保证结构大小与`sockaddr`一致；
   - `sin_addr.s_addr`：IPv4 地址的 32 位整数（网络字节序），如`127.0.0.1`对应`0x0100007F`（大端序）。
+  
+  > #### C99 结构化初始化（现代简洁写法）地址结构体
+  >
+  > C99 及以上支持直接初始化结构体，代码更简洁，无需手动 `memset`：
+  >
+  > ```cpp
+  > // 结构化初始化（自动清零未显式赋值的字段）
+  > struct sockaddr_in server_addr = {
+  >     .sin_family = AF_INET,                // IPv4 协议族
+  >     .sin_port = htons(SERVER_PORT),       // 端口转网络序
+  >     .sin_addr = {htonl(INADDR_ANY)}       // 绑定所有网卡（服务端）
+  >     // 若绑定指定IP：.sin_addr = inet_addr(SERVER_IP)（不推荐，已废弃）
+  > };
+  > 
+  > // 推荐的指定IP方式（替换上面的 sin_addr 赋值）
+  > if (inet_pton(AF_INET, SERVER_IP, &server_addr.sin_addr) <= 0) {
+  >     perror("inet_pton error");
+  >     return -1;
+  > }
+  > ```
 
 #### 3. IPv6 专属结构 `sockaddr_in6`
 
@@ -413,6 +433,8 @@ struct in6_addr {
 | `inet_ntoa()` | IPv4 网络字节序 → 点分十进制字符串 | IPv4      | 返回静态缓冲区（线程不安全） |
 | `inet_pton()` | 字符串 → 网络字节序（二进制）      | IPv4/IPv6 | 现代推荐，线程安全           |
 | `inet_ntop()` | 网络字节序 → 字符串                | IPv4/IPv6 | 现代推荐，需手动分配缓冲区   |
+
+> p指的是presentation，即表现形式字符串
 
 - **关键示例**：
 
@@ -543,15 +565,13 @@ Socket 编程核心函数分为**基础创建**、**地址绑定 / 监听**、**
 
 ### 3. listen ()：监听套接字（仅 TCP 服务端）
 
-- **功能**：将套接字转为 “监听状态”，等待客户端连接（仅 TCP 需要，UDP 无连接无需监听）。
+- **功能**：将套接字转为 “监听状态”，等待客户端连接（仅 TCP 需要，UDP 无连接无需监听）。「准备监听」，只做初始化工作，立即返回。
 
 - **函数原型**：
 
   ```c
   int listen(int sockfd, int backlog);
   ```
-
-  
 
 - **参数说明**：
 
@@ -560,11 +580,18 @@ Socket 编程核心函数分为**基础创建**、**地址绑定 / 监听**、**
 
 - **返回值**：成功返回`0`；失败返回`-1`。
 
+> `listen()` 是面向连接的 socket（TCP 协议，`SOCK_STREAM` 类型）才会用到的函数，它的核心工作只有两个，且都是「瞬间完成」的：
+>
+> 1. 将当前的 socket 从「主动套接字」（默认创建的 socket，用于主动发起连接 `connect()`）转换为「被动套接字」（用于被动监听客户端连接请求）。
+> 2. 为该被动套接字创建一个「连接请求队列」（也叫半连接队列 + 全连接队列，具体取决于系统实现），用于存放客户端发来的未完成 / 已完成的连接请求，队列长度由 `listen()` 的第二个参数 `backlog` 限制（现代系统中该参数是一个建议值）。
+>
+> 只要 socket 本身是合法的（TCP 类型、已绑定 `bind()`），`listen()` 调用后会立即返回 0（成功）或 -1（失败，如参数错误、socket 未绑定等），不会产生任何阻塞等待，所以它本身没有阻塞 / 非阻塞的区分。
+
 ### 4. accept ()：接受客户端连接（仅 TCP 服务端）
 
 - **功能**：从监听队列中取出一个客户端连接，创建新的套接字（用于与该客户端通信，原监听套接字仍可继续监听）。
 
-  > `ccept` 的核心作用是从「已完成三次握手的连接队列」中取出一个就绪连接，并为该连接创建新的套接字（而非 “重新建立连接”）监听套接字 --> 创建通信套接字
+  > `accept` 的核心作用是从「已完成三次握手的连接队列」中取出一个就绪连接，并为该连接创建新的套接字（而非 “重新建立连接”）监听套接字 --> 创建通信套接字
 
 - **函数原型**：
 
@@ -582,8 +609,11 @@ Socket 编程核心函数分为**基础创建**、**地址绑定 / 监听**、**
 
 - **返回值**：成功返回新的通信套接字描述符；失败返回`-1`。
 
+> `accept4()`扩展接口，相比传统`accept` + `fcntl`更加高效
+>
 > * 扩展接口，支持通过 `flags` 参数设置套接字属性（这里是 `SOCK_NONBLOCK`）
 > * `SOCK_NONBLOCK`：核心标志，让创建的 `clientFd` 成为**非阻塞套接字**（适配 epoll 非阻塞 IO 模型）。
+> * SOCK_CLOEXEC：子进程不继承 fd（**防止文件描述符泄漏**）
 >
 > ```cpp
 > // 接受连接（非阻塞）
@@ -656,7 +686,41 @@ Socket 编程核心函数分为**基础创建**、**地址绑定 / 监听**、**
 
 - **返回值**：成功返回`0`；失败返回`-1`。
 
+### 8.`shutdown()`：部分关闭套接字
 
+`shutdown` 是用于**关闭套接字连接的某一部分（或全部）** 的系统调用，其函数原型为：
+
+```c
+#include <sys/socket.h>
+int shutdown(int sockfd, int how);
+```
+
+1. 参数说明
+
+   - `sockfd`：要操作的套接字文件描述符；
+
+   - `how`：关闭方式，核心取值有 3 种：
+     - `SHUT_RD`（0）：关闭读端。此后该套接字无法读取数据，即使接收缓冲区有未读数据也会被丢弃；对端发送的数据会被内核确认后静默丢弃，对端不会收到 EOF。
+     - `SHUT_WR`（1）：关闭写端（对应代码中 `shutdownWrite()` 逻辑）。此时套接字无法再写入数据，内核会向对端发送 TCP 连接的 FIN 包（表示本端无数据要发送），但仍可读取对端发送的数据。
+     - `SHUT_RDWR`（2）：同时关闭读端和写端，等价于 `SHUT_RD + SHUT_WR`。
+
+2. 返回值
+
+   - 成功返回 `0`；
+
+   - 失败返回 `-1`，并设置 `errno` 标识错误原因（如 `EBADF` 表示文件描述符无效、`ENOTCONN` 表示套接字未连接）。
+
+3. 核心特性
+
+   - 针对**连接**操作：`shutdown` 作用于套接字的连接本身，而非文件描述符；
+
+   - 多描述符共享连接时仍生效：即使多个文件描述符指向同一个套接字（如 `dup` 复制描述符），调用 `shutdown` 也会直接关闭连接的对应方向，所有共享该连接的描述符都会受影响；
+
+   - 仅关闭读写方向，不释放文件描述符：调用 `shutdown` 后，套接字文件描述符仍需通过 `close` 释放。
+
+
+
+---
 
 ## 二、关键结构体：struct sockaddr_in（IPv4）
 

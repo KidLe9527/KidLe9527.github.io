@@ -78,20 +78,39 @@ Lambda 表达式的完整语法格式如下：
 编译器会把一个Lambda表达式生成一个匿名类的**匿名对象**，并在类中**重载函数调用运算符**，实现了一个`operator()`方法。
 
 ```cpp
-auto print = []{cout << "Hello World!" << endl; };
+auto print = [](){cout << "Hello World!" << endl; };
 ```
 
-编译器会把上面这一句翻译为下面的代码：
+编译器会把上面这一句翻译为下面的代码：（补充上下文环境）
 
 ```cpp
+#include <iostream>
+using namespace std;
+
 class print_class
 {
 public:
-	void operator()(void) const
-	{
-		cout << "Hello World!" << endl;
-	}
+    // 显式定义默认构造函数，方便观察
+    print_class() {
+        cout << "调用了构造函数 print_class()" << endl;
+    }
+
+    // 重载函数调用运算符
+    void operator()(void) const
+    {
+        cout << "调用了重载的 operator()，输出：Hello World!" << endl;
+    }
 };
-// 用构造的类创建对象，print此时就是一个函数对象
-auto print = print_class();
+
+int main() {
+    // 这里的 () 是调用构造函数，创建对象 （类名 + ()）
+    auto print = print_class();
+    
+    // 这里的 () 是调用重载的 operator()  （对象 + ()）
+    print();
+    
+    return 0;
+}
 ```
+
+**核心区分点：`()` 跟在类名后 → 构造函数；`()` 跟在类对象后 → 重载的函数调用运算符。**
